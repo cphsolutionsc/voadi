@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { VoadiLogo } from '@/components/voadi-logo'
-import { UserRound } from 'lucide-react'
+import { Search, UserRound } from 'lucide-react'
 
 export function Header({ title }: { title?: string }) {
   return (
@@ -13,6 +13,13 @@ export function Header({ title }: { title?: string }) {
           }
         </Link>
         <div className="flex items-center gap-2">
+          <Link
+            href="/search"
+            aria-label="Search"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#2A1515] bg-[#1E0E0E] text-[#8B7B6B] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
+          >
+            <Search size={16} aria-hidden="true" />
+          </Link>
           <Link
             href="/profile"
             aria-label="Your profile"

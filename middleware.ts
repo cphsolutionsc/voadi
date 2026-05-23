@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const PROTECTED_PREFIXES = [
-  '/feed', '/events', '/petitions', '/politicians', '/missing', '/help', '/admin',
+  '/feed', '/events', '/petitions', '/politicians', '/missing', '/help', '/admin', '/search',
 ]
 
 // Cookie names better-auth uses for session tokens

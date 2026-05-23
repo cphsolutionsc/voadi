@@ -1,7 +1,10 @@
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
+import * as React from 'react'
 import { db } from '@/lib/db'
 import * as schema from '@/lib/db/schema'
+import { sendEmail } from '@/lib/email'
+import { WelcomeEmail } from '@/lib/email/templates/welcome'
 
 export const auth = betterAuth({
   baseURL: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
@@ -54,4 +57,19 @@ export const auth = betterAuth({
     },
   },
   trustedOrigins: [process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'],
+  databaseHooks: {
+    user: {
+      create: {
+        after: async (user) => {
+          if (user.email && user.name) {
+            await sendEmail({
+              to: user.email,
+              subject: 'Welcome to VOADI',
+              react: React.createElement(WelcomeEmail, { name: user.name }),
+            }).catch(console.error)
+          }
+        },
+      },
+    },
+  },
 })

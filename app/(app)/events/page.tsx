@@ -2,15 +2,32 @@ export const dynamic = 'force-dynamic'
 import Link from 'next/link'
 import { db } from '@/lib/db'
 import { events } from '@/lib/db/schema'
-import { gte } from 'drizzle-orm'
+import { and, eq, gte } from 'drizzle-orm'
 import { CalendarDays, MapPin } from 'lucide-react'
 
 export const metadata = { title: 'Events — VOADI' }
 
-export default async function EventsPage() {
+const COUNTIES = [
+  'Carlow', 'Cavan', 'Clare', 'Cork', 'Donegal', 'Dublin', 'Galway', 'Kerry',
+  'Kildare', 'Kilkenny', 'Laois', 'Leitrim', 'Limerick', 'Longford', 'Louth', 'Mayo', 'Meath',
+  'Monaghan', 'Offaly', 'Roscommon', 'Sligo', 'Tipperary', 'Waterford', 'Westmeath', 'Wexford', 'Wicklow',
+]
+
+export default async function EventsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ county?: string }>
+}) {
+  const { county } = await searchParams
+
   const allEvents = await db.select().from(events)
-    .where(gte(events.startsAt, new Date()))
+    .where(
+      county
+        ? and(gte(events.startsAt, new Date()), eq(events.county, county))
+        : gte(events.startsAt, new Date())
+    )
     .orderBy(events.startsAt)
+    .limit(50)
 
   return (
     <div className="py-2">
@@ -26,9 +43,31 @@ export default async function EventsPage() {
           </Link>
         </div>
       </div>
-      <p className="mb-5 text-xs leading-relaxed text-[#8B7B6B]">
+      <p className="mb-4 text-xs leading-relaxed text-[#8B7B6B]">
         Community gatherings, town halls, and mobilisation events across Ireland.
       </p>
+
+      <div className="-mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1 scrollbar-none">
+        <Link
+          href="/events"
+          className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+            !county ? 'bg-[#D97706] text-[#1C0D0D]' : 'border border-[#2A1515] text-[#8B7B6B]'
+          }`}
+        >
+          All
+        </Link>
+        {COUNTIES.map(c => (
+          <Link
+            key={c}
+            href={`/events?county=${c}`}
+            className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+              county === c ? 'bg-[#D97706] text-[#1C0D0D]' : 'border border-[#2A1515] text-[#8B7B6B]'
+            }`}
+          >
+            {c}
+          </Link>
+        ))}
+      </div>
 
       {allEvents.length === 0 ? (
         <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-10 text-center">

@@ -53,6 +53,15 @@ export default async function ProfilePage() {
         <Row label="Member since" value={joined} />
       </div>
 
+      {/* Support VOADI */}
+      <Link
+        href="/donate"
+        className="mb-4 flex items-center justify-between rounded-xl border border-[#D97706]/30 bg-[#D97706]/5 px-4 py-3 hover:bg-[#D97706]/10"
+      >
+        <span className="text-xs font-semibold text-[#D97706]">Support VOADI</span>
+        <span className="text-xs text-[#D97706]">›</span>
+      </Link>
+
       {/* Legal links */}
       <div className="mb-6 overflow-hidden rounded-xl border border-[#2A1515]">
         {[

@@ -418,6 +418,11 @@ export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
     const ctx = gsap.context(() => {
@@ -592,53 +597,78 @@ export function HomePage() {
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(o => !o)}
-          className="text-[#F5EDD0] transition-opacity hover:opacity-70"
+          className="relative z-[60] text-[#F5EDD0] transition-opacity hover:opacity-70 md:hidden"
         >
           {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
       </nav>
 
-      {/* Mobile menu drawer */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 z-40 flex flex-col bg-[#1C0D0D] pt-20"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Navigation menu"
-        >
-          {/* Backdrop close */}
+      {/* Mobile menu — slide in from right, always mounted for smooth exit */}
+      <div
+        className={`fixed inset-0 z-50 flex flex-col bg-[#1C0D0D] transition-transform duration-300 ease-out md:hidden ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        aria-hidden={!menuOpen}
+      >
+        {/* Drawer header */}
+        <div className="flex items-center justify-between px-8 py-5">
+          <VoadiLogo size="md" />
           <button
             type="button"
-            className="absolute inset-0"
             aria-label="Close menu"
             onClick={() => setMenuOpen(false)}
-          />
-          <nav className="relative z-10 flex flex-col gap-1 px-8 py-4">
-            {NAV_LINKS.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="border-b border-[#2A1515] py-5 font-display text-[clamp(28px,8vw,48px)] uppercase leading-none tracking-tight text-[#F5EDD0] transition-colors hover:text-[#D97706]"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="mt-8">
-              <Link
-                href="/signup"
-                onClick={() => setMenuOpen(false)}
-                className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-7 pr-2 text-sm font-bold text-[#1C0D0D]"
-              >
-                <span>JOIN VOADI</span>
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
-                  <ArrowUpRightIcon />
-                </span>
-              </Link>
-            </div>
-          </nav>
+            className="text-[#F5EDD0] transition-opacity hover:opacity-70"
+          >
+            <CloseIcon />
+          </button>
         </div>
-      )}
+
+        {/* Nav links */}
+        <nav className="flex flex-1 flex-col gap-0 overflow-y-auto px-8 py-2">
+          {NAV_LINKS.map(link => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="border-b border-[#2A1515] py-5 font-display text-[clamp(28px,8vw,48px)] uppercase leading-none tracking-tight text-[#F5EDD0] transition-colors hover:text-[#D97706]"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="#donate"
+            onClick={() => setMenuOpen(false)}
+            className="border-b border-[#2A1515] py-5 font-display text-[clamp(28px,8vw,48px)] uppercase leading-none tracking-tight text-[#D97706] transition-colors hover:text-[#F5EDD0]"
+          >
+            Donate
+          </Link>
+          <div className="mt-10 space-y-3 pb-8">
+            <Link
+              href="/signup"
+              onClick={() => setMenuOpen(false)}
+              className="inline-flex w-full items-center justify-between gap-3 rounded-full bg-[#D97706] py-4 pl-8 pr-3 text-sm font-bold text-[#1C0D0D]"
+            >
+              <span>JOIN VOADI — FREE</span>
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+                <ArrowUpRightIcon size={14} />
+              </span>
+            </Link>
+            <Link
+              href="#donate"
+              onClick={() => setMenuOpen(false)}
+              className="inline-flex w-full items-center justify-between gap-3 rounded-full border border-[#D97706] py-4 pl-8 pr-3 text-sm font-bold text-[#D97706]"
+            >
+              <span>Support the cause</span>
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#2A1515] text-[#D97706]">
+                <ArrowUpRightIcon size={14} />
+              </span>
+            </Link>
+          </div>
+        </nav>
+      </div>
 
       {/* ── Hero ── */}
       <section className="hero-section relative h-screen w-full pt-[72px]">
@@ -758,15 +788,23 @@ export function HomePage() {
             </span>
           </div>
 
-          <Link
-            href="/signup"
-            className="hero-cta-btn mt-4 inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-8 pr-2 text-sm font-bold text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
-          >
-            <span>JOIN VOADI</span>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
-              <FistIcon />
-            </span>
-          </Link>
+          <div className="hero-cta-btn mt-4 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/signup"
+              className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-8 pr-2 text-sm font-bold text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
+            >
+              <span>JOIN VOADI</span>
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+                <FistIcon />
+              </span>
+            </Link>
+            <Link
+              href="#donate"
+              className="inline-flex items-center gap-2 rounded-full border border-[#D97706]/60 bg-[#1C0D0D]/70 px-5 py-3.5 text-sm font-semibold text-[#D97706] backdrop-blur-sm transition-all hover:border-[#D97706] hover:bg-[#D97706]/10"
+            >
+              Support us
+            </Link>
+          </div>
         </div>
       </section>
 

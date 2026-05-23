@@ -83,3 +83,20 @@ export async function createHelpPost(formData: FormData) {
   })
   redirect('/help')
 }
+
+export async function createPetition(formData: FormData) {
+  const session = await requireSession()
+  const title  = formData.get('title') as string
+  const body   = formData.get('body') as string
+  const target = formData.get('target') as string
+
+  if (!title?.trim() || !body?.trim() || !target?.trim()) return
+
+  await db.insert(petitions).values({
+    title: title.trim(),
+    body: body.trim(),
+    target: target.trim(),
+    createdBy: session.user.id,
+  })
+  redirect('/petitions')
+}

@@ -15,9 +15,15 @@ export default async function PetitionsPage() {
     <div className="py-2">
       <div className="mb-1 flex items-center justify-between">
         <h1 className="text-lg font-bold text-white">Petitions</h1>
-        <span className="rounded-full bg-[#1a2e1a] px-3 py-1 text-xs font-medium text-[#16a34a]">
-          {allPetitions.length} open
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="rounded-full bg-[#1a2e1a] px-3 py-1 text-xs font-medium text-[#16a34a]">
+            {allPetitions.length} open
+          </span>
+          <Link href="/petitions/new"
+            className="shrink-0 rounded-full bg-[#D97706] px-3 py-1.5 text-xs font-bold text-[#1C0D0D]">
+            + New
+          </Link>
+        </div>
       </div>
       <p className="mb-5 text-xs leading-relaxed text-[#8B7B6B]">
         Sign petitions and make your voice heard. Each signature drives real change.

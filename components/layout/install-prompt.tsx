@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { X, Share, Plus, Download } from 'lucide-react'
+import { X, Share, Plus } from 'lucide-react'
 
 type Platform = 'android' | 'ios' | 'other'
 
@@ -25,6 +25,20 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const DISMISSED_KEY = 'voadi-install-dismissed'
+
+function HarpV({ size = 28 }: { size?: number }) {
+  const w = Math.round(size * 0.68)
+  return (
+    <svg width={w} height={size} viewBox="0 0 17 25" fill="none" aria-hidden="true">
+      <path d="M1.5 1.5 L8.5 23.5" stroke="white" strokeWidth="3.5" strokeLinecap="round" />
+      <path d="M15.5 1.5 C17.5 7 16 16 8.5 23.5" stroke="white" strokeWidth="3.5" strokeLinecap="round" />
+      <path d="M1.5 1.5 C3.5 -1.5 13.5 -1.5 15.5 1.5" stroke="#D97706" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+      <line x1="3.5" y1="7.5"  x2="14.5" y2="7"   stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" opacity="0.95" />
+      <line x1="5.5" y1="13"   x2="13"   y2="13"   stroke="#D97706" strokeWidth="1.4" strokeLinecap="round" opacity="0.95" />
+      <line x1="7.5" y1="18.5" x2="11"   y2="18.5" stroke="#D97706" strokeWidth="1.3" strokeLinecap="round" opacity="0.95" />
+    </svg>
+  )
+}
 
 export function InstallPrompt() {
   const [show, setShow] = useState(false)
@@ -64,76 +78,81 @@ export function InstallPrompt() {
     if (!deferredPrompt) return
     await deferredPrompt.prompt()
     const { outcome } = await deferredPrompt.userChoice
-    if (outcome === 'accepted') dismiss()
-    else dismiss()
+    if (outcome === 'accepted' || outcome === 'dismissed') dismiss()
   }
 
   if (!show) return null
 
   return (
     <>
-      {/* Banner */}
-      <div className="fixed left-0 right-0 top-0 z-50 border-b border-[#3D2020] bg-[#0A0404]/98 px-4 py-3 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-lg items-center gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#D97706]">
-            <span className="text-xs font-bold text-[#1C0D0D]">V</span>
-          </div>
-          <div className="flex-1">
-            <p className="text-xs font-semibold text-[#F5EDD0]">Add VOADI to your home screen</p>
-            <p className="text-[10px] text-[#8B7B6B]">Get quick access — works offline too</p>
-          </div>
-          <div className="flex items-center gap-2">
-            {platform === 'android' && (
+      <div className="fixed left-0 right-0 top-0 z-50 border-b border-[#2A1515] bg-[#0A0404]/95 backdrop-blur-2xl" style={{ WebkitBackdropFilter: 'blur(24px)' }}>
+        <div className="mx-auto max-w-lg px-4 py-3">
+          <div className="flex items-center gap-3">
+            {/* Logo mark */}
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#3D2020] bg-[#140909]">
+              <HarpV size={26} />
+            </div>
+
+            {/* Text */}
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-bold text-[#F5EDD0]">
+                <span className="text-[#D97706]">V</span>OADI
+              </p>
+              <p className="text-[10px] leading-tight text-[#5C4040]">
+                Add to your home screen for quick access
+              </p>
+            </div>
+
+            {/* CTA + dismiss */}
+            <div className="flex shrink-0 items-center gap-2">
+              {platform === 'android' && (
+                <button
+                  onClick={handleInstall}
+                  className="rounded-full bg-[#D97706] px-4 py-1.5 text-xs font-bold text-[#1C0D0D] transition-opacity hover:opacity-90"
+                >
+                  Install
+                </button>
+              )}
+              {platform === 'ios' && (
+                <button
+                  onClick={() => setShowIosSteps(v => !v)}
+                  className="rounded-full bg-[#D97706] px-4 py-1.5 text-xs font-bold text-[#1C0D0D] transition-opacity hover:opacity-90"
+                >
+                  How to
+                </button>
+              )}
               <button
-                onClick={handleInstall}
-                className="flex items-center gap-1.5 rounded-full bg-[#D97706] px-3 py-1.5 text-xs font-bold text-[#1C0D0D]"
+                onClick={dismiss}
+                className="flex h-7 w-7 items-center justify-center rounded-full border border-[#2A1515] text-[#3D2020] transition-colors hover:text-[#8B7B6B]"
+                aria-label="Dismiss"
               >
-                <Download size={11} />
-                Install
+                <X size={13} />
               </button>
-            )}
-            {platform === 'ios' && (
-              <button
-                onClick={() => setShowIosSteps(v => !v)}
-                className="flex items-center gap-1.5 rounded-full bg-[#D97706] px-3 py-1.5 text-xs font-bold text-[#1C0D0D]"
-              >
-                <Share size={11} />
-                How to
-              </button>
-            )}
-            <button
-              onClick={dismiss}
-              className="rounded-full p-1.5 text-[#5C4040] hover:text-[#8B7B6B]"
-              aria-label="Dismiss"
-            >
-              <X size={14} />
-            </button>
+            </div>
           </div>
+
+          {/* iOS steps */}
+          {platform === 'ios' && showIosSteps && (
+            <div className="mt-3 space-y-2 border-t border-[#2A1515] pt-3">
+              <Step n={1} icon={<Share size={11} />} text="Tap the Share button in Safari" />
+              <Step n={2} icon={<Plus size={11} />} text='"Add to Home Screen"' />
+              <Step n={3} text='Tap "Add" in the top-right corner' />
+            </div>
+          )}
         </div>
-
-        {/* iOS steps — inline expansion */}
-        {platform === 'ios' && showIosSteps && (
-          <div className="mx-auto mt-3 max-w-lg space-y-2 border-t border-[#2A1515] pt-3">
-            <Step n={1} icon={<Share size={13} />} text='Tap the Share button in Safari — the box with an arrow pointing up' />
-            <Step n={2} icon={<Plus size={13} />} text='"Add to Home Screen"' />
-            <Step n={3} text='Tap "Add" in the top-right corner' />
-          </div>
-        )}
       </div>
-
-      {/* Spacer so header isn't hidden behind the banner */}
-      <div className={`${showIosSteps ? 'h-36' : 'h-16'} shrink-0`} />
+      <div className={showIosSteps ? 'h-28' : 'h-[58px]'} />
     </>
   )
 }
 
 function Step({ n, icon, text }: { n: number; icon?: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-start gap-2.5 text-xs text-[#A89080]">
-      <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#2A1515] text-[10px] font-bold text-[#D97706]">
+    <div className="flex items-center gap-2.5 text-[11px] text-[#A89080]">
+      <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#2A1515] text-[9px] font-bold text-[#D97706]">
         {n}
       </span>
-      {icon && <span className="mt-0.5 text-[#D97706]">{icon}</span>}
+      {icon && <span className="text-[#D97706]">{icon}</span>}
       <span>{text}</span>
     </div>
   )

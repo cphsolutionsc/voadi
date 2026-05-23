@@ -16,9 +16,15 @@ export default async function EventsPage() {
     <div className="py-2">
       <div className="mb-1 flex items-center justify-between">
         <h1 className="text-lg font-bold text-white">Events</h1>
-        <span className="rounded-full bg-[#2A1515] px-3 py-1 text-xs font-medium text-[#D97706]">
-          {allEvents.length} upcoming
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="rounded-full bg-[#2A1515] px-3 py-1 text-xs font-medium text-[#D97706]">
+            {allEvents.length} upcoming
+          </span>
+          <Link href="/events/new"
+            className="shrink-0 rounded-full bg-[#D97706] px-3 py-1.5 text-xs font-bold text-[#1C0D0D]">
+            + New
+          </Link>
+        </div>
       </div>
       <p className="mb-5 text-xs leading-relaxed text-[#8B7B6B]">
         Community gatherings, town halls, and mobilisation events across Ireland.

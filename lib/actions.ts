@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 import { db } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import {
-  eventRsvps, petitions, petitionSignatures,
+  events, eventRsvps, petitions, petitionSignatures,
   missingPersons, helpPosts,
 } from '@/lib/db/schema'
 import { eq, and, sql } from 'drizzle-orm'
@@ -82,6 +82,28 @@ export async function createHelpPost(formData: FormData) {
     title, body, category, createdBy: session.user.id,
   })
   redirect('/help')
+}
+
+export async function createEvent(formData: FormData) {
+  const session = await requireSession()
+  const title       = formData.get('title') as string
+  const description = formData.get('description') as string
+  const location    = formData.get('location') as string
+  const county      = formData.get('county') as string
+  const startsAt    = new Date(formData.get('startsAt') as string)
+
+  if (!title?.trim() || !description?.trim() || !location?.trim() || !county || isNaN(startsAt.getTime())) return
+
+  await db.insert(events).values({
+    title: title.trim(),
+    description: description.trim(),
+    location: location.trim(),
+    county,
+    startsAt,
+    createdBy: session.user.id,
+    status: 'published',
+  })
+  redirect('/events')
 }
 
 export async function createPetition(formData: FormData) {

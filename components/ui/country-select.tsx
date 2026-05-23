@@ -20,7 +20,7 @@ const FlagComponents = Flags as unknown as FlagMap
 
 function Flag({ code, className }: { code: string; className?: string }) {
   const FlagComponent = FlagComponents[code]
-  if (!FlagComponent) return <span className="inline-block h-3 w-4 rounded-sm bg-[#3D2020]" />
+  if (!FlagComponent) return <span className="inline-block h-3 w-4 rounded-sm bg-[#9CA3AF]" />
   return <FlagComponent className={className} title={code} />
 }
 
@@ -96,19 +96,19 @@ export function CountrySelect({
         className={`flex w-full items-center gap-2.5 rounded-lg border px-4 py-3 text-sm transition-colors ${
           open
             ? 'border-[#D97706] ring-1 ring-[#D97706]'
-            : 'border-[#2A1515] hover:border-[#3D2020]'
-        } bg-[#140909] text-left`}
+            : 'border-[#E5E7EB] hover:border-[#9CA3AF]'
+        } bg-[#FFFFFF] text-left`}
       >
         {selected ? (
           <>
             <Flag code={selected.code} className="h-3 w-[18px] shrink-0 rounded-[2px]" />
-            <span className="flex-1 text-[#F5EDD0]">
+            <span className="flex-1 text-[#111827]">
               {valueType === 'nationality' ? selected.nationality : selected.name}
             </span>
             <button
               type="button"
               onClick={clear}
-              className="ml-auto shrink-0 text-[#5C4040] hover:text-[#8B7B6B]"
+              className="ml-auto shrink-0 text-[#6B7280] hover:text-[#4B5563]"
               aria-label="Clear selection"
             >
               <X size={13} />
@@ -116,9 +116,9 @@ export function CountrySelect({
           </>
         ) : (
           <>
-            <span className="inline-block h-3 w-[18px] shrink-0 rounded-[2px] bg-[#2A1515]" />
-            <span className="flex-1 text-[#5C4A3A]">{placeholder}</span>
-            <ChevronDown size={14} className="shrink-0 text-[#5C4040]" />
+            <span className="inline-block h-3 w-[18px] shrink-0 rounded-[2px] bg-[#E5E7EB]" />
+            <span className="flex-1 text-[#9CA3AF]">{placeholder}</span>
+            <ChevronDown size={14} className="shrink-0 text-[#6B7280]" />
           </>
         )}
       </button>
@@ -137,20 +137,20 @@ export function CountrySelect({
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-xl border border-[#2A1515] bg-[#0D0505] shadow-[0_8px_40px_rgba(0,0,0,0.8)]">
+        <div className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
           {/* Search */}
-          <div className="flex items-center gap-2 border-b border-[#2A1515] px-3 py-2.5">
-            <Search size={13} className="shrink-0 text-[#5C4040]" aria-hidden="true" />
+          <div className="flex items-center gap-2 border-b border-[#E5E7EB] px-3 py-2.5">
+            <Search size={13} className="shrink-0 text-[#6B7280]" aria-hidden="true" />
             <input
               ref={searchRef}
               type="text"
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder="Search countries…"
-              className="flex-1 bg-transparent text-sm text-[#F5EDD0] placeholder-[#3D2020] outline-none"
+              className="flex-1 bg-transparent text-sm text-[#111827] placeholder-[#9CA3AF] outline-none"
             />
             {query && (
-              <button type="button" onClick={() => setQuery('')} className="text-[#5C4040] hover:text-[#8B7B6B]">
+              <button type="button" onClick={() => setQuery('')} className="text-[#6B7280] hover:text-[#4B5563]">
                 <X size={12} />
               </button>
             )}
@@ -159,15 +159,15 @@ export function CountrySelect({
           {/* List */}
           <ul className="max-h-56 overflow-y-auto overscroll-contain">
             {filtered.length === 0 && (
-              <li className="px-4 py-3 text-xs text-[#3D2020]">No countries found.</li>
+              <li className="px-4 py-3 text-xs text-[#9CA3AF]">No countries found.</li>
             )}
             {filtered.map(country => (
               <li key={country.code}>
                 <button
                   type="button"
                   onClick={() => select(country)}
-                  className={`flex w-full items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-[#1E0E0E] ${
-                    selected?.code === country.code ? 'bg-[#1E0E0E] text-[#D97706]' : 'text-[#A89080]'
+                  className={`flex w-full items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-[#FFFFFF] ${
+                    selected?.code === country.code ? 'bg-[#FFFFFF] text-[#D97706]' : 'text-[#6B7280]'
                   }`}
                 >
                   <Flag code={country.code} className="h-3 w-[18px] shrink-0 rounded-[2px]" />

@@ -25,11 +25,11 @@ export function Nav() {
       }}
     >
       <nav
-        className="relative flex items-center rounded-full border border-white/[0.08] bg-[#0D0505]/75 px-2 py-2 shadow-[0_8px_40px_rgba(0,0,0,0.8),inset_0_0_0_0.5px_rgba(255,255,255,0.04)] backdrop-blur-2xl"
+        className="relative flex items-center rounded-full border border-[#E5E7EB] bg-white/90 px-2 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.12)] backdrop-blur-2xl"
         style={{ WebkitBackdropFilter: 'blur(24px)' }}
       >
         {/* Subtle top-edge highlight */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-full bg-gradient-to-r from-transparent via-black/5 to-transparent" />
 
         <ul className="flex items-center gap-1">
           {NAV_ITEMS.map(({ href, label, Icon }) => {
@@ -51,7 +51,7 @@ export function Nav() {
                       size={18}
                       strokeWidth={active ? 2.4 : 1.7}
                       className={`transition-colors duration-200 ${
-                        active ? 'text-[#1C0D0D]' : 'text-[#6B4A4A]'
+                        active ? 'text-[#FFFFFF]' : 'text-[#9CA3AF]'
                       }`}
                       aria-hidden="true"
                     />
@@ -59,7 +59,7 @@ export function Nav() {
 
                   {/* Label always outside the pill */}
                   <span className={`text-[8px] font-bold uppercase tracking-widest transition-colors duration-200 ${
-                    active ? 'text-[#D97706]' : 'text-[#4A2A2A]'
+                    active ? 'text-[#D97706]' : 'text-[#9CA3AF]'
                   }`}>
                     {label}
                   </span>

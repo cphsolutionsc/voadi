@@ -32,18 +32,18 @@ export default async function EventsPage({
   return (
     <div className="py-2">
       <div className="mb-1 flex items-center justify-between">
-        <h1 className="text-lg font-bold text-white">Events</h1>
+        <h1 className="text-lg font-bold text-[#111827]">Events</h1>
         <div className="flex items-center gap-2">
-          <span className="rounded-full bg-[#2A1515] px-3 py-1 text-xs font-medium text-[#D97706]">
+          <span className="rounded-full bg-[#E5E7EB] px-3 py-1 text-xs font-medium text-[#D97706]">
             {allEvents.length} upcoming
           </span>
           <Link href="/events/new"
-            className="shrink-0 rounded-full bg-[#D97706] px-3 py-1.5 text-xs font-bold text-[#1C0D0D]">
+            className="shrink-0 rounded-full bg-[#D97706] px-3 py-1.5 text-xs font-bold text-[#111827]">
             + New
           </Link>
         </div>
       </div>
-      <p className="mb-4 text-xs leading-relaxed text-[#8B7B6B]">
+      <p className="mb-4 text-xs leading-relaxed text-[#4B5563]">
         Community gatherings, town halls, and mobilisation events across Ireland.
       </p>
 
@@ -51,7 +51,7 @@ export default async function EventsPage({
         <Link
           href="/events"
           className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
-            !county ? 'bg-[#D97706] text-[#1C0D0D]' : 'border border-[#2A1515] text-[#8B7B6B]'
+            !county ? 'bg-[#D97706] text-[#111827]' : 'border border-[#E5E7EB] text-[#4B5563]'
           }`}
         >
           All
@@ -61,7 +61,7 @@ export default async function EventsPage({
             key={c}
             href={`/events?county=${c}`}
             className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
-              county === c ? 'bg-[#D97706] text-[#1C0D0D]' : 'border border-[#2A1515] text-[#8B7B6B]'
+              county === c ? 'bg-[#D97706] text-[#111827]' : 'border border-[#E5E7EB] text-[#4B5563]'
             }`}
           >
             {c}
@@ -70,9 +70,9 @@ export default async function EventsPage({
       </div>
 
       {allEvents.length === 0 ? (
-        <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-10 text-center">
-          <p className="mb-1 text-sm font-semibold text-[#F5EDD0]">No upcoming events</p>
-          <p className="text-xs text-[#8B7B6B]">Check back soon — events are added regularly.</p>
+        <div className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-10 text-center">
+          <p className="mb-1 text-sm font-semibold text-[#111827]">No upcoming events</p>
+          <p className="text-xs text-[#4B5563]">Check back soon — events are added regularly.</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -85,14 +85,14 @@ export default async function EventsPage({
               <Link
                 key={ev.id}
                 href={`/events/${ev.id}`}
-                className="block rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]/50"
+                className="block rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4 transition-colors hover:border-[#D97706]/50"
               >
                 <div className="mb-2 flex items-start justify-between gap-3">
-                  <h2 className="font-semibold text-white">{ev.title}</h2>
-                  <span className="shrink-0 rounded-full bg-[#2A1515] px-2 py-0.5 text-[10px] font-medium text-[#D97706]">{ev.county}</span>
+                  <h2 className="font-semibold text-[#111827]">{ev.title}</h2>
+                  <span className="shrink-0 rounded-full bg-[#E5E7EB] px-2 py-0.5 text-[10px] font-medium text-[#D97706]">{ev.county}</span>
                 </div>
-                <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-[#A89080]">{ev.description}</p>
-                <div className="flex items-center gap-4 text-xs text-[#8B7B6B]">
+                <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-[#6B7280]">{ev.description}</p>
+                <div className="flex items-center gap-4 text-xs text-[#4B5563]">
                   <span className="flex items-center gap-1">
                     <CalendarDays size={11} aria-hidden="true" />
                     {date} at {time}

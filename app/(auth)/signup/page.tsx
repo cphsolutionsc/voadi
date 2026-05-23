@@ -15,7 +15,7 @@ const COUNTIES = [
 ]
 
 const INPUT =
-  'w-full rounded-lg border border-[#2A1515] bg-[#140909] px-4 py-3 text-sm text-[#F5EDD0] placeholder-[#5C4A3A] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]'
+  'w-full rounded-lg border border-[#D1D5DB] bg-white px-4 py-3 text-sm text-[#111827] placeholder-[#9CA3AF] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -55,15 +55,15 @@ export default function SignupPage() {
     return (
       <div className="space-y-4">
         <div className="mb-6">
-          <h2 className="text-xl font-bold text-[#F5EDD0]">Check your inbox</h2>
-          <p className="mt-1 text-sm text-[#8B7B6B]">We sent a verification link to <strong className="text-[#F5EDD0]">{verifyEmail}</strong></p>
+          <h2 className="text-xl font-bold text-[#111827]">Check your inbox</h2>
+          <p className="mt-1 text-sm text-[#4B5563]">We sent a verification link to <strong className="text-[#111827]">{verifyEmail}</strong></p>
         </div>
-        <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] px-4 py-5 text-sm leading-relaxed text-[#8B7B6B]">
+        <div className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] px-4 py-5 text-sm leading-relaxed text-[#4B5563]">
           Click the link in the email to activate your account. Check your spam folder if you do not see it within a few minutes.
         </div>
-        <p className="pt-1 text-center text-sm text-[#8B7B6B]">
+        <p className="pt-1 text-center text-sm text-[#4B5563]">
           Already verified?{' '}
-          <Link href="/login" className="font-medium text-[#F5EDD0] underline underline-offset-2 hover:text-white">
+          <Link href="/login" className="font-medium text-[#111827] underline underline-offset-2 hover:text-[#111827]">
             Sign in
           </Link>
         </p>
@@ -74,8 +74,8 @@ export default function SignupPage() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-[#F5EDD0]">Create your account</h2>
-        <p className="mt-1 text-sm text-[#8B7B6B]">Free to join. Takes under a minute.</p>
+        <h2 className="text-xl font-bold text-[#111827]">Create your account</h2>
+        <p className="mt-1 text-sm text-[#4B5563]">Free to join. Takes under a minute.</p>
       </div>
 
       {error && (
@@ -118,9 +118,9 @@ export default function SignupPage() {
           required
           className={`${INPUT} appearance-none`}
         >
-          <option value="" className="bg-[#1E0E0E]">County of residence</option>
+          <option value="" className="bg-white">County of residence</option>
           {COUNTIES.map(c => (
-            <option key={c} value={c} className="bg-[#1E0E0E]">{c}</option>
+            <option key={c} value={c} className="bg-white">{c}</option>
           ))}
         </select>
       </div>
@@ -140,14 +140,14 @@ export default function SignupPage() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-lg bg-[#D97706] py-3 text-sm font-bold text-[#1C0D0D] transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="w-full rounded-lg bg-[#D97706] py-3 text-sm font-bold text-[#111827] transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {loading ? 'Creating account…' : 'Create account'}
       </button>
 
-      <p className="pt-1 text-center text-sm text-[#8B7B6B]">
+      <p className="pt-1 text-center text-sm text-[#4B5563]">
         Already have an account?{' '}
-        <Link href="/login" className="font-medium text-[#F5EDD0] underline underline-offset-2 hover:text-white">
+        <Link href="/login" className="font-medium text-[#111827] underline underline-offset-2 hover:text-[#111827]">
           Sign in
         </Link>
       </p>

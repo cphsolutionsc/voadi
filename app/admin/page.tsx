@@ -72,11 +72,11 @@ export default async function AdminPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-xl font-bold text-white">Dashboard</h1>
+      <h1 className="mb-6 text-xl font-bold text-[#111827]">Dashboard</h1>
 
       {/* Needs attention */}
       <section className="mb-6">
-        <h2 className="mb-3 text-sm font-semibold text-[#F5EDD0]">Needs attention</h2>
+        <h2 className="mb-3 text-sm font-semibold text-[#111827]">Needs attention</h2>
         {allClear ? (
           <div className="rounded-xl border border-[#16A34A]/20 bg-[#16A34A]/5 px-4 py-3 text-xs text-[#16A34A]">
             All clear — nothing requires action right now.
@@ -87,12 +87,12 @@ export default async function AdminPage() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="flex items-center gap-3 rounded-xl border border-[#2A1515] bg-[#1E0E0E] px-4 py-3 text-[#F5EDD0] transition-colors hover:border-[#D97706]/40 hover:bg-[#251010]"
+                className="flex items-center gap-3 rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 text-[#111827] transition-colors hover:border-[#D97706]/40 hover:bg-[#251010]"
               >
                 <span className="text-[#D97706]">{item.icon}</span>
                 <div>
                   <p className="text-lg font-bold text-[#D97706]">{item.count}</p>
-                  <p className="text-xs text-[#5C4040]">{item.label}</p>
+                  <p className="text-xs text-[#6B7280]">{item.label}</p>
                 </div>
               </Link>
             ))}
@@ -102,16 +102,16 @@ export default async function AdminPage() {
 
       {/* Stat cards */}
       <section className="mb-6">
-        <h2 className="mb-3 text-sm font-semibold text-[#F5EDD0]">Overview</h2>
+        <h2 className="mb-3 text-sm font-semibold text-[#111827]">Overview</h2>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map(({ label, value, colour, href }) => (
             <Link
               key={label}
               href={href}
-              className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]/40 hover:bg-[#251010]"
+              className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4 transition-colors hover:border-[#D97706]/40 hover:bg-[#251010]"
             >
               <p className={`text-2xl font-bold ${colour}`}>{value}</p>
-              <p className="mt-1 text-xs text-[#5C4040]">{label}</p>
+              <p className="mt-1 text-xs text-[#6B7280]">{label}</p>
             </Link>
           ))}
         </div>
@@ -119,19 +119,19 @@ export default async function AdminPage() {
 
       {/* Recent signups */}
       <section>
-        <h2 className="mb-3 text-sm font-semibold text-[#F5EDD0]">Recent members</h2>
-        <div className="overflow-hidden rounded-xl border border-[#2A1515] bg-[#1E0E0E]">
+        <h2 className="mb-3 text-sm font-semibold text-[#111827]">Recent members</h2>
+        <div className="overflow-hidden rounded-xl border border-[#E5E7EB] bg-[#FFFFFF]">
           {recentSignups.length === 0 ? (
-            <p className="px-4 py-3 text-xs text-[#5C4040]">No members yet.</p>
+            <p className="px-4 py-3 text-xs text-[#6B7280]">No members yet.</p>
           ) : (
-            <ul className="divide-y divide-[#2A1515]">
+            <ul className="divide-y divide-[#E5E7EB]">
               {recentSignups.map((user) => (
                 <li key={user.id} className="flex items-center justify-between px-4 py-3">
                   <div>
-                    <p className="text-sm font-medium text-[#F5EDD0]">{user.name}</p>
-                    <p className="text-xs text-[#5C4040]">{user.email}</p>
+                    <p className="text-sm font-medium text-[#111827]">{user.name}</p>
+                    <p className="text-xs text-[#6B7280]">{user.email}</p>
                   </div>
-                  <time className="text-xs text-[#5C4040]">
+                  <time className="text-xs text-[#6B7280]">
                     {user.createdAt.toLocaleDateString('en-GB', {
                       day: 'numeric',
                       month: 'short',

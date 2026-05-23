@@ -19,7 +19,7 @@ export default function LaunchPage() {
   }, [session, isPending, router])
 
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-8 bg-[#0A0404]">
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-8 bg-[#FFFFFF]">
       <VoadiLogo size="lg" />
       <Spinner />
     </div>

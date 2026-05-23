@@ -19,23 +19,23 @@ export default async function AdminPetitionsPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-xl font-bold text-white">Petitions ({rows.length})</h1>
-      <div className="overflow-hidden rounded-xl border border-[#2A1515]">
+      <h1 className="mb-6 text-xl font-bold text-[#111827]">Petitions ({rows.length})</h1>
+      <div className="overflow-hidden rounded-xl border border-[#E5E7EB]">
         {rows.length === 0 && (
-          <p className="px-4 py-6 text-center text-xs text-[#3D2020]">No petitions yet.</p>
+          <p className="px-4 py-6 text-center text-xs text-[#9CA3AF]">No petitions yet.</p>
         )}
         {rows.map(({ petition: p, creator }) => (
-          <div key={p.id} className="flex items-start gap-3 border-b border-[#2A1515] bg-[#1E0E0E] px-4 py-3 last:border-0">
+          <div key={p.id} className="flex items-start gap-3 border-b border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 last:border-0">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-semibold text-[#F5EDD0]">{p.title}</p>
+                <p className="text-sm font-semibold text-[#111827]">{p.title}</p>
                 <span className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase ${
                   p.status === 'open'
                     ? 'bg-green-900/30 text-green-400'
-                    : 'bg-[#2A1515] text-[#5C4040]'
+                    : 'bg-[#E5E7EB] text-[#6B7280]'
                 }`}>{p.status}</span>
               </div>
-              <p className="text-xs text-[#5C4040]">
+              <p className="text-xs text-[#6B7280]">
                 {p.signatureCount} signatures · by {creator?.name ?? 'unknown'}
               </p>
             </div>
@@ -45,7 +45,7 @@ export default async function AdminPetitionsPage() {
                   <button
                     type="submit"
                     title="Close petition"
-                    className="rounded-lg border border-[#3D2020] p-1.5 text-[#5C4040] transition-colours hover:border-red-900/60 hover:text-red-500"
+                    className="rounded-lg border border-[#9CA3AF] p-1.5 text-[#6B7280] transition-colours hover:border-red-900/60 hover:text-red-500"
                   >
                     <Lock size={13} aria-hidden="true" />
                   </button>

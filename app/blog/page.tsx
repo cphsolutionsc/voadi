@@ -24,14 +24,14 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const [featured, ...rest] = posts
 
   return (
-    <div className="min-h-screen bg-[#140909]">
+    <div className="min-h-screen bg-[#FFFFFF]">
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-[#2A1515] bg-[#140909]/95 px-4 py-3 backdrop-blur-sm">
+      <header className="sticky top-0 z-40 border-b border-[#E5E7EB] bg-[#FFFFFF]/95 px-4 py-3 backdrop-blur-sm">
         <div className="mx-auto flex max-w-2xl items-center justify-between">
           <Link href="/" aria-label="VOADI home">
             <VoadiLogo size="md" />
           </Link>
-          <Link href="/" className="text-xs text-[#8B7B6B] transition-colors hover:text-[#A89080]">
+          <Link href="/" className="text-xs text-[#4B5563] transition-colors hover:text-[#6B7280]">
             Back to site
           </Link>
         </div>
@@ -40,8 +40,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <main className="mx-auto max-w-2xl px-4 pb-20 pt-10">
         {/* Page title */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white">Blog</h1>
-          <p className="mt-1 text-[#A89080]">
+          <h1 className="text-3xl font-bold text-[#111827]">Blog</h1>
+          <p className="mt-1 text-[#6B7280]">
             News, insights, and stories from the African Diaspora community in Ireland.
           </p>
         </div>
@@ -53,8 +53,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               href="/blog"
               className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                 !category
-                  ? 'bg-[#D97706] text-white'
-                  : 'border border-[#2A1515] text-[#8B7B6B] hover:border-[#4A2828] hover:text-[#A89080]'
+                  ? 'bg-[#D97706] text-[#111827]'
+                  : 'border border-[#E5E7EB] text-[#4B5563] hover:border-[#4A2828] hover:text-[#6B7280]'
               }`}
             >
               All
@@ -65,8 +65,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 href={`/blog?category=${encodeURIComponent(cat)}`}
                 className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                   category === cat
-                    ? 'bg-[#D97706] text-white'
-                    : 'border border-[#2A1515] text-[#8B7B6B] hover:border-[#4A2828] hover:text-[#A89080]'
+                    ? 'bg-[#D97706] text-[#111827]'
+                    : 'border border-[#E5E7EB] text-[#4B5563] hover:border-[#4A2828] hover:text-[#6B7280]'
                 }`}
               >
                 {cat}
@@ -76,7 +76,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         )}
 
         {posts.length === 0 && (
-          <p className="text-[#8B7B6B]">No posts in this category yet.</p>
+          <p className="text-[#4B5563]">No posts in this category yet.</p>
         )}
 
         {/* Featured post */}
@@ -96,7 +96,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         )}
       </main>
 
-      <footer className="border-t border-[#2A1515] px-4 py-8 text-center text-xs text-[#8B7B6B]">
+      <footer className="border-t border-[#E5E7EB] px-4 py-8 text-center text-xs text-[#4B5563]">
         © 2026 VOADI · Coalition of Africans Diaspora Ireland
       </footer>
     </div>

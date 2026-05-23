@@ -19,25 +19,25 @@ export default async function AdminEventsPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-xl font-bold text-white">Events ({rows.length})</h1>
-      <div className="overflow-hidden rounded-xl border border-[#2A1515]">
+      <h1 className="mb-6 text-xl font-bold text-[#111827]">Events ({rows.length})</h1>
+      <div className="overflow-hidden rounded-xl border border-[#E5E7EB]">
         {rows.length === 0 && (
-          <p className="px-4 py-6 text-center text-xs text-[#3D2020]">No events yet.</p>
+          <p className="px-4 py-6 text-center text-xs text-[#9CA3AF]">No events yet.</p>
         )}
         {rows.map(({ event: e, creator }) => (
-          <div key={e.id} className="flex items-start gap-3 border-b border-[#2A1515] bg-[#1E0E0E] px-4 py-3 last:border-0">
+          <div key={e.id} className="flex items-start gap-3 border-b border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 last:border-0">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-semibold text-[#F5EDD0]">{e.title}</p>
+                <p className="text-sm font-semibold text-[#111827]">{e.title}</p>
                 <span className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase ${
                   e.status === 'published'
                     ? 'bg-green-900/30 text-green-400'
                     : e.status === 'cancelled'
-                      ? 'bg-[#2A1515] text-[#5C4040]'
+                      ? 'bg-[#E5E7EB] text-[#6B7280]'
                       : 'bg-[#D97706]/20 text-[#D97706]'
                 }`}>{e.status}</span>
               </div>
-              <p className="text-xs text-[#5C4040]">
+              <p className="text-xs text-[#6B7280]">
                 {e.county} · {e.startsAt.toLocaleDateString('en-GB')} · by {creator?.name ?? 'unknown'}
               </p>
             </div>
@@ -47,7 +47,7 @@ export default async function AdminEventsPage() {
                   <button
                     type="submit"
                     title="Cancel event"
-                    className="rounded-lg border border-[#3D2020] px-2 py-1 text-[10px] font-semibold text-[#5C4040] transition-colours hover:border-red-900/60 hover:text-red-500"
+                    className="rounded-lg border border-[#9CA3AF] px-2 py-1 text-[10px] font-semibold text-[#6B7280] transition-colours hover:border-red-900/60 hover:text-red-500"
                   >
                     <XCircle size={13} aria-hidden="true" />
                   </button>

@@ -58,41 +58,41 @@ export default async function FeedPage() {
   return (
     <div className="py-2">
       <div className="mb-5">
-        <h1 className="text-lg font-bold text-white">
+        <h1 className="text-lg font-bold text-[#111827]">
           Welcome back{session?.user.name ? `, ${session.user.name.split(' ')[0]}` : ''}
         </h1>
-        <p className="text-sm text-[#8B7B6B]">Here&apos;s what&apos;s happening in your community.</p>
+        <p className="text-sm text-[#4B5563]">Here&apos;s what&apos;s happening in your community.</p>
       </div>
 
       {/* Quick actions */}
       <div className="mb-6 grid grid-cols-3 gap-2">
-        <Link href="/events" className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-3 transition-colors hover:border-[#D97706]">
+        <Link href="/events" className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-3 transition-colors hover:border-[#D97706]">
           <div className="mb-2 text-[#D97706]">
             <CalendarDays size={18} aria-hidden="true" />
           </div>
-          <p className="text-xs font-semibold text-white">Events</p>
-          <p className="text-[10px] text-[#8B7B6B]">{recentEvents.length} upcoming</p>
+          <p className="text-xs font-semibold text-[#111827]">Events</p>
+          <p className="text-[10px] text-[#4B5563]">{recentEvents.length} upcoming</p>
         </Link>
-        <Link href="/petitions" className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-3 transition-colors hover:border-[#D97706]">
+        <Link href="/petitions" className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-3 transition-colors hover:border-[#D97706]">
           <div className="mb-2 text-[#D97706]">
             <FileText size={18} aria-hidden="true" />
           </div>
-          <p className="text-xs font-semibold text-white">Petitions</p>
-          <p className="text-[10px] text-[#8B7B6B]">{recentPetitions.length} active</p>
+          <p className="text-xs font-semibold text-[#111827]">Petitions</p>
+          <p className="text-[10px] text-[#4B5563]">{recentPetitions.length} active</p>
         </Link>
-        <Link href="/help" className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-3 transition-colors hover:border-[#D97706]">
+        <Link href="/help" className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-3 transition-colors hover:border-[#D97706]">
           <div className="mb-2 text-[#D97706]">
             <Users size={18} aria-hidden="true" />
           </div>
-          <p className="text-xs font-semibold text-white">Help Hub</p>
-          <p className="text-[10px] text-[#8B7B6B]">{recentHelp.length} open</p>
+          <p className="text-xs font-semibold text-[#111827]">Help Hub</p>
+          <p className="text-[10px] text-[#4B5563]">{recentHelp.length} open</p>
         </Link>
       </div>
 
       {/* Feed */}
       {feed.length === 0 ? (
-        <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-8 text-center">
-          <p className="text-sm text-[#8B7B6B]">Nothing yet — be the first to post an event or petition.</p>
+        <div className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-8 text-center">
+          <p className="text-sm text-[#4B5563]">Nothing yet — be the first to post an event or petition.</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -109,27 +109,27 @@ function FeedCard({ item }: { item: ReturnType<typeof buildFeedItem> }) {
   if (item.type === 'event') {
     const date = item.startsAt.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })
     return (
-      <Link href={`/events/${item.id}`} className="flex gap-3 rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]/50">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2A1515] text-[#D97706]">
+      <Link href={`/events/${item.id}`} className="flex gap-3 rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4 transition-colors hover:border-[#D97706]/50">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#E5E7EB] text-[#D97706]">
           <CalendarDays size={15} aria-hidden="true" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-white">{item.title}</p>
-          <p className="text-xs text-[#8B7B6B]">{date} · {item.county}</p>
+          <p className="truncate text-sm font-semibold text-[#111827]">{item.title}</p>
+          <p className="text-xs text-[#4B5563]">{date} · {item.county}</p>
         </div>
-        <span className="shrink-0 self-start rounded-full bg-[#2A1515] px-2 py-0.5 text-[10px] font-medium text-[#D97706]">Event</span>
+        <span className="shrink-0 self-start rounded-full bg-[#E5E7EB] px-2 py-0.5 text-[10px] font-medium text-[#D97706]">Event</span>
       </Link>
     )
   }
   if (item.type === 'petition') {
     return (
-      <Link href={`/petitions/${item.id}`} className="flex gap-3 rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]/50">
+      <Link href={`/petitions/${item.id}`} className="flex gap-3 rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4 transition-colors hover:border-[#D97706]/50">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#1a2e1a] text-[#16a34a]">
           <PenLine size={15} aria-hidden="true" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-white">{item.title}</p>
-          <p className="text-xs text-[#8B7B6B]">{item.signatureCount.toLocaleString('en-GB')} signatures</p>
+          <p className="truncate text-sm font-semibold text-[#111827]">{item.title}</p>
+          <p className="text-xs text-[#4B5563]">{item.signatureCount.toLocaleString('en-GB')} signatures</p>
         </div>
         <span className="shrink-0 self-start rounded-full bg-[#1a2e1a] px-2 py-0.5 text-[10px] font-medium text-[#16a34a]">Petition</span>
       </Link>
@@ -137,13 +137,13 @@ function FeedCard({ item }: { item: ReturnType<typeof buildFeedItem> }) {
   }
   const catLabel: Record<string, string> = { housing: 'Housing', legal: 'Legal', medical: 'Medical', jobs: 'Jobs', other: 'Other' }
   return (
-    <Link href="/help" className="flex gap-3 rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]/50">
+    <Link href="/help" className="flex gap-3 rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4 transition-colors hover:border-[#D97706]/50">
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-950 text-blue-400">
         <Users size={15} aria-hidden="true" />
       </div>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-semibold text-white">{item.title}</p>
-        <p className="text-xs text-[#8B7B6B]">{catLabel[item.category] ?? item.category} · Help Hub</p>
+        <p className="truncate text-sm font-semibold text-[#111827]">{item.title}</p>
+        <p className="text-xs text-[#4B5563]">{catLabel[item.category] ?? item.category} · Help Hub</p>
       </div>
       <span className="shrink-0 self-start rounded-full bg-blue-950 px-2 py-0.5 text-[10px] font-medium text-blue-400">Help</span>
     </Link>

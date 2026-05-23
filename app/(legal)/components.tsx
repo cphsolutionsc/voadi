@@ -4,7 +4,7 @@ export function Section({ children }: { children: React.ReactNode }) {
 
 export function H2({ n, children }: { n: string | number; children: React.ReactNode }) {
   return (
-    <h2 className="flex items-baseline gap-3 text-lg font-bold text-white">
+    <h2 className="flex items-baseline gap-3 text-lg font-bold text-[#111827]">
       <span className="shrink-0 text-[11px] font-bold text-[#D97706]">{n}.</span>
       {children}
     </h2>
@@ -12,7 +12,7 @@ export function H2({ n, children }: { n: string | number; children: React.ReactN
 }
 
 export function H3({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-sm font-bold text-[#F5EDD0]">{children}</h3>
+  return <h3 className="text-sm font-bold text-[#111827]">{children}</h3>
 }
 
 export function P({ children }: { children: React.ReactNode }) {
@@ -34,6 +34,6 @@ export function LI({ children }: { children: React.ReactNode }) {
 
 export function Updated({ date }: { date: string }) {
   return (
-    <p className="mt-3 text-xs text-[#3D2828]">Last updated: {date}</p>
+    <p className="mt-3 text-xs text-[#9CA3AF]">Last updated: {date}</p>
   )
 }

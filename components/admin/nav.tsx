@@ -40,7 +40,7 @@ export function AdminNav() {
             className={
               active
                 ? 'flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-bold bg-[#D97706]/10 text-[#D97706] transition-colors'
-                : 'flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-semibold text-[#5C4040] transition-colors hover:bg-[#2A1515] hover:text-[#F5EDD0]'
+                : 'flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-semibold text-[#6B7280] transition-colors hover:bg-[#F3F4F6] hover:text-[#111827]'
             }
           >
             <Icon size={14} aria-hidden="true" />
@@ -59,7 +59,7 @@ export function AdminMobileNav() {
   return (
     <nav
       aria-label="Admin mobile navigation"
-      className="fixed bottom-0 left-0 right-0 z-10 flex items-stretch border-t border-[#2A1515] bg-[#0D0505] lg:hidden"
+      className="fixed bottom-0 left-0 right-0 z-10 flex items-stretch border-t border-[#E5E7EB] bg-[#FFFFFF] lg:hidden"
     >
       {NAV.map(({ href, label, Icon, exact }) => {
         const active = isActive(pathname, href, exact)
@@ -70,7 +70,7 @@ export function AdminMobileNav() {
             className={
               active
                 ? 'flex flex-1 flex-col items-center gap-0.5 px-1 py-2 text-[10px] font-bold text-[#D97706] transition-colors'
-                : 'flex flex-1 flex-col items-center gap-0.5 px-1 py-2 text-[10px] font-semibold text-[#5C4040] transition-colors hover:text-[#F5EDD0]'
+                : 'flex flex-1 flex-col items-center gap-0.5 px-1 py-2 text-[10px] font-semibold text-[#6B7280] transition-colors hover:text-[#111827]'
             }
           >
             <Icon size={18} aria-hidden="true" />

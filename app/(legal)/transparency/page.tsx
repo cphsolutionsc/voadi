@@ -8,20 +8,20 @@ export default function TransparencyPage() {
     <>
       <div className="mb-10">
         <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#D97706]">Legal</p>
-        <h1 className="text-3xl font-bold text-white">Transparency &amp; Funding</h1>
+        <h1 className="text-3xl font-bold text-[#111827]">Transparency &amp; Funding</h1>
         <Updated date="23 May 2026" />
-        <p className="mt-4 text-sm leading-relaxed text-[#8B7B6B]">
+        <p className="mt-4 text-sm leading-relaxed text-[#4B5563]">
           We believe the community we serve has a right to know exactly who runs this platform, how it is funded, how money is spent, and what principles guide our decisions. This declaration is our commitment to that transparency.
         </p>
       </div>
 
-      <div className="space-y-10 text-[#A89080]">
+      <div className="space-y-10 text-[#6B7280]">
 
         {/* 1 */}
         <Section>
           <H2 n="1">Who Runs VOADI</H2>
           <P>
-            VOADI is operated by the <strong className="text-[#F5EDD0]">Coalition of Africans Diaspora Ireland</strong> — a community organisation founded and led by members of the African diaspora in Ireland. We are not a subsidiary of any corporation, media organisation, government body, or political party.
+            VOADI is operated by the <strong className="text-[#111827]">Coalition of Africans Diaspora Ireland</strong> — a community organisation founded and led by members of the African diaspora in Ireland. We are not a subsidiary of any corporation, media organisation, government body, or political party.
           </P>
           <P>
             VOADI was founded with a single purpose: to give the African diaspora in Ireland a dedicated civic platform — one that we own, control, and operate entirely in our community's interest. Every decision about what the platform does and does not do is made with that purpose as the primary consideration.
@@ -64,12 +64,12 @@ export default function TransparencyPage() {
                 colour: 'text-[#D97706]',
               },
             ].map(({ source, detail, status, colour }) => (
-              <div key={source} className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4">
+              <div key={source} className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4">
                 <div className="mb-2 flex items-start justify-between gap-3">
-                  <span className="text-sm font-semibold text-[#F5EDD0]">{source}</span>
+                  <span className="text-sm font-semibold text-[#111827]">{source}</span>
                   <span className={`shrink-0 text-[10px] font-bold uppercase tracking-wide ${colour}`}>{status}</span>
                 </div>
-                <p className="text-xs leading-relaxed text-[#8B7B6B]">{detail}</p>
+                <p className="text-xs leading-relaxed text-[#4B5563]">{detail}</p>
               </div>
             ))}
           </div>
@@ -90,7 +90,7 @@ export default function TransparencyPage() {
           <P>
             All funds received by VOADI are used exclusively for the following purposes. We publish a summary breakdown annually.
           </P>
-          <div className="overflow-hidden rounded-xl border border-[#2A1515]">
+          <div className="overflow-hidden rounded-xl border border-[#E5E7EB]">
             {[
               ['Platform infrastructure', 'Server hosting, database, CDN, domain registration, and technical maintenance of the platform.'],
               ['Platform development', 'Building and improving platform features — including accessibility improvements, the resources directory, and community tools.'],
@@ -98,9 +98,9 @@ export default function TransparencyPage() {
               ['Community programmes', 'Supporting community events, outreach, and the operational costs of the coordinating committee.'],
               ['Administration', 'Essential administrative costs including accounting, insurance, and regulatory compliance. Administration will never exceed 15% of total expenditure.'],
             ].map(([cat, desc]) => (
-              <div key={cat} className="flex flex-col gap-1 border-b border-[#2A1515] bg-[#1E0E0E] px-4 py-3 last:border-0 sm:flex-row sm:items-start sm:gap-4">
-                <span className="w-44 shrink-0 text-xs font-semibold text-[#F5EDD0]">{cat}</span>
-                <span className="text-xs leading-relaxed text-[#8B7B6B]">{desc}</span>
+              <div key={cat} className="flex flex-col gap-1 border-b border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 last:border-0 sm:flex-row sm:items-start sm:gap-4">
+                <span className="w-44 shrink-0 text-xs font-semibold text-[#111827]">{cat}</span>
+                <span className="text-xs leading-relaxed text-[#4B5563]">{desc}</span>
               </div>
             ))}
           </div>
@@ -115,13 +115,13 @@ export default function TransparencyPage() {
           <P>
             The following table records all grants and institutional donations received by VOADI above €500. This register is updated within 30 days of receipt of any new funding.
           </P>
-          <div className="overflow-hidden rounded-xl border border-[#2A1515]">
-            <div className="grid grid-cols-3 gap-3 border-b border-[#2A1515] bg-[#140909] px-4 py-2.5 text-[9px] font-bold uppercase tracking-widest text-[#5C4040]">
+          <div className="overflow-hidden rounded-xl border border-[#E5E7EB]">
+            <div className="grid grid-cols-3 gap-3 border-b border-[#E5E7EB] bg-[#FFFFFF] px-4 py-2.5 text-[9px] font-bold uppercase tracking-widest text-[#6B7280]">
               <span>Source</span>
               <span>Amount</span>
               <span>Purpose</span>
             </div>
-            <div className="bg-[#1E0E0E] px-4 py-6 text-center text-xs text-[#3D2828]">
+            <div className="bg-[#FFFFFF] px-4 py-6 text-center text-xs text-[#9CA3AF]">
               No grants or institutional donations have been received to date.
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function TransparencyPage() {
             The "hidden gem" designation on certain resources indicates services that our research has identified as significantly underused by the community. It is an editorial judgement, not a commercial arrangement.
           </P>
           <P>
-            If you believe a resource listing is inaccurate, outdated, or that an organisation's conduct is inconsistent with the welfare of our community, please contact us at <strong className="text-[#F5EDD0]">resources@voadi.org</strong>.
+            If you believe a resource listing is inaccurate, outdated, or that an organisation's conduct is inconsistent with the welfare of our community, please contact us at <strong className="text-[#111827]">resources@voadi.org</strong>.
           </P>
         </Section>
 
@@ -151,7 +151,7 @@ export default function TransparencyPage() {
         <Section>
           <H2 n="6">Your Data &amp; Why We Collect It</H2>
           <P>
-            We collect the minimum data necessary to operate a community platform that is genuinely useful to its members. Full details are in our <a href="/privacy" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]">Privacy Policy</a>. Here is a plain-English summary:
+            We collect the minimum data necessary to operate a community platform that is genuinely useful to its members. Full details are in our <a href="/privacy" className="text-[#D97706] underline underline-offset-2 hover:text-[#111827]">Privacy Policy</a>. Here is a plain-English summary:
           </P>
           <div className="space-y-2">
             {[
@@ -171,10 +171,10 @@ export default function TransparencyPage() {
                 basis: 'Explicit consent (Article 9(2)(a) GDPR)',
               },
             ].map(({ field, why, basis }) => (
-              <div key={field} className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4">
-                <p className="mb-1 text-sm font-semibold text-[#F5EDD0]">{field}</p>
-                <p className="mb-1.5 text-xs leading-relaxed text-[#8B7B6B]">{why}</p>
-                <span className="rounded-full bg-[#2A1515] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#D97706]">
+              <div key={field} className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4">
+                <p className="mb-1 text-sm font-semibold text-[#111827]">{field}</p>
+                <p className="mb-1.5 text-xs leading-relaxed text-[#4B5563]">{why}</p>
+                <span className="rounded-full bg-[#E5E7EB] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#D97706]">
                   {basis}
                 </span>
               </div>
@@ -202,8 +202,8 @@ export default function TransparencyPage() {
           <P>
             Annual reports are published on this page and remain publicly accessible indefinitely.
           </P>
-          <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] px-4 py-5 text-center">
-            <p className="text-xs text-[#3D2828]">First annual report will be published January 2027, covering the 2026 financial year.</p>
+          <div className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] px-4 py-5 text-center">
+            <p className="text-xs text-[#9CA3AF]">First annual report will be published January 2027, covering the 2026 financial year.</p>
           </div>
         </Section>
 
@@ -213,7 +213,7 @@ export default function TransparencyPage() {
           <P>
             If you have concerns about VOADI's funding, governance, editorial decisions, or data practices, we want to hear from you.
           </P>
-          <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] divide-y divide-[#2A1515]">
+          <div className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] divide-y divide-[#E5E7EB]">
             {[
               ['Transparency concerns', 'transparency@voadi.org'],
               ['Resources directory', 'resources@voadi.org'],
@@ -221,8 +221,8 @@ export default function TransparencyPage() {
               ['General', 'hello@voadi.org'],
             ].map(([label, email]) => (
               <div key={email} className="flex items-center justify-between px-4 py-3">
-                <span className="text-xs text-[#5C4040]">{label}</span>
-                <a href={`mailto:${email}`} className="text-sm text-[#D97706] hover:text-[#F5EDD0]">{email}</a>
+                <span className="text-xs text-[#6B7280]">{label}</span>
+                <a href={`mailto:${email}`} className="text-sm text-[#D97706] hover:text-[#111827]">{email}</a>
               </div>
             ))}
           </div>

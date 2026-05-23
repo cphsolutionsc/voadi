@@ -20,9 +20,9 @@ function HarpV({ px }: { px: number }) {
       style={{ display: 'inline-block', flexShrink: 0 }}
     >
       {/* Forepillar — left diagonal stroke */}
-      <path d="M1.5 1.5 L8.5 23.5" stroke="white" strokeWidth="3.5" strokeLinecap="round" />
+      <path d="M1.5 1.5 L8.5 23.5" stroke="#111827" strokeWidth="3.5" strokeLinecap="round" />
       {/* Neck / soundbox — right diagonal, slight outward bow */}
-      <path d="M15.5 1.5 C17.5 7 16 16 8.5 23.5" stroke="white" strokeWidth="3.5" strokeLinecap="round" />
+      <path d="M15.5 1.5 C17.5 7 16 16 8.5 23.5" stroke="#111827" strokeWidth="3.5" strokeLinecap="round" />
       {/* Crown arc — amber, connects top of both strokes */}
       <path d="M1.5 1.5 C3.5 -1.5 13.5 -1.5 15.5 1.5" stroke="#D97706" strokeWidth="2.2" strokeLinecap="round" fill="none" />
       {/* Strings — amber, span from forepillar to neck, 3 rows */}
@@ -45,7 +45,7 @@ export function VoadiLogo({ size = 'md', className = '' }: VoadiLogoProps) {
     <span className={`inline-flex items-end gap-[1px] ${className}`}>
       <HarpV px={px} />
       <span
-        className={`${textCls} font-bold leading-none tracking-tight text-white`}
+        className={`${textCls} font-bold leading-none tracking-tight text-[#111827]`}
         style={{ letterSpacing: '-0.02em' }}
       >
         OADI

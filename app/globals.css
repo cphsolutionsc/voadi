@@ -8,12 +8,12 @@
 }
 
 :root {
-  --background: #140909;
-  --foreground: #F5EDD0;
+  --background: #FFFFFF;
+  --foreground: #111827;
 }
 
 html, body {
-  background: #140909;
+  background: #FFFFFF;
   overscroll-behavior: none;
 }
 

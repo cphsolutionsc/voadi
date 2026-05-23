@@ -30,24 +30,24 @@ export default async function ProfilePage() {
 
   return (
     <div className="py-2">
-      <h1 className="mb-6 text-lg font-bold text-white">Profile</h1>
+      <h1 className="mb-6 text-lg font-bold text-[#111827]">Profile</h1>
 
       {/* Avatar + name */}
       <div className="mb-6 flex items-center gap-4">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#D97706] text-xl font-bold text-[#1C0D0D]">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#D97706] text-xl font-bold text-[#111827]">
           {initials}
         </div>
         <div>
-          <p className="font-bold text-white">{user.name}</p>
-          <p className="text-sm text-[#8B7B6B]">{user.email}</p>
-          <span className="mt-1 inline-block rounded-full bg-[#2A1515] px-2 py-0.5 text-[10px] font-medium text-[#D97706]">
+          <p className="font-bold text-[#111827]">{user.name}</p>
+          <p className="text-sm text-[#4B5563]">{user.email}</p>
+          <span className="mt-1 inline-block rounded-full bg-[#E5E7EB] px-2 py-0.5 text-[10px] font-medium text-[#D97706]">
             {roleFmt}
           </span>
         </div>
       </div>
 
       {/* Details */}
-      <div className="mb-6 overflow-hidden rounded-xl border border-[#2A1515]">
+      <div className="mb-6 overflow-hidden rounded-xl border border-[#E5E7EB]">
         <Row label="County" value={(u.county as string) ?? '—'} />
         <Row label="Nationality" value={(u.nationality as string) ?? '—'} />
         <Row label="Country of birth" value={(u.countryOfBirth as string) ?? '—'} />
@@ -58,9 +58,9 @@ export default async function ProfilePage() {
       {(role === 'admin' || role === 'moderator') && (
         <Link
           href="/admin"
-          className="mb-4 flex items-center justify-between rounded-xl border border-[#2A1515] bg-[#1E0E0E] px-4 py-3 hover:bg-[#2A1515]/50"
+          className="mb-4 flex items-center justify-between rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 hover:bg-[#E5E7EB]/50"
         >
-          <span className="text-xs font-semibold text-[#F5EDD0]">Admin panel</span>
+          <span className="text-xs font-semibold text-[#111827]">Admin panel</span>
           <span className="text-xs text-[#D97706]">›</span>
         </Link>
       )}
@@ -80,7 +80,7 @@ export default async function ProfilePage() {
       </div>
 
       {/* Legal links */}
-      <div className="mb-6 overflow-hidden rounded-xl border border-[#2A1515]">
+      <div className="mb-6 overflow-hidden rounded-xl border border-[#E5E7EB]">
         {[
           { label: 'Terms & Conditions', href: '/terms' },
           { label: 'Privacy Policy', href: '/privacy' },
@@ -89,10 +89,10 @@ export default async function ProfilePage() {
           <Link
             key={href}
             href={href}
-            className="flex items-center justify-between border-b border-[#2A1515] bg-[#1E0E0E] px-4 py-3 last:border-0 hover:bg-[#2A1515]/50"
+            className="flex items-center justify-between border-b border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 last:border-0 hover:bg-[#E5E7EB]/50"
           >
-            <span className="text-xs text-[#8B7B6B]">{label}</span>
-            <span className="text-xs text-[#3D2020]">›</span>
+            <span className="text-xs text-[#4B5563]">{label}</span>
+            <span className="text-xs text-[#9CA3AF]">›</span>
           </Link>
         ))}
       </div>
@@ -105,9 +105,9 @@ export default async function ProfilePage() {
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between border-b border-[#2A1515] bg-[#1E0E0E] px-4 py-3 last:border-0">
-      <span className="text-xs text-[#8B7B6B]">{label}</span>
-      <span className="text-sm text-[#F5EDD0]">{value}</span>
+    <div className="flex items-center justify-between border-b border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 last:border-0">
+      <span className="text-xs text-[#4B5563]">{label}</span>
+      <span className="text-sm text-[#111827]">{value}</span>
     </div>
   )
 }

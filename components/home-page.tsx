@@ -387,17 +387,17 @@ function DonateSection() {
 
   return (
     <section id="donate" className="reveal-up px-8 pb-20 md:px-12">
-      <div className="overflow-hidden rounded-3xl border border-[#2A1515] bg-[#1E0E0E]">
+      <div className="overflow-hidden rounded-3xl border border-[#E5E7EB] bg-[#FFFFFF]">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left — copy */}
-          <div className="border-b border-[#2A1515] p-8 md:border-b-0 md:border-r md:p-12">
+          <div className="border-b border-[#E5E7EB] p-8 md:border-b-0 md:border-r md:p-12">
             <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#D97706]">
               Fund the movement
             </p>
-            <h2 className="font-display text-[clamp(36px,4.5vw,58px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+            <h2 className="font-display text-[clamp(36px,4.5vw,58px)] uppercase leading-[0.9] tracking-tight text-[#111827]">
               Back real<br />change in Ireland
             </h2>
-            <p className="mt-5 text-sm leading-relaxed text-[#A89080]">
+            <p className="mt-5 text-sm leading-relaxed text-[#6B7280]">
               Every contribution directly funds civic action, legal aid, community events,
               and representation for Africans across Ireland. 100% goes to the cause.
             </p>
@@ -409,7 +409,7 @@ function DonateSection() {
               ].map(([label, desc]) => (
                 <div key={label} className="flex items-start gap-3">
                   <span className="mt-0.5 shrink-0 font-semibold text-[#D97706]">{label}</span>
-                  <span className="text-sm text-[#8B7B6B]">{desc}</span>
+                  <span className="text-sm text-[#4B5563]">{desc}</span>
                 </div>
               ))}
             </div>
@@ -418,7 +418,7 @@ function DonateSection() {
           {/* Right — form */}
           <div className="flex flex-col justify-center p-8 md:p-12">
             {/* One-off / Monthly toggle */}
-            <div className="mb-6 flex rounded-xl border border-[#2A1515] p-1">
+            <div className="mb-6 flex rounded-xl border border-[#E5E7EB] p-1">
               {(['One-off', 'Monthly'] as const).map(mode => (
                 <button
                   key={mode}
@@ -426,8 +426,8 @@ function DonateSection() {
                   onClick={() => setRecurring(mode === 'Monthly')}
                   className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition-colors ${
                     recurring === (mode === 'Monthly')
-                      ? 'bg-[#2A1515] text-[#F5EDD0]'
-                      : 'text-[#8B7B6B] hover:text-[#F5EDD0]'
+                      ? 'bg-[#E5E7EB] text-[#111827]'
+                      : 'text-[#4B5563] hover:text-[#111827]'
                   }`}
                 >
                   {mode}
@@ -445,7 +445,7 @@ function DonateSection() {
                   className={`rounded-xl border py-3 text-sm font-bold transition-colors ${
                     !custom && amount === p
                       ? 'border-[#D97706] bg-[#D97706]/10 text-[#D97706]'
-                      : 'border-[#2A1515] text-[#A89080] hover:border-[#D97706] hover:text-[#D97706]'
+                      : 'border-[#E5E7EB] text-[#6B7280] hover:border-[#D97706] hover:text-[#D97706]'
                   }`}
                 >
                   €{p}
@@ -455,14 +455,14 @@ function DonateSection() {
 
             {/* Custom amount */}
             <div className="relative mb-6">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-[#8B7B6B]">€</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-[#4B5563]">€</span>
               <input
                 type="number"
                 min="1"
                 placeholder="Custom amount"
                 value={custom}
                 onChange={e => { setCustom(e.target.value); setAmount(0) }}
-                className="w-full rounded-xl border border-[#2A1515] bg-[#140909] py-3 pl-8 pr-4 text-sm text-[#F5EDD0] placeholder-[#4A3020] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]"
+                className="w-full rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] py-3 pl-8 pr-4 text-sm text-[#111827] placeholder-[#9CA3AF] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]"
               />
             </div>
 
@@ -476,7 +476,7 @@ function DonateSection() {
               type="button"
               disabled={loading}
               onClick={handleDonate}
-              className="inline-flex w-full items-center justify-between gap-3 rounded-full bg-[#D97706] py-4 pl-8 pr-3 text-sm font-bold text-[#1C0D0D] transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="inline-flex w-full items-center justify-between gap-3 rounded-full bg-[#D97706] py-4 pl-8 pr-3 text-sm font-bold text-[#111827] transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               <span>
                 {loading
@@ -484,12 +484,12 @@ function DonateSection() {
                   : `Donate €${finalAmount > 0 ? finalAmount : '—'}${recurring ? '/mo' : ''}`
                 }
               </span>
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F9FAFB] text-[#D97706]">
                 <ArrowUpRightIcon size={14} />
               </span>
             </button>
 
-            <p className="mt-4 text-center text-[10px] uppercase tracking-widest text-[#4A3020]">
+            <p className="mt-4 text-center text-[10px] uppercase tracking-widest text-[#6B7280]">
               Secure payment via Stripe · Cancel anytime
             </p>
           </div>
@@ -520,7 +520,7 @@ export function HomePage() {
         start: 'top -70',
         onEnter: () =>
           gsap.to('.site-nav', {
-            backgroundColor: 'rgba(28,13,13,0.95)',
+            backgroundColor: 'rgba(255,255,255,0.95)',
             backdropFilter: 'blur(14px)',
             duration: 0.4,
           }),
@@ -657,7 +657,7 @@ export function HomePage() {
   }, [])
 
   return (
-    <main ref={mainRef} className="min-h-screen overflow-x-hidden bg-[#1C0D0D] font-sans text-[#F5EDD0]">
+    <main ref={mainRef} className="min-h-screen overflow-x-hidden bg-[#F9FAFB] font-sans text-[#111827]">
 
       {/* ── Nav ── */}
       <nav className="site-nav fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-8 py-5">
@@ -667,7 +667,7 @@ export function HomePage() {
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
-              <Link href={link.href} className="text-sm text-[#D4C8B4] transition-colors hover:text-white">
+              <Link href={link.href} className="text-sm text-[#6B7280] transition-colors hover:text-[#111827]">
                 {link.label}
               </Link>
             </li>
@@ -678,7 +678,7 @@ export function HomePage() {
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(o => !o)}
-          className="relative z-[60] text-[#F5EDD0] transition-opacity hover:opacity-70 md:hidden"
+          className="relative z-[60] text-[#111827] transition-opacity hover:opacity-70 md:hidden"
         >
           {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
@@ -686,7 +686,7 @@ export function HomePage() {
 
       {/* Mobile menu — slide in from right, always mounted for smooth exit */}
       <div
-        className={`fixed inset-0 z-50 flex flex-col bg-[#1C0D0D] transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed inset-0 z-50 flex flex-col bg-[#F9FAFB] transition-transform duration-300 ease-out md:hidden ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
@@ -701,7 +701,7 @@ export function HomePage() {
             type="button"
             aria-label="Close menu"
             onClick={() => setMenuOpen(false)}
-            className="text-[#F5EDD0] transition-opacity hover:opacity-70"
+            className="text-[#111827] transition-opacity hover:opacity-70"
           >
             <CloseIcon />
           </button>
@@ -714,7 +714,7 @@ export function HomePage() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="border-b border-[#2A1515] py-5 font-display text-[clamp(28px,8vw,48px)] uppercase leading-none tracking-tight text-[#F5EDD0] transition-colors hover:text-[#D97706]"
+              className="border-b border-[#E5E7EB] py-5 font-display text-[clamp(28px,8vw,48px)] uppercase leading-none tracking-tight text-[#111827] transition-colors hover:text-[#D97706]"
             >
               {link.label}
             </Link>
@@ -722,7 +722,7 @@ export function HomePage() {
           <Link
             href="#donate"
             onClick={() => setMenuOpen(false)}
-            className="border-b border-[#2A1515] py-5 font-display text-[clamp(28px,8vw,48px)] uppercase leading-none tracking-tight text-[#D97706] transition-colors hover:text-[#F5EDD0]"
+            className="border-b border-[#E5E7EB] py-5 font-display text-[clamp(28px,8vw,48px)] uppercase leading-none tracking-tight text-[#D97706] transition-colors hover:text-[#111827]"
           >
             Donate
           </Link>
@@ -730,10 +730,10 @@ export function HomePage() {
             <Link
               href="/signup"
               onClick={() => setMenuOpen(false)}
-              className="inline-flex w-full items-center justify-between gap-3 rounded-full bg-[#D97706] py-4 pl-8 pr-3 text-sm font-bold text-[#1C0D0D]"
+              className="inline-flex w-full items-center justify-between gap-3 rounded-full bg-[#D97706] py-4 pl-8 pr-3 text-sm font-bold text-[#111827]"
             >
               <span>JOIN VOADI — FREE</span>
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F9FAFB] text-[#D97706]">
                 <ArrowUpRightIcon size={14} />
               </span>
             </Link>
@@ -743,7 +743,7 @@ export function HomePage() {
               className="inline-flex w-full items-center justify-between gap-3 rounded-full border border-[#D97706] py-4 pl-8 pr-3 text-sm font-bold text-[#D97706]"
             >
               <span>Support the cause</span>
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#2A1515] text-[#D97706]">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#E5E7EB] text-[#D97706]">
                 <ArrowUpRightIcon size={14} />
               </span>
             </Link>
@@ -758,7 +758,7 @@ export function HomePage() {
           <span
             key={star.className}
             aria-hidden="true"
-            className={`hero-star absolute z-[5] text-[#7C3D3D] ${star.opacity} ${star.className}`}
+            className={`hero-star absolute z-[5] text-[#D1D5DB] ${star.opacity} ${star.className}`}
           >
             <StarIcon size={star.size} />
           </span>
@@ -767,7 +767,7 @@ export function HomePage() {
         {/* Top scrim — ensures nav text readable over hero photo */}
         <div
           className="pointer-events-none absolute left-0 right-0 top-0 z-[6] h-28"
-          style={{ background: 'linear-gradient(to bottom, rgba(28,13,13,0.7) 0%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, transparent 100%)' }}
           aria-hidden="true"
         />
 
@@ -792,12 +792,12 @@ export function HomePage() {
         {/* Bottom gradient — ensures headline legibility */}
         <div
           className="pointer-events-none absolute bottom-0 left-0 right-0 z-[25] h-[48%]"
-          style={{ background: 'linear-gradient(to top, #1C0D0D 15%, rgba(28,13,13,0.75) 50%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(to top, #F9FAFB 15%, rgba(249,250,251,0.75) 50%, transparent 100%)' }}
           aria-hidden="true"
         />
 
         {/* Left card — horizontal */}
-        <div className="hero-card-left absolute left-8 top-[44%] z-30 hidden w-48 items-center gap-3 rounded-2xl bg-[#2A1515] p-3 md:flex sm:left-12">
+        <div className="hero-card-left absolute left-8 top-[44%] z-30 hidden w-48 items-center gap-3 rounded-2xl bg-[#E5E7EB] p-3 md:flex sm:left-12">
           <div className="relative shrink-0">
             <div className="relative h-14 w-14 overflow-hidden rounded-xl">
               <Image
@@ -808,18 +808,18 @@ export function HomePage() {
                 className="object-cover"
               />
             </div>
-            <span className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#D97706] text-[#1C0D0D] ring-2 ring-[#2A1515]">
+            <span className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#D97706] text-[#111827] ring-2 ring-[#E5E7EB]">
               <PlayIcon />
             </span>
           </div>
           <div>
-            <p className="text-[10px] uppercase tracking-widest text-[#A89080]">About</p>
-            <p className="text-sm font-semibold leading-tight text-white">Our Story</p>
+            <p className="text-[10px] uppercase tracking-widest text-[#6B7280]">About</p>
+            <p className="text-sm font-semibold leading-tight text-[#111827]">Our Story</p>
           </div>
         </div>
 
         {/* Right card — portrait */}
-        <div className="hero-card-right absolute right-8 top-[28%] z-30 hidden w-36 overflow-hidden rounded-2xl bg-[#2A1515] md:block sm:right-12">
+        <div className="hero-card-right absolute right-8 top-[28%] z-30 hidden w-36 overflow-hidden rounded-2xl bg-[#E5E7EB] md:block sm:right-12">
           <div className="relative h-44 w-full">
             <Image
               src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80"
@@ -831,13 +831,13 @@ export function HomePage() {
           </div>
           <div className="flex items-end justify-between gap-1 px-3 pb-3 pt-2">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#A89080]">Meet our</p>
-              <p className="text-xs font-semibold text-white">community</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#6B7280]">Meet our</p>
+              <p className="text-xs font-semibold text-[#111827]">community</p>
             </div>
             <Link
               href="#community"
               aria-label="Meet our community"
-              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#F5EDD0] text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#111827] text-[#111827] transition-transform hover:-translate-y-0.5"
             >
               <ArrowUpRightIcon />
             </Link>
@@ -846,42 +846,42 @@ export function HomePage() {
 
         {/* Headline + social proof + CTA */}
         <div className="absolute bottom-8 left-0 right-0 z-30 flex flex-col items-center text-center">
-          <h1 className="hero-headline overflow-hidden px-4 font-display text-[clamp(58px,11vw,140px)] uppercase leading-[0.88] tracking-tight text-[#F5EDD0]">
+          <h1 className="hero-headline overflow-hidden px-4 font-display text-[clamp(58px,11vw,140px)] uppercase leading-[0.88] tracking-tight text-[#111827]">
             <span className="block">ONE VOICE</span>
             <span className="block">ONE IRELAND</span>
           </h1>
 
           {/* Member count badge */}
-          <div className="hero-badge mt-5 flex items-center gap-2.5 rounded-full border border-[#2A1515] bg-[#1C0D0D]/80 px-4 py-2 backdrop-blur-sm">
+          <div className="hero-badge mt-5 flex items-center gap-2.5 rounded-full border border-[#E5E7EB] bg-white/80 px-4 py-2 backdrop-blur-sm">
             <div className="flex -space-x-2">
               {[
                 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&q=80',
                 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=60&q=80',
                 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=60&q=80',
               ].map((src, i) => (
-                <div key={i} className="relative h-7 w-7 overflow-hidden rounded-full border-2 border-[#1C0D0D]">
+                <div key={i} className="relative h-7 w-7 overflow-hidden rounded-full border-2 border-[#F9FAFB]">
                   <Image src={src} alt="" fill sizes="28px" className="object-cover" />
                 </div>
               ))}
             </div>
-            <span className="text-xs text-[#A89080]">
-              <span className="font-semibold text-[#F5EDD0]">2,400+</span> members joined
+            <span className="text-xs text-[#6B7280]">
+              <span className="font-semibold text-[#111827]">2,400+</span> members joined
             </span>
           </div>
 
           <div className="hero-cta-btn mt-4 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/signup"
-              className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-8 pr-2 text-sm font-bold text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-8 pr-2 text-sm font-bold text-[#111827] transition-transform hover:-translate-y-0.5"
             >
               <span>JOIN VOADI</span>
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F9FAFB] text-[#D97706]">
                 <FistIcon />
               </span>
             </Link>
             <Link
               href="#donate"
-              className="inline-flex items-center gap-2 rounded-full border border-[#D97706]/60 bg-[#1C0D0D]/70 px-5 py-3.5 text-sm font-semibold text-[#D97706] backdrop-blur-sm transition-all hover:border-[#D97706] hover:bg-[#D97706]/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[#D97706]/60 bg-[#F9FAFB]/70 px-5 py-3.5 text-sm font-semibold text-[#D97706] backdrop-blur-sm transition-all hover:border-[#D97706] hover:bg-[#D97706]/10"
             >
               Support us
             </Link>
@@ -890,10 +890,10 @@ export function HomePage() {
       </section>
 
       {/* ── Marquee ── */}
-      <div className="marquee-strip relative overflow-hidden border-y border-[#2A1515] py-4">
+      <div className="marquee-strip relative overflow-hidden border-y border-[#E5E7EB] py-4">
         {/* Edge fades */}
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-[#1C0D0D] to-transparent" aria-hidden="true" />
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-[#1C0D0D] to-transparent" aria-hidden="true" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-[#F9FAFB] to-transparent" aria-hidden="true" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-[#F9FAFB] to-transparent" aria-hidden="true" />
         <div
           className="flex whitespace-nowrap"
           style={{ animation: 'marquee 30s linear infinite' }}
@@ -901,21 +901,21 @@ export function HomePage() {
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
             <span
               key={i}
-              className={`mx-5 text-xs font-bold uppercase tracking-widest ${i % 4 === 2 ? 'text-[#D97706]' : 'text-[#4A3020]'}`}
+              className={`mx-5 text-xs font-bold uppercase tracking-widest ${i % 4 === 2 ? 'text-[#D97706]' : 'text-[#6B7280]'}`}
             >
               {item}
-              <span className="ml-5 text-[#2A1515]">·</span>
+              <span className="ml-5 text-[#E5E7EB]">·</span>
             </span>
           ))}
         </div>
       </div>
 
       {/* ── Stats ── */}
-      <section className="stats-section bg-[#140909] px-8 py-16 md:px-12">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 md:divide-x md:divide-[#2A1515]">
+      <section className="stats-section bg-[#FFFFFF] px-8 py-16 md:px-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 md:divide-x md:divide-[#E5E7EB]">
           {STATS.map((stat, i) => (
             <div key={stat.label} className="stat-item flex flex-col items-center text-center md:px-8">
-              <p className="font-display text-[clamp(44px,5.5vw,80px)] uppercase leading-none tracking-tight text-[#F5EDD0]">
+              <p className="font-display text-[clamp(44px,5.5vw,80px)] uppercase leading-none tracking-tight text-[#111827]">
                 <span
                   ref={el => { counterRefs.current[i] = el }}
                   aria-label={`${stat.value}${stat.suffix}`}
@@ -923,7 +923,7 @@ export function HomePage() {
                   0
                 </span>
               </p>
-              <p className="mt-2.5 text-[10px] uppercase tracking-[0.15em] text-[#8B7B6B]">{stat.label}</p>
+              <p className="mt-2.5 text-[10px] uppercase tracking-[0.15em] text-[#4B5563]">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -934,13 +934,13 @@ export function HomePage() {
         <div className="reveal-up mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-[#D97706]">What we do</p>
-            <h2 className="features-heading font-display text-[clamp(38px,6vw,80px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+            <h2 className="features-heading font-display text-[clamp(38px,6vw,80px)] uppercase leading-[0.9] tracking-tight text-[#111827]">
               Built for<br />your community
             </h2>
           </div>
           <Link
             href="/signup"
-            className="self-start inline-flex items-center gap-2 rounded-full border border-[#3D2020] px-5 py-2.5 text-sm text-[#A89080] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
+            className="self-start inline-flex items-center gap-2 rounded-full border border-[#9CA3AF] px-5 py-2.5 text-sm text-[#6B7280] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
           >
             Get started <ArrowUpRightIcon />
           </Link>
@@ -950,7 +950,7 @@ export function HomePage() {
           {FEATURES.map(f => (
             <div
               key={f.num}
-              className="feature-card group relative overflow-hidden rounded-2xl border border-[#2A1515] bg-gradient-to-br from-[#1E0E0E] to-[#160A0A] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#3D2020]"
+              className="feature-card group relative overflow-hidden rounded-2xl border border-[#E5E7EB] bg-gradient-to-br from-[#FFFFFF] to-[#F9FAFB] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#9CA3AF]"
             >
               {/* Accent top line on hover */}
               <div
@@ -958,15 +958,15 @@ export function HomePage() {
                 style={{ backgroundColor: f.accent }}
               />
               <div className="mb-6 flex items-start justify-between">
-                <span className="font-display text-6xl leading-none tracking-tight text-[#2A1515] transition-colors duration-300 group-hover:text-[#3D2020]">
+                <span className="font-display text-6xl leading-none tracking-tight text-[#E5E7EB] transition-colors duration-300 group-hover:text-[#9CA3AF]">
                   {f.num}
                 </span>
-                <span className="rounded-xl border border-[#2A1515] p-2.5 transition-colors duration-300 group-hover:border-[#3D2020]" style={{ color: f.accent }}>
+                <span className="rounded-xl border border-[#E5E7EB] p-2.5 transition-colors duration-300 group-hover:border-[#9CA3AF]" style={{ color: f.accent }}>
                   <f.Icon />
                 </span>
               </div>
-              <h3 className="mb-3 text-xl font-bold text-[#F5EDD0]">{f.title}</h3>
-              <p className="text-sm leading-relaxed text-[#A89080]">{f.desc}</p>
+              <h3 className="mb-3 text-xl font-bold text-[#111827]">{f.title}</h3>
+              <p className="text-sm leading-relaxed text-[#6B7280]">{f.desc}</p>
               <div className="mt-6">
                 <Link
                   href="/signup"
@@ -985,26 +985,26 @@ export function HomePage() {
       <section className="steps-section px-8 py-20 md:px-12">
         <div className="reveal-up mb-14">
           <p className="mb-2 text-xs uppercase tracking-widest text-[#D97706]">Simple by design</p>
-          <h2 className="font-display text-[clamp(38px,6vw,72px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+          <h2 className="font-display text-[clamp(38px,6vw,72px)] uppercase leading-[0.9] tracking-tight text-[#111827]">
             How it works
           </h2>
         </div>
 
         <div className="relative grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
           {/* Connector line (desktop) */}
-          <div className="steps-connector absolute left-0 right-0 top-[26px] hidden h-px bg-[#2A1515] md:block" />
+          <div className="steps-connector absolute left-0 right-0 top-[26px] hidden h-px bg-[#E5E7EB] md:block" />
 
           {STEPS.map((step, i) => (
             <div key={step.num} className="step-item relative">
-              <div className="relative mb-5 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-[#3D2020] bg-[#1C0D0D]">
+              <div className="relative mb-5 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full border border-[#9CA3AF] bg-[#F9FAFB]">
                 <span className="font-display text-xl uppercase leading-none tracking-tight text-[#D97706]">
                   {step.num}
                 </span>
               </div>
-              <h3 className="mb-2 text-lg font-bold text-[#F5EDD0]">{step.title}</h3>
-              <p className="text-sm leading-relaxed text-[#A89080]">{step.desc}</p>
+              <h3 className="mb-2 text-lg font-bold text-[#111827]">{step.title}</h3>
+              <p className="text-sm leading-relaxed text-[#6B7280]">{step.desc}</p>
               {i < STEPS.length - 1 && (
-                <div className="mt-8 h-px w-12 bg-[#2A1515] md:hidden" />
+                <div className="mt-8 h-px w-12 bg-[#E5E7EB] md:hidden" />
               )}
             </div>
           ))}
@@ -1016,13 +1016,13 @@ export function HomePage() {
         <div className="reveal-up mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-[#D97706]">On the ground</p>
-            <h2 className="font-display text-[clamp(36px,5vw,64px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+            <h2 className="font-display text-[clamp(36px,5vw,64px)] uppercase leading-[0.9] tracking-tight text-[#111827]">
               Upcoming events
             </h2>
           </div>
           <Link
             href="/signup"
-            className="self-start inline-flex items-center gap-2 rounded-full border border-[#3D2020] px-5 py-2.5 text-sm text-[#A89080] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
+            className="self-start inline-flex items-center gap-2 rounded-full border border-[#9CA3AF] px-5 py-2.5 text-sm text-[#6B7280] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
           >
             View all <ArrowUpRightIcon />
           </Link>
@@ -1032,7 +1032,7 @@ export function HomePage() {
         {MOCK_EVENTS.filter(e => e.featured).map(ev => (
           <div
             key={ev.id}
-            className="event-card mb-4 overflow-hidden rounded-2xl border border-[#2A1515] bg-[#1E0E0E]"
+            className="event-card mb-4 overflow-hidden rounded-2xl border border-[#E5E7EB] bg-[#FFFFFF]"
           >
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto]">
               <div className="p-6 md:p-8">
@@ -1040,22 +1040,22 @@ export function HomePage() {
                   <span className="rounded-full bg-[#D97706]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#D97706]">
                     Featured
                   </span>
-                  <span className="text-xs text-[#8B7B6B]">{ev.county}</span>
+                  <span className="text-xs text-[#4B5563]">{ev.county}</span>
                 </div>
-                <h3 className="mb-2 text-xl font-bold text-[#F5EDD0] md:text-2xl">{ev.title}</h3>
-                <p className="mb-4 text-sm text-[#A89080]">{ev.location}</p>
+                <h3 className="mb-2 text-xl font-bold text-[#111827] md:text-2xl">{ev.title}</h3>
+                <p className="mb-4 text-sm text-[#6B7280]">{ev.location}</p>
                 <div className="flex items-center gap-4">
                   <span className="font-display text-3xl uppercase leading-none text-[#D97706]">
                     {ev.date.split(' ')[0]}
-                    <span className="ml-1 text-base text-[#8B7B6B]">{ev.date.split(' ')[1]}</span>
+                    <span className="ml-1 text-base text-[#4B5563]">{ev.date.split(' ')[1]}</span>
                   </span>
-                  <span className="text-sm text-[#8B7B6B]">{ev.rsvps.toLocaleString('en-GB')} RSVPs</span>
+                  <span className="text-sm text-[#4B5563]">{ev.rsvps.toLocaleString('en-GB')} RSVPs</span>
                 </div>
               </div>
               <div className="flex items-center justify-end p-6">
                 <Link
                   href="/signup"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#D97706] px-6 py-3 text-sm font-bold text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#D97706] px-6 py-3 text-sm font-bold text-[#111827] transition-transform hover:-translate-y-0.5"
                 >
                   RSVP now <ArrowUpRightIcon />
                 </Link>
@@ -1069,30 +1069,30 @@ export function HomePage() {
           {MOCK_EVENTS.filter(e => !e.featured).map(ev => (
             <div
               key={ev.id}
-              className="event-card group flex items-center gap-5 rounded-2xl border border-[#2A1515] bg-[#1E0E0E] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#3D2020]"
+              className="event-card group flex items-center gap-5 rounded-2xl border border-[#E5E7EB] bg-[#FFFFFF] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#9CA3AF]"
             >
               <div className="w-12 shrink-0 text-center">
                 <p className="font-display text-2xl uppercase leading-none tracking-tight text-[#D97706]">
                   {ev.date.split(' ')[0]}
                 </p>
-                <p className="text-[10px] uppercase tracking-widest text-[#8B7B6B]">
+                <p className="text-[10px] uppercase tracking-widest text-[#4B5563]">
                   {ev.date.split(' ')[1]}
                 </p>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate font-semibold text-[#F5EDD0]">{ev.title}</p>
-                <p className="mt-0.5 text-sm text-[#A89080]">{ev.location}</p>
+                <p className="truncate font-semibold text-[#111827]">{ev.title}</p>
+                <p className="mt-0.5 text-sm text-[#6B7280]">{ev.location}</p>
               </div>
               <div className="hidden shrink-0 items-center gap-3 sm:flex">
-                <span className="rounded-full bg-[#2A1515] px-3 py-1 text-xs text-[#A89080]">
+                <span className="rounded-full bg-[#E5E7EB] px-3 py-1 text-xs text-[#6B7280]">
                   {ev.county}
                 </span>
-                <span className="text-sm text-[#8B7B6B]">{ev.rsvps.toLocaleString('en-GB')} RSVPs</span>
+                <span className="text-sm text-[#4B5563]">{ev.rsvps.toLocaleString('en-GB')} RSVPs</span>
               </div>
               <Link
                 href="/signup"
                 aria-label={`RSVP to ${ev.title}`}
-                className="ml-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2A1515] text-[#A89080] transition-colors group-hover:bg-[#D97706] group-hover:text-[#1C0D0D]"
+                className="ml-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#E5E7EB] text-[#6B7280] transition-colors group-hover:bg-[#D97706] group-hover:text-[#111827]"
               >
                 <ArrowUpRightIcon />
               </Link>
@@ -1102,24 +1102,24 @@ export function HomePage() {
       </section>
 
       {/* ── Featured Petition ── */}
-      <section className="petition-section mx-8 mb-20 overflow-hidden rounded-3xl border border-[#2A1515] bg-[#1E0E0E] md:mx-12">
+      <section className="petition-section mx-8 mb-20 overflow-hidden rounded-3xl border border-[#E5E7EB] bg-[#FFFFFF] md:mx-12">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="border-b border-[#2A1515] p-8 md:border-b-0 md:border-r md:p-12">
+          <div className="border-b border-[#E5E7EB] p-8 md:border-b-0 md:border-r md:p-12">
             <div className="mb-4 flex items-center gap-2">
               <span className="rounded-full bg-[#16a34a]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#16a34a]">
                 {PETITION.category}
               </span>
-              <span className="text-xs text-[#8B7B6B]">{PETITION.daysLeft} days left</span>
+              <span className="text-xs text-[#4B5563]">{PETITION.daysLeft} days left</span>
             </div>
-            <h3 className="mb-4 text-xl font-bold leading-snug text-[#F5EDD0] md:text-2xl">
+            <h3 className="mb-4 text-xl font-bold leading-snug text-[#111827] md:text-2xl">
               {PETITION.title}
             </h3>
-            <p className="mb-6 text-sm text-[#A89080]">
-              Target: <span className="text-[#F5EDD0]">{PETITION.target}</span>
+            <p className="mb-6 text-sm text-[#6B7280]">
+              Target: <span className="text-[#111827]">{PETITION.target}</span>
             </p>
             <Link
               href="/signup"
-              className="inline-flex items-center gap-3 rounded-full bg-[#16a34a] py-3.5 pl-7 pr-2 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-3 rounded-full bg-[#16a34a] py-3.5 pl-7 pr-2 text-sm font-bold text-[#111827] transition-transform hover:-translate-y-0.5"
             >
               <span>Sign the petition</span>
               <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#16a34a]">
@@ -1128,14 +1128,14 @@ export function HomePage() {
             </Link>
           </div>
           <div className="flex flex-col justify-center p-8 md:p-12">
-            <p className="mb-1 text-xs uppercase tracking-widest text-[#8B7B6B]">Signatures</p>
-            <p className="font-display text-[clamp(48px,6vw,80px)] uppercase leading-none tracking-tight text-[#F5EDD0]">
+            <p className="mb-1 text-xs uppercase tracking-widest text-[#4B5563]">Signatures</p>
+            <p className="font-display text-[clamp(48px,6vw,80px)] uppercase leading-none tracking-tight text-[#111827]">
               {PETITION.signatures.toLocaleString('en-GB')}
             </p>
-            <p className="mb-6 text-sm text-[#A89080]">
+            <p className="mb-6 text-sm text-[#6B7280]">
               of {PETITION.goal.toLocaleString('en-GB')} goal
             </p>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-[#2A1515]">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-[#E5E7EB]">
               <div
                 className="petition-bar-fill h-full rounded-full bg-[#16a34a]"
                 style={{ width: `${PETITION.pct}%` }}
@@ -1149,10 +1149,10 @@ export function HomePage() {
       </section>
 
       {/* ── Missing Persons ── */}
-      <section className="reveal-up mx-8 mb-20 overflow-hidden rounded-3xl bg-[#F5EDD0] text-[#1C0D0D] md:mx-12">
+      <section className="reveal-up mx-8 mb-20 overflow-hidden rounded-3xl bg-[#F3F4F6] text-[#111827] md:mx-12">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="p-8 md:p-12">
-            <div className="mb-5 inline-flex items-center gap-2.5 rounded-full bg-[#1C0D0D] px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-[#D97706]">
+            <div className="mb-5 inline-flex items-center gap-2.5 rounded-full bg-[#F9FAFB] px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-[#D97706]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D97706] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#D97706]" />
@@ -1162,21 +1162,21 @@ export function HomePage() {
             <h2 className="font-display text-[clamp(36px,4.5vw,60px)] uppercase leading-[0.9] tracking-tight">
               We look out<br />for each other
             </h2>
-            <p className="mt-5 text-sm leading-relaxed text-[#4A3020]">
+            <p className="mt-5 text-sm leading-relaxed text-[#6B7280]">
               Report missing persons directly to the VOADI community. Admin-reviewed submissions
               go to all members instantly via push alerts — because every second matters.
             </p>
             <Link
               href="/signup"
-              className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#1C0D0D] py-3.5 pl-7 pr-2 text-sm font-bold text-[#F5EDD0] transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#F9FAFB] py-3.5 pl-7 pr-2 text-sm font-bold text-[#111827] transition-transform hover:-translate-y-0.5"
             >
               <span>Join &amp; Stay Informed</span>
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#D97706] text-[#1C0D0D]">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#D97706] text-[#111827]">
                 <ArrowUpRightIcon />
               </span>
             </Link>
           </div>
-          <div className="relative min-h-[260px] bg-[#2A1515] md:min-h-0">
+          <div className="relative min-h-[260px] bg-[#E5E7EB] md:min-h-0">
             <Image
               src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80"
               alt="Community members supporting each other"
@@ -1184,7 +1184,7 @@ export function HomePage() {
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover opacity-60"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1C0D0D]/50 to-transparent md:bg-gradient-to-l" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#F3F4F6]/50 to-transparent md:bg-gradient-to-l" />
           </div>
         </div>
       </section>
@@ -1193,7 +1193,7 @@ export function HomePage() {
       <section id="community" className="testimonials-section px-8 pb-20 md:px-12">
         <div className="reveal-up mb-10">
           <p className="mb-2 text-xs uppercase tracking-widest text-[#D97706]">Community voices</p>
-          <h2 className="font-display text-[clamp(36px,5vw,64px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+          <h2 className="font-display text-[clamp(36px,5vw,64px)] uppercase leading-[0.9] tracking-tight text-[#111827]">
             Heard across Ireland
           </h2>
         </div>
@@ -1202,21 +1202,21 @@ export function HomePage() {
           {TESTIMONIALS.map((t, i) => (
             <div
               key={i}
-              className="testimonial-card flex flex-col rounded-2xl border border-[#2A1515] bg-[#1E0E0E] p-7"
+              className="testimonial-card flex flex-col rounded-2xl border border-[#E5E7EB] bg-[#FFFFFF] p-7"
             >
-              <div className="mb-4 text-[#2A1515]">
+              <div className="mb-4 text-[#E5E7EB]">
                 <QuoteIcon />
               </div>
-              <p className="flex-1 text-sm leading-relaxed text-[#A89080]">
+              <p className="flex-1 text-sm leading-relaxed text-[#6B7280]">
                 &ldquo;{t.quote}&rdquo;
               </p>
-              <div className="mt-6 flex items-center gap-3 border-t border-[#2A1515] pt-5">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#2A1515]">
+              <div className="mt-6 flex items-center gap-3 border-t border-[#E5E7EB] pt-5">
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#E5E7EB]">
                   <Image src={t.photo} alt="" fill sizes="40px" className="object-cover" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-[#F5EDD0]">{t.name}</p>
-                  <p className="text-xs text-[#8B7B6B]">{t.county}</p>
+                  <p className="text-sm font-semibold text-[#111827]">{t.name}</p>
+                  <p className="text-xs text-[#4B5563]">{t.county}</p>
                 </div>
               </div>
             </div>
@@ -1232,10 +1232,10 @@ export function HomePage() {
         <div className="volunteer-heading reveal-up mb-12">
           <p className="mb-2 text-xs uppercase tracking-widest text-[#D97706]">Lend your skills</p>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="font-display text-[clamp(36px,5vw,64px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+            <h2 className="font-display text-[clamp(36px,5vw,64px)] uppercase leading-[0.9] tracking-tight text-[#111827]">
               Volunteer<br />with us
             </h2>
-            <p className="max-w-xs text-sm leading-relaxed text-[#A89080] sm:text-right">
+            <p className="max-w-xs text-sm leading-relaxed text-[#6B7280] sm:text-right">
               Real impact comes from people across every walk of life working
               together. Wherever your expertise lies, there is a role for you.
             </p>
@@ -1246,16 +1246,16 @@ export function HomePage() {
           {VOLUNTEER_ROLES.map(({ title, desc, Icon, accent }) => (
             <div
               key={title}
-              className="volunteer-card group rounded-2xl border border-[#2A1515] bg-[#1E0E0E] p-6 transition-colors hover:border-[#4A2828]"
+              className="volunteer-card group rounded-2xl border border-[#E5E7EB] bg-[#FFFFFF] p-6 transition-colors hover:border-[#4A2828]"
             >
               <div
-                className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-[#2A1515]"
+                className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-[#E5E7EB]"
                 style={{ color: accent }}
               >
                 <Icon />
               </div>
-              <h3 className="mb-2 text-base font-bold text-[#F5EDD0]">{title}</h3>
-              <p className="text-sm leading-relaxed text-[#A89080]">{desc}</p>
+              <h3 className="mb-2 text-base font-bold text-[#111827]">{title}</h3>
+              <p className="text-sm leading-relaxed text-[#6B7280]">{desc}</p>
             </div>
           ))}
         </div>
@@ -1263,14 +1263,14 @@ export function HomePage() {
         <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           <Link
             href="/signup"
-            className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-7 pr-2 text-sm font-bold text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-7 pr-2 text-sm font-bold text-[#111827] transition-transform hover:-translate-y-0.5"
           >
             <span>Register as a Volunteer</span>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F9FAFB] text-[#D97706]">
               <ArrowUpRightIcon />
             </span>
           </Link>
-          <p className="text-sm text-[#8B7B6B]">
+          <p className="text-sm text-[#4B5563]">
             Takes 2 minutes. No commitment required to sign up.
           </p>
         </div>
@@ -1278,7 +1278,7 @@ export function HomePage() {
 
       {/* ── Final CTA ── */}
       <section id="about" className="reveal-up mx-8 mb-20 overflow-hidden rounded-3xl md:mx-12">
-        <div className="relative grid grid-cols-1 overflow-hidden rounded-3xl bg-[#140909] md:grid-cols-2">
+        <div className="relative grid grid-cols-1 overflow-hidden rounded-3xl bg-[#FFFFFF] md:grid-cols-2">
           {/* Amber accent line at top */}
           <div className="absolute left-0 right-0 top-0 h-0.5 bg-[#D97706]" />
 
@@ -1286,26 +1286,26 @@ export function HomePage() {
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#D97706]">
               Join the movement
             </p>
-            <h2 className="font-display text-[clamp(40px,5.5vw,76px)] uppercase leading-[0.88] tracking-tight text-[#F5EDD0]">
+            <h2 className="font-display text-[clamp(40px,5.5vw,76px)] uppercase leading-[0.88] tracking-tight text-[#111827]">
               One community.<br />One voice.<br />One Ireland.
             </h2>
-            <p className="mt-5 text-sm leading-relaxed text-[#A89080]">
+            <p className="mt-5 text-sm leading-relaxed text-[#6B7280]">
               VOADI is free, open to all Africans living in Ireland, and built with your
               community&apos;s interests at heart. Sign up in under a minute.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/signup"
-                className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-7 pr-2 text-sm font-bold text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-7 pr-2 text-sm font-bold text-[#111827] transition-transform hover:-translate-y-0.5"
               >
                 <span>Create Free Account</span>
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F9FAFB] text-[#D97706]">
                   <FistIcon />
                 </span>
               </Link>
               <Link
                 href="/login"
-                className="inline-flex items-center rounded-full border border-[#3D2020] px-6 py-3.5 text-sm font-semibold text-[#F5EDD0] transition-colors hover:border-[#D97706] hover:text-white"
+                className="inline-flex items-center rounded-full border border-[#9CA3AF] px-6 py-3.5 text-sm font-semibold text-[#111827] transition-colors hover:border-[#D97706] hover:text-[#111827]"
               >
                 Sign In
               </Link>
@@ -1319,17 +1319,17 @@ export function HomePage() {
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#140909] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#F9FAFB] to-transparent" />
           </div>
         </div>
       </section>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-[#2A1515] px-8 py-10 md:px-12">
+      <footer className="border-t border-[#E5E7EB] px-8 py-10 md:px-12">
         <div className="mb-8 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <VoadiLogo size="lg" />
-            <p className="mt-1.5 text-xs text-[#8B7B6B]">
+            <p className="mt-1.5 text-xs text-[#4B5563]">
               Voices of Africans Diaspora Ireland
             </p>
           </div>
@@ -1337,24 +1337,24 @@ export function HomePage() {
             <ul className="flex flex-wrap gap-6">
               {NAV_LINKS.map(link => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-xs text-[#8B7B6B] transition-colors hover:text-[#A89080]">
+                  <Link href={link.href} className="text-xs text-[#4B5563] transition-colors hover:text-[#6B7280]">
                     {link.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/signup" className="text-xs text-[#8B7B6B] transition-colors hover:text-[#A89080]">
+                <Link href="/signup" className="text-xs text-[#4B5563] transition-colors hover:text-[#6B7280]">
                   Sign Up
                 </Link>
               </li>
             </ul>
           </nav>
         </div>
-        <div className="flex flex-col items-start justify-between gap-3 border-t border-[#2A1515] pt-6 sm:flex-row sm:items-center">
-          <p className="text-xs text-[#8B7B6B]">
+        <div className="flex flex-col items-start justify-between gap-3 border-t border-[#E5E7EB] pt-6 sm:flex-row sm:items-center">
+          <p className="text-xs text-[#4B5563]">
             © 2026 VOADI · Coalition of Africans Diaspora Ireland
           </p>
-          <p className="text-xs text-[#8B7B6B]">voadi.org</p>
+          <p className="text-xs text-[#4B5563]">voadi.org</p>
         </div>
       </footer>
 

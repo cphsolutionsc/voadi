@@ -6,7 +6,7 @@ import { authClient } from '@/lib/auth/client'
 import Link from 'next/link'
 
 const INPUT =
-  'w-full rounded-lg border border-[#2A1515] bg-[#140909] px-4 py-3 text-sm text-[#F5EDD0] placeholder-[#5C4A3A] transition-colors focus:border-[#16a34a] focus:outline-none focus:ring-1 focus:ring-[#16a34a]'
+  'w-full rounded-lg border border-[#D1D5DB] bg-white px-4 py-3 text-sm text-[#111827] placeholder-[#9CA3AF] transition-colors focus:border-[#16a34a] focus:outline-none focus:ring-1 focus:ring-[#16a34a]'
 
 function LoginForm() {
   const router = useRouter()
@@ -38,8 +38,8 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-[#F5EDD0]">Sign in</h2>
-        <p className="mt-1 text-sm text-[#8B7B6B]">Welcome back to the community.</p>
+        <h2 className="text-xl font-bold text-[#111827]">Sign in</h2>
+        <p className="mt-1 text-sm text-[#4B5563]">Welcome back to the community.</p>
       </div>
 
       {error && (
@@ -68,14 +68,14 @@ function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-lg bg-[#D97706] py-3 text-sm font-bold text-[#1C0D0D] transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="w-full rounded-lg bg-[#D97706] py-3 text-sm font-bold text-[#111827] transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {loading ? 'Signing in…' : 'Sign in'}
       </button>
 
-      <p className="pt-1 text-center text-sm text-[#8B7B6B]">
+      <p className="pt-1 text-center text-sm text-[#4B5563]">
         New to VOADI?{' '}
-        <Link href="/signup" className="font-medium text-[#F5EDD0] underline underline-offset-2 hover:text-white">
+        <Link href="/signup" className="font-medium text-[#111827] underline underline-offset-2 hover:text-[#111827]">
           Create account
         </Link>
       </p>

@@ -34,30 +34,30 @@ export default async function EventDetailPage({ params }: { params: Promise<{ id
   return (
     <div className="py-2">
       <div className="mb-2 flex flex-wrap gap-2">
-        <span className="rounded-full bg-[#2A1515] px-3 py-1 text-xs text-[#D97706]">{event.county}</span>
-        <span className="rounded-full border border-[#2A1515] px-3 py-1 text-xs text-[#8B7B6B]">{rsvpCount} attending</span>
+        <span className="rounded-full bg-[#E5E7EB] px-3 py-1 text-xs text-[#D97706]">{event.county}</span>
+        <span className="rounded-full border border-[#E5E7EB] px-3 py-1 text-xs text-[#4B5563]">{rsvpCount} attending</span>
       </div>
 
-      <h1 className="mb-4 text-xl font-bold leading-snug text-white">{event.title}</h1>
+      <h1 className="mb-4 text-xl font-bold leading-snug text-[#111827]">{event.title}</h1>
 
-      <div className="mb-6 space-y-2 rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4">
+      <div className="mb-6 space-y-2 rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4">
         <div className="flex items-start gap-3">
           <CalendarDays size={16} className="mt-0.5 shrink-0 text-[#D97706]" aria-hidden="true" />
-          <span className="text-sm text-[#F5EDD0]">{date} at {time}</span>
+          <span className="text-sm text-[#111827]">{date} at {time}</span>
         </div>
         <div className="flex items-start gap-3">
           <MapPin size={16} className="mt-0.5 shrink-0 text-[#D97706]" aria-hidden="true" />
-          <span className="text-sm text-[#F5EDD0]">{event.location}</span>
+          <span className="text-sm text-[#111827]">{event.location}</span>
         </div>
       </div>
 
-      <p className="mb-8 text-sm leading-relaxed text-[#A89080]">{event.description}</p>
+      <p className="mb-8 text-sm leading-relaxed text-[#6B7280]">{event.description}</p>
 
       {session && (
         <RsvpButton eventId={id} hasRsvpd={hasRsvpd} />
       )}
       {!session && (
-        <p className="text-sm text-[#8B7B6B]">
+        <p className="text-sm text-[#4B5563]">
           <a href="/login" className="text-[#D97706] underline underline-offset-2">Sign in</a> to RSVP for this event.
         </p>
       )}

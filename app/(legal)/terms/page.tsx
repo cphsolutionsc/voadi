@@ -8,15 +8,15 @@ export default function TermsPage() {
     <>
       <div className="mb-10">
         <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#D97706]">Legal</p>
-        <h1 className="text-3xl font-bold text-white">Terms &amp; Conditions</h1>
+        <h1 className="text-3xl font-bold text-[#111827]">Terms &amp; Conditions</h1>
         <Updated date="23 May 2026" />
       </div>
 
-      <div className="space-y-10 text-[#A89080]">
+      <div className="space-y-10 text-[#6B7280]">
 
         <Section>
           <P>
-            These Terms &amp; Conditions govern your use of the VOADI platform — the website, progressive web app, and all related services operated by the Coalition of Africans Diaspora Ireland (<strong className="text-[#F5EDD0]">"VOADI", "we", "us", "our"</strong>). By creating an account or using any part of the platform you agree to these terms in full. If you do not agree, do not use the platform.
+            These Terms &amp; Conditions govern your use of the VOADI platform — the website, progressive web app, and all related services operated by the Coalition of Africans Diaspora Ireland (<strong className="text-[#111827]">"VOADI", "we", "us", "our"</strong>). By creating an account or using any part of the platform you agree to these terms in full. If you do not agree, do not use the platform.
           </P>
           <P>
             VOADI is a civic community platform serving the African diaspora in Ireland. It is not a social media company. It exists solely to advance the civic, social, and legal interests of its community.
@@ -27,13 +27,13 @@ export default function TermsPage() {
         <Section>
           <H2 n="1">Who We Are</H2>
           <P>
-            VOADI — Coalition of Africans Diaspora Ireland is a community organisation registered in Ireland. Our registered contact address and data controller details are set out in our <a href="/privacy" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]">Privacy Policy</a>.
+            VOADI — Coalition of Africans Diaspora Ireland is a community organisation registered in Ireland. Our registered contact address and data controller details are set out in our <a href="/privacy" className="text-[#D97706] underline underline-offset-2 hover:text-[#111827]">Privacy Policy</a>.
           </P>
           <P>
             VOADI is not a registered charity. We do not operate for profit. All voluntary contributions received by VOADI are used exclusively to fund platform operations, community programmes, and legal advocacy. We do not solicit or accept donations as a registered charitable organisation within the meaning of the Charities Act 2009. Any voluntary contributions are received as community funding and are not eligible for charitable tax relief.
           </P>
           <P>
-            Our single point of contact for regulatory and law enforcement authorities as required under Article 11 of the EU Digital Services Act (Regulation 2022/2065) is: <strong className="text-[#F5EDD0]">legal@voadi.org</strong>.
+            Our single point of contact for regulatory and law enforcement authorities as required under Article 11 of the EU Digital Services Act (Regulation 2022/2065) is: <strong className="text-[#111827]">legal@voadi.org</strong>.
           </P>
         </Section>
 
@@ -55,11 +55,11 @@ export default function TermsPage() {
           <H2 n="3">What the Platform Provides</H2>
           <P>VOADI currently provides the following services to registered members:</P>
           <UL>
-            <LI><strong className="text-[#F5EDD0]">Community Feed</strong> — a space for community announcements, discussion, and updates.</LI>
-            <LI><strong className="text-[#F5EDD0]">Events</strong> — listings of community events across Ireland.</LI>
-            <LI><strong className="text-[#F5EDD0]">Petitions</strong> — a tool for members to create and sign civic petitions on matters affecting the African diaspora in Ireland.</LI>
-            <LI><strong className="text-[#F5EDD0]">Resources</strong> — a curated directory of free legal, housing, healthcare, welfare, and community support services.</LI>
-            <LI><strong className="text-[#F5EDD0]">Help Hub</strong> — a space for members to request or offer community assistance.</LI>
+            <LI><strong className="text-[#111827]">Community Feed</strong> — a space for community announcements, discussion, and updates.</LI>
+            <LI><strong className="text-[#111827]">Events</strong> — listings of community events across Ireland.</LI>
+            <LI><strong className="text-[#111827]">Petitions</strong> — a tool for members to create and sign civic petitions on matters affecting the African diaspora in Ireland.</LI>
+            <LI><strong className="text-[#111827]">Resources</strong> — a curated directory of free legal, housing, healthcare, welfare, and community support services.</LI>
+            <LI><strong className="text-[#111827]">Help Hub</strong> — a space for members to request or offer community assistance.</LI>
           </UL>
           <P>
             These services are provided as a digital service within the meaning of the Consumer Rights Act 2022. Where personal data is provided as consideration for access to the platform, we acknowledge our obligations under Part 3 of that Act.
@@ -119,15 +119,15 @@ export default function TermsPage() {
           </P>
           <H3>How to report content</H3>
           <P>
-            To report content that you believe violates these terms or constitutes illegal content, contact us at <strong className="text-[#F5EDD0]">moderation@voadi.org</strong>. Reports are reviewed within 10 working days for non-urgent matters and within 24 hours for content reporting imminent harm.
+            To report content that you believe violates these terms or constitutes illegal content, contact us at <strong className="text-[#111827]">moderation@voadi.org</strong>. Reports are reviewed within 10 working days for non-urgent matters and within 24 hours for content reporting imminent harm.
           </P>
           <H3>Internal complaints mechanism (Article 20 DSA)</H3>
           <P>
-            If your content has been removed or your account has been restricted or suspended, you have the right to lodge an internal complaint. Contact us at <strong className="text-[#F5EDD0]">appeals@voadi.org</strong> within 30 days of the decision. We will review your complaint and provide a reasoned response within 15 working days.
+            If your content has been removed or your account has been restricted or suspended, you have the right to lodge an internal complaint. Contact us at <strong className="text-[#111827]">appeals@voadi.org</strong> within 30 days of the decision. We will review your complaint and provide a reasoned response within 15 working days.
           </P>
           <H3>Out-of-court dispute settlement</H3>
           <P>
-            In accordance with Article 21 of the DSA, you may refer unresolved disputes regarding our content moderation decisions to a certified out-of-court dispute settlement body. Information on certified bodies in Ireland is available from Coimisiún na Meán (<a href="https://www.cnam.ie" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]" target="_blank" rel="noopener noreferrer">cnam.ie</a>).
+            In accordance with Article 21 of the DSA, you may refer unresolved disputes regarding our content moderation decisions to a certified out-of-court dispute settlement body. Information on certified bodies in Ireland is available from Coimisiún na Meán (<a href="https://www.cnam.ie" className="text-[#D97706] underline underline-offset-2 hover:text-[#111827]" target="_blank" rel="noopener noreferrer">cnam.ie</a>).
           </P>
         </Section>
 
@@ -136,7 +136,7 @@ export default function TermsPage() {
           <H2 n="7">Petitions — Specific Terms</H2>
           <UL>
             <LI>Any registered member may create a petition on a matter of civic or community interest.</LI>
-            <LI>The member who creates a petition (<strong className="text-[#F5EDD0]">"petition author"</strong>) is solely responsible for its content and for ensuring it is accurate and lawful.</LI>
+            <LI>The member who creates a petition (<strong className="text-[#111827]">"petition author"</strong>) is solely responsible for its content and for ensuring it is accurate and lawful.</LI>
             <LI>VOADI does not verify the accuracy of petition claims and does not endorse any petition by hosting it.</LI>
             <LI>Petition authors must not make false statements of fact about named individuals or organisations. Making a knowingly false statement in a petition may constitute defamation under the Defamation Act 2009.</LI>
             <LI>Signatures on VOADI petitions are expressions of support by individual community members. VOADI makes no representation that a petition will achieve its stated aim or that it will be presented to any public authority.</LI>
@@ -153,7 +153,7 @@ export default function TermsPage() {
           <UL>
             <LI>All contributions are entirely voluntary. No member is required to contribute in order to access the platform.</LI>
             <LI>VOADI is not a registered charity. Contributions are not eligible for tax relief under the Taxes Consolidation Act 1997 or the Charities Tax legislation.</LI>
-            <LI>Contributions are used to fund platform hosting, development, legal advocacy, and community support activities. Full details are set out in our <a href="/transparency" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]">Transparency &amp; Funding Declaration</a>.</LI>
+            <LI>Contributions are used to fund platform hosting, development, legal advocacy, and community support activities. Full details are set out in our <a href="/transparency" className="text-[#D97706] underline underline-offset-2 hover:text-[#111827]">Transparency &amp; Funding Declaration</a>.</LI>
             <LI>Contributions are non-refundable except where required by law.</LI>
             <LI>VOADI does not accept donations from political parties, governmental bodies, or any organisation that would create a conflict of interest with our mission to serve the African diaspora community independently.</LI>
           </UL>
@@ -163,13 +163,13 @@ export default function TermsPage() {
         <Section>
           <H2 n="9">Data Protection &amp; Privacy</H2>
           <P>
-            The collection and use of your personal data is governed by our <a href="/privacy" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]">Privacy Policy</a>, which forms part of these terms.
+            The collection and use of your personal data is governed by our <a href="/privacy" className="text-[#D97706] underline underline-offset-2 hover:text-[#111827]">Privacy Policy</a>, which forms part of these terms.
           </P>
           <P>
             VOADI collects and processes personal data including name, email address, county of residence, nationality, and country of birth. Nationality and country of birth are treated as special category data under Article 9 of the GDPR in the context of this platform, as they may reveal or allow inference of racial or ethnic origin. This data is collected only with your explicit consent (Article 9(2)(a) GDPR) and is used solely to improve the platform's resources and services for the community.
           </P>
           <P>
-            Your data rights — including the right to access, rectify, erase, and port your data — are described in full in our Privacy Policy. To exercise any data right, contact our data controller at <strong className="text-[#F5EDD0]">privacy@voadi.org</strong>. You also have the right to lodge a complaint with the Data Protection Commission (DPC) at <a href="https://www.dataprotection.ie" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]" target="_blank" rel="noopener noreferrer">dataprotection.ie</a>.
+            Your data rights — including the right to access, rectify, erase, and port your data — are described in full in our Privacy Policy. To exercise any data right, contact our data controller at <strong className="text-[#111827]">privacy@voadi.org</strong>. You also have the right to lodge a complaint with the Data Protection Commission (DPC) at <a href="https://www.dataprotection.ie" className="text-[#D97706] underline underline-offset-2 hover:text-[#111827]" target="_blank" rel="noopener noreferrer">dataprotection.ie</a>.
           </P>
         </Section>
 
@@ -205,7 +205,7 @@ export default function TermsPage() {
         <Section>
           <H2 n="12">Termination</H2>
           <P>
-            You may close your account at any time by contacting us at <strong className="text-[#F5EDD0]">support@voadi.org</strong>. Upon closure, your account data will be handled in accordance with our Privacy Policy retention schedule.
+            You may close your account at any time by contacting us at <strong className="text-[#111827]">support@voadi.org</strong>. Upon closure, your account data will be handled in accordance with our Privacy Policy retention schedule.
           </P>
           <P>
             We may suspend or terminate your access to the platform if you breach these terms, if we are required to do so by law or a competent authority, or if we cease to operate the platform. Where we terminate your access for reasons other than your breach, we will provide reasonable notice except where immediate termination is necessary to protect the safety or rights of other users or the platform.
@@ -222,7 +222,7 @@ export default function TermsPage() {
             These terms are governed by and construed in accordance with the laws of Ireland. Any disputes arising from these terms or your use of the platform shall be subject to the exclusive jurisdiction of the courts of Ireland.
           </P>
           <P>
-            In accordance with the EU Alternative Dispute Resolution Directive (implemented by SI 343/2015), we are obliged to inform you of the availability of alternative dispute resolution (ADR). We do not currently subscribe to an ADR scheme for general consumer disputes, but you may use the EU Online Dispute Resolution Platform at <a href="https://ec.europa.eu/consumers/odr" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
+            In accordance with the EU Alternative Dispute Resolution Directive (implemented by SI 343/2015), we are obliged to inform you of the availability of alternative dispute resolution (ADR). We do not currently subscribe to an ADR scheme for general consumer disputes, but you may use the EU Online Dispute Resolution Platform at <a href="https://ec.europa.eu/consumers/odr" className="text-[#D97706] underline underline-offset-2 hover:text-[#111827]" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
           </P>
         </Section>
 
@@ -237,7 +237,7 @@ export default function TermsPage() {
         {/* 15 */}
         <Section>
           <H2 n="15">Contact</H2>
-          <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] divide-y divide-[#2A1515]">
+          <div className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] divide-y divide-[#E5E7EB]">
             {[
               ['General enquiries', 'hello@voadi.org'],
               ['Data protection / privacy', 'privacy@voadi.org'],
@@ -246,8 +246,8 @@ export default function TermsPage() {
               ['Legal / DSA contact point', 'legal@voadi.org'],
             ].map(([label, email]) => (
               <div key={email} className="flex items-center justify-between px-4 py-3">
-                <span className="text-xs text-[#5C4040]">{label}</span>
-                <a href={`mailto:${email}`} className="text-sm text-[#D97706] hover:text-[#F5EDD0]">{email}</a>
+                <span className="text-xs text-[#6B7280]">{label}</span>
+                <a href={`mailto:${email}`} className="text-sm text-[#D97706] hover:text-[#111827]">{email}</a>
               </div>
             ))}
           </div>

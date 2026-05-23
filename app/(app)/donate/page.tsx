@@ -44,21 +44,21 @@ export default function DonatePage() {
     <div className="py-2">
       <div className="mb-6 flex items-center gap-2">
         <Heart size={18} className="text-[#D97706]" aria-hidden="true" />
-        <h1 className="text-lg font-bold text-white">Support VOADI</h1>
+        <h1 className="text-lg font-bold text-[#111827]">Support VOADI</h1>
       </div>
 
-      <p className="mb-6 text-sm leading-relaxed text-[#8B7B6B]">
+      <p className="mb-6 text-sm leading-relaxed text-[#4B5563]">
         VOADI runs entirely on voluntary contributions from the community. Every euro goes directly to platform costs, legal resources, and community programmes. No salaries. No adverts. No outside influence.
       </p>
 
       {/* One-off / monthly toggle */}
-      <div className="mb-5 flex rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-1">
+      <div className="mb-5 flex rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-1">
         {([false, true] as const).map(r => (
           <button
             key={String(r)}
             onClick={() => setRecurring(r)}
             className={`flex-1 rounded-lg py-2 text-xs font-bold transition-colors ${
-              recurring === r ? 'bg-[#D97706] text-[#1C0D0D]' : 'text-[#5C4040]'
+              recurring === r ? 'bg-[#D97706] text-[#111827]' : 'text-[#6B7280]'
             }`}
           >
             {r ? 'Monthly' : 'One-off'}
@@ -75,7 +75,7 @@ export default function DonatePage() {
             className={`rounded-xl border py-3 text-sm font-bold transition-colors ${
               !custom && amount === a
                 ? 'border-[#D97706] bg-[#D97706]/10 text-[#D97706]'
-                : 'border-[#2A1515] bg-[#1E0E0E] text-[#8B7B6B] hover:border-[#D97706]/50'
+                : 'border-[#E5E7EB] bg-[#FFFFFF] text-[#4B5563] hover:border-[#D97706]/50'
             }`}
           >
             &euro;{a}
@@ -92,7 +92,7 @@ export default function DonatePage() {
           placeholder="Custom amount (&euro;)"
           value={custom}
           onChange={e => setCustom(e.target.value)}
-          className="w-full rounded-xl border border-[#2A1515] bg-[#1E0E0E] px-4 py-3 text-sm text-[#F5EDD0] placeholder-[#3D2828] focus:border-[#D97706] focus:outline-none"
+          className="w-full rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 text-sm text-[#111827] placeholder-[#9CA3AF] focus:border-[#D97706] focus:outline-none"
         />
       </div>
 
@@ -103,12 +103,12 @@ export default function DonatePage() {
       <button
         onClick={handleCheckout}
         disabled={loading || !effectiveAmount || effectiveAmount < 1}
-        className="w-full rounded-xl bg-[#D97706] py-4 text-sm font-bold text-[#1C0D0D] transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="w-full rounded-xl bg-[#D97706] py-4 text-sm font-bold text-[#111827] transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {loading ? 'Redirecting…' : `Contribute €${effectiveAmount || '—'}${recurring ? '/month' : ''}`}
       </button>
 
-      <p className="mt-4 text-center text-xs text-[#3D2020]">
+      <p className="mt-4 text-center text-xs text-[#9CA3AF]">
         Secure payment via Stripe. VOADI is not a registered charity — contributions are not tax-deductible.
       </p>
     </div>

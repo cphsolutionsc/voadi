@@ -38,13 +38,13 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'black-translucent',
+    statusBarStyle: 'default',
     title: 'VOADI',
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#FFFFFF',
   width: 'device-width',
   initialScale: 1,
 }

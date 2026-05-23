@@ -78,15 +78,15 @@ export default async function AdminMembersPage({
   return (
     <div>
       {/* Stats header */}
-      <div className="mb-4 flex items-center gap-4 text-xs text-[#8B7B6B]">
-        <span>Total: <span className="font-semibold text-[#F5EDD0]">{totalCount}</span></span>
-        <span className="text-[#2A1515]">·</span>
+      <div className="mb-4 flex items-center gap-4 text-xs text-[#4B5563]">
+        <span>Total: <span className="font-semibold text-[#111827]">{totalCount}</span></span>
+        <span className="text-[#E5E7EB]">·</span>
         <span>Verified: <span className="font-semibold text-[#16A34A]">{verifiedCount}</span></span>
-        <span className="text-[#2A1515]">·</span>
+        <span className="text-[#E5E7EB]">·</span>
         <span>Unverified: <span className="font-semibold text-[#D97706]">{unverifiedCount}</span></span>
       </div>
 
-      <h1 className="mb-4 text-xl font-bold text-white">
+      <h1 className="mb-4 text-xl font-bold text-[#111827]">
         Members ({members.length}{members.length === 200 ? '+' : ''})
       </h1>
 
@@ -99,7 +99,7 @@ export default async function AdminMembersPage({
           name="q"
           defaultValue={q ?? ''}
           placeholder="Search by name or email…"
-          className="w-full rounded-lg border border-[#2A1515] bg-[#1E0E0E] px-3 py-2 text-sm text-[#F5EDD0] placeholder-[#3D2020] outline-none focus:border-[#5C4040]"
+          className="w-full rounded-lg border border-[#E5E7EB] bg-[#FFFFFF] px-3 py-2 text-sm text-[#111827] placeholder-[#9CA3AF] outline-none focus:border-[#6B7280]"
         />
       </form>
 
@@ -110,8 +110,8 @@ export default async function AdminMembersPage({
           href={pillHref({ role: undefined })}
           className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
             !role
-              ? 'bg-[#5C4040] text-[#F5EDD0]'
-              : 'border border-[#2A1515] text-[#5C4040] hover:text-[#8B7B6B]'
+              ? 'bg-[#6B7280] text-[#111827]'
+              : 'border border-[#E5E7EB] text-[#6B7280] hover:text-[#4B5563]'
           }`}
         >
           All roles
@@ -123,18 +123,18 @@ export default async function AdminMembersPage({
             className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
               role === r
                 ? r === 'admin'
-                  ? 'bg-[#D97706] text-[#1C0D0D]'
+                  ? 'bg-[#D97706] text-[#111827]'
                   : r === 'moderator'
                     ? 'bg-blue-600 text-white'
-                    : 'bg-[#2A1515] text-[#F5EDD0]'
-                : 'border border-[#2A1515] text-[#5C4040] hover:text-[#8B7B6B]'
+                    : 'bg-[#E5E7EB] text-[#111827]'
+                : 'border border-[#E5E7EB] text-[#6B7280] hover:text-[#4B5563]'
             }`}
           >
             {r}
           </a>
         ))}
 
-        <span className="mx-1 text-[#2A1515]">|</span>
+        <span className="mx-1 text-[#E5E7EB]">|</span>
 
         {/* Verified toggle */}
         <a
@@ -142,7 +142,7 @@ export default async function AdminMembersPage({
           className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
             verified === 'false'
               ? 'bg-[#D97706]/20 text-[#D97706] border border-[#D97706]/40'
-              : 'border border-[#2A1515] text-[#5C4040] hover:text-[#8B7B6B]'
+              : 'border border-[#E5E7EB] text-[#6B7280] hover:text-[#4B5563]'
           }`}
         >
           Unverified only
@@ -150,24 +150,24 @@ export default async function AdminMembersPage({
       </div>
 
       {/* Member list */}
-      <div className="overflow-hidden rounded-xl border border-[#2A1515]">
+      <div className="overflow-hidden rounded-xl border border-[#E5E7EB]">
         {members.length === 0 && (
-          <p className="px-4 py-6 text-center text-xs text-[#3D2020]">No members found.</p>
+          <p className="px-4 py-6 text-center text-xs text-[#9CA3AF]">No members found.</p>
         )}
         {members.map(m => (
           <div
             key={m.id}
-            className="flex items-center gap-3 border-b border-[#2A1515] bg-[#1E0E0E] px-4 py-3 last:border-0"
+            className="flex items-center gap-3 border-b border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 last:border-0"
           >
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5">
-                <p className="text-sm font-semibold text-[#F5EDD0]">{m.name}</p>
+                <p className="text-sm font-semibold text-[#111827]">{m.name}</p>
                 {m.emailVerified
                   ? <ShieldCheck size={11} className="shrink-0 text-[#16A34A]" aria-label="Verified" />
                   : <ShieldOff size={11} className="shrink-0 text-[#D97706]" aria-label="Unverified" />
                 }
               </div>
-              <p className="text-xs text-[#5C4040]">{m.email} · {m.county}</p>
+              <p className="text-xs text-[#6B7280]">{m.email} · {m.county}</p>
             </div>
 
             <div className="flex items-center gap-1">
@@ -186,11 +186,11 @@ export default async function AdminMembersPage({
                     className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide transition-colors ${
                       (m.role as string) === r
                         ? r === 'admin'
-                          ? 'bg-[#D97706] text-[#1C0D0D]'
+                          ? 'bg-[#D97706] text-[#111827]'
                           : r === 'moderator'
                             ? 'bg-blue-600 text-white'
-                            : 'bg-[#2A1515] text-[#8B7B6B]'
-                        : 'border border-[#2A1515] text-[#3D2020] hover:text-[#8B7B6B]'
+                            : 'bg-[#E5E7EB] text-[#4B5563]'
+                        : 'border border-[#E5E7EB] text-[#9CA3AF] hover:text-[#4B5563]'
                     }`}
                   >
                     {r}

@@ -5,3 +5,5 @@ node_modules/
 dist/
 public/sw.js
 public/workbox-*.js
+next-env.d.ts
+tsconfig.tsbuildinfo

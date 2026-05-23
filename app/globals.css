@@ -8,8 +8,13 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
+  --background: #140909;
+  --foreground: #F5EDD0;
+}
+
+html, body {
+  background: #140909;
+  overscroll-behavior: none;
 }
 
 @keyframes marquee {

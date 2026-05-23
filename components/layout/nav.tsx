@@ -16,7 +16,7 @@ export function Nav() {
   const pathname = usePathname()
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center px-6 pb-8 pb-safe">
+    <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center px-6" style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom))' }}>
       <nav
         className="relative flex items-center rounded-full border border-white/[0.08] bg-[#0D0505]/75 px-2 py-2 shadow-[0_8px_40px_rgba(0,0,0,0.8),0_0_0_0.5px_rgba(255,255,255,0.04)_inset] backdrop-blur-2xl"
         style={{ WebkitBackdropFilter: 'blur(24px)' }}

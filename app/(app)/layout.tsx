@@ -7,7 +7,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen flex-col bg-[#140909]">
       <InstallPrompt />
       <Header />
-      <main className="mx-auto w-full max-w-lg flex-1 px-4 pb-24 pt-4">
+      <main className="mx-auto w-full max-w-lg flex-1 px-4 pb-32 pt-4">
         {children}
       </main>
       <Nav />

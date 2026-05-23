@@ -419,7 +419,7 @@ export function HomePage() {
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
-              <Link href={link.href} className="text-sm text-[#8B7B6B] transition-colors hover:text-[#F5EDD0]">
+              <Link href={link.href} className="text-sm text-[#A89080] transition-colors hover:text-[#F5EDD0]">
                 {link.label}
               </Link>
             </li>
@@ -485,7 +485,7 @@ export function HomePage() {
             </span>
           </div>
           <div>
-            <p className="text-[10px] uppercase tracking-widest text-[#8B7B6B]">About</p>
+            <p className="text-[10px] uppercase tracking-widest text-[#A89080]">About</p>
             <p className="text-sm font-semibold leading-tight text-white">Our Story</p>
           </div>
         </div>
@@ -503,7 +503,7 @@ export function HomePage() {
           </div>
           <div className="flex items-end justify-between gap-1 px-3 pb-3 pt-2">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#8B7B6B]">Meet our</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#A89080]">Meet our</p>
               <p className="text-xs font-semibold text-white">community</p>
             </div>
             <Link
@@ -536,7 +536,7 @@ export function HomePage() {
                 </div>
               ))}
             </div>
-            <span className="text-xs text-[#8B7B6B]">
+            <span className="text-xs text-[#A89080]">
               <span className="font-semibold text-[#F5EDD0]">2,400+</span> members joined
             </span>
           </div>
@@ -587,7 +587,7 @@ export function HomePage() {
                   0
                 </span>
               </p>
-              <p className="mt-2.5 text-[10px] uppercase tracking-[0.15em] text-[#5C4A3A]">{stat.label}</p>
+              <p className="mt-2.5 text-[10px] uppercase tracking-[0.15em] text-[#8B7B6B]">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -604,7 +604,7 @@ export function HomePage() {
           </div>
           <Link
             href="/signup"
-            className="self-start inline-flex items-center gap-2 rounded-full border border-[#3D2020] px-5 py-2.5 text-sm text-[#8B7B6B] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
+            className="self-start inline-flex items-center gap-2 rounded-full border border-[#3D2020] px-5 py-2.5 text-sm text-[#A89080] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
           >
             Get started <ArrowUpRightIcon />
           </Link>
@@ -630,7 +630,7 @@ export function HomePage() {
                 </span>
               </div>
               <h3 className="mb-3 text-xl font-bold text-[#F5EDD0]">{f.title}</h3>
-              <p className="text-sm leading-relaxed text-[#8B7B6B]">{f.desc}</p>
+              <p className="text-sm leading-relaxed text-[#A89080]">{f.desc}</p>
               <div className="mt-6">
                 <Link
                   href="/signup"
@@ -666,7 +666,7 @@ export function HomePage() {
                 </span>
               </div>
               <h3 className="mb-2 text-lg font-bold text-[#F5EDD0]">{step.title}</h3>
-              <p className="text-sm leading-relaxed text-[#8B7B6B]">{step.desc}</p>
+              <p className="text-sm leading-relaxed text-[#A89080]">{step.desc}</p>
               {i < STEPS.length - 1 && (
                 <div className="mt-8 h-px w-12 bg-[#2A1515] md:hidden" />
               )}
@@ -686,7 +686,7 @@ export function HomePage() {
           </div>
           <Link
             href="/signup"
-            className="self-start inline-flex items-center gap-2 rounded-full border border-[#3D2020] px-5 py-2.5 text-sm text-[#8B7B6B] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
+            className="self-start inline-flex items-center gap-2 rounded-full border border-[#3D2020] px-5 py-2.5 text-sm text-[#A89080] transition-colors hover:border-[#D97706] hover:text-[#D97706]"
           >
             View all <ArrowUpRightIcon />
           </Link>
@@ -704,16 +704,16 @@ export function HomePage() {
                   <span className="rounded-full bg-[#D97706]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#D97706]">
                     Featured
                   </span>
-                  <span className="text-xs text-[#5C4A3A]">{ev.county}</span>
+                  <span className="text-xs text-[#8B7B6B]">{ev.county}</span>
                 </div>
                 <h3 className="mb-2 text-xl font-bold text-[#F5EDD0] md:text-2xl">{ev.title}</h3>
-                <p className="mb-4 text-sm text-[#8B7B6B]">{ev.location}</p>
+                <p className="mb-4 text-sm text-[#A89080]">{ev.location}</p>
                 <div className="flex items-center gap-4">
                   <span className="font-display text-3xl uppercase leading-none text-[#D97706]">
                     {ev.date.split(' ')[0]}
-                    <span className="ml-1 text-base text-[#5C4A3A]">{ev.date.split(' ')[1]}</span>
+                    <span className="ml-1 text-base text-[#8B7B6B]">{ev.date.split(' ')[1]}</span>
                   </span>
-                  <span className="text-sm text-[#5C4A3A]">{ev.rsvps.toLocaleString('en-GB')} RSVPs</span>
+                  <span className="text-sm text-[#8B7B6B]">{ev.rsvps.toLocaleString('en-GB')} RSVPs</span>
                 </div>
               </div>
               <div className="flex items-center justify-end p-6">
@@ -739,24 +739,24 @@ export function HomePage() {
                 <p className="font-display text-2xl uppercase leading-none tracking-tight text-[#D97706]">
                   {ev.date.split(' ')[0]}
                 </p>
-                <p className="text-[10px] uppercase tracking-widest text-[#5C4A3A]">
+                <p className="text-[10px] uppercase tracking-widest text-[#8B7B6B]">
                   {ev.date.split(' ')[1]}
                 </p>
               </div>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold text-[#F5EDD0]">{ev.title}</p>
-                <p className="mt-0.5 text-sm text-[#8B7B6B]">{ev.location}</p>
+                <p className="mt-0.5 text-sm text-[#A89080]">{ev.location}</p>
               </div>
               <div className="hidden shrink-0 items-center gap-3 sm:flex">
-                <span className="rounded-full bg-[#2A1515] px-3 py-1 text-xs text-[#8B7B6B]">
+                <span className="rounded-full bg-[#2A1515] px-3 py-1 text-xs text-[#A89080]">
                   {ev.county}
                 </span>
-                <span className="text-sm text-[#5C4A3A]">{ev.rsvps.toLocaleString('en-GB')} RSVPs</span>
+                <span className="text-sm text-[#8B7B6B]">{ev.rsvps.toLocaleString('en-GB')} RSVPs</span>
               </div>
               <Link
                 href="/signup"
                 aria-label={`RSVP to ${ev.title}`}
-                className="ml-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2A1515] text-[#8B7B6B] transition-colors group-hover:bg-[#D97706] group-hover:text-[#1C0D0D]"
+                className="ml-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2A1515] text-[#A89080] transition-colors group-hover:bg-[#D97706] group-hover:text-[#1C0D0D]"
               >
                 <ArrowUpRightIcon />
               </Link>
@@ -773,12 +773,12 @@ export function HomePage() {
               <span className="rounded-full bg-[#16a34a]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#16a34a]">
                 {PETITION.category}
               </span>
-              <span className="text-xs text-[#5C4A3A]">{PETITION.daysLeft} days left</span>
+              <span className="text-xs text-[#8B7B6B]">{PETITION.daysLeft} days left</span>
             </div>
             <h3 className="mb-4 text-xl font-bold leading-snug text-[#F5EDD0] md:text-2xl">
               {PETITION.title}
             </h3>
-            <p className="mb-6 text-sm text-[#8B7B6B]">
+            <p className="mb-6 text-sm text-[#A89080]">
               Target: <span className="text-[#F5EDD0]">{PETITION.target}</span>
             </p>
             <Link
@@ -792,11 +792,11 @@ export function HomePage() {
             </Link>
           </div>
           <div className="flex flex-col justify-center p-8 md:p-12">
-            <p className="mb-1 text-xs uppercase tracking-widest text-[#5C4A3A]">Signatures</p>
+            <p className="mb-1 text-xs uppercase tracking-widest text-[#8B7B6B]">Signatures</p>
             <p className="font-display text-[clamp(48px,6vw,80px)] uppercase leading-none tracking-tight text-[#F5EDD0]">
               {PETITION.signatures.toLocaleString('en-GB')}
             </p>
-            <p className="mb-6 text-sm text-[#8B7B6B]">
+            <p className="mb-6 text-sm text-[#A89080]">
               of {PETITION.goal.toLocaleString('en-GB')} goal
             </p>
             <div className="h-2 w-full overflow-hidden rounded-full bg-[#2A1515]">
@@ -880,7 +880,7 @@ export function HomePage() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-[#F5EDD0]">{t.name}</p>
-                  <p className="text-xs text-[#5C4A3A]">{t.county}</p>
+                  <p className="text-xs text-[#8B7B6B]">{t.county}</p>
                 </div>
               </div>
             </div>
@@ -941,7 +941,7 @@ export function HomePage() {
         <div className="mb-8 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <VoadiLogo size="sm" />
-            <p className="mt-1.5 text-xs text-[#5C4A3A]">
+            <p className="mt-1.5 text-xs text-[#8B7B6B]">
               Voices of Africans Diaspora Ireland
             </p>
           </div>
@@ -949,13 +949,13 @@ export function HomePage() {
             <ul className="flex flex-wrap gap-6">
               {NAV_LINKS.map(link => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-xs text-[#5C4A3A] transition-colors hover:text-[#8B7B6B]">
+                  <Link href={link.href} className="text-xs text-[#8B7B6B] transition-colors hover:text-[#A89080]">
                     {link.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/signup" className="text-xs text-[#5C4A3A] transition-colors hover:text-[#8B7B6B]">
+                <Link href="/signup" className="text-xs text-[#8B7B6B] transition-colors hover:text-[#A89080]">
                   Sign Up
                 </Link>
               </li>

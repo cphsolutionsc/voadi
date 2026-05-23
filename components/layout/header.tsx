@@ -14,7 +14,7 @@ export function Header({ title }: { title?: string }) {
         <div className="flex items-center gap-3">
           <Link
             href="/"
-            className="text-xs text-[#5C4A3A] transition-colors hover:text-[#8B7B6B]"
+            className="text-xs text-[#8B7B6B] transition-colors hover:text-[#8B7B6B]"
           >
             Back to site
           </Link>

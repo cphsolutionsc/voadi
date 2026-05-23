@@ -39,7 +39,7 @@ function LoginForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="mb-6">
         <h2 className="text-xl font-bold text-[#F5EDD0]">Sign in</h2>
-        <p className="mt-1 text-sm text-[#5C4A3A]">Welcome back to the community.</p>
+        <p className="mt-1 text-sm text-[#8B7B6B]">Welcome back to the community.</p>
       </div>
 
       {error && (
@@ -73,7 +73,7 @@ function LoginForm() {
         {loading ? 'Signing in…' : 'Sign in'}
       </button>
 
-      <p className="pt-1 text-center text-sm text-[#5C4A3A]">
+      <p className="pt-1 text-center text-sm text-[#8B7B6B]">
         New to VOADI?{' '}
         <Link href="/signup" className="font-medium text-[#F5EDD0] underline underline-offset-2 hover:text-white">
           Create account

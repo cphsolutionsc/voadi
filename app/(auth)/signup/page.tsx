@@ -48,7 +48,7 @@ export default function SignupPage() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="mb-6">
         <h2 className="text-xl font-bold text-[#F5EDD0]">Create your account</h2>
-        <p className="mt-1 text-sm text-[#5C4A3A]">Free to join. Takes under a minute.</p>
+        <p className="mt-1 text-sm text-[#8B7B6B]">Free to join. Takes under a minute.</p>
       </div>
 
       {error && (
@@ -106,7 +106,7 @@ export default function SignupPage() {
         {loading ? 'Creating account…' : 'Create account'}
       </button>
 
-      <p className="pt-1 text-center text-sm text-[#5C4A3A]">
+      <p className="pt-1 text-center text-sm text-[#8B7B6B]">
         Already have an account?{' '}
         <Link href="/login" className="font-medium text-[#F5EDD0] underline underline-offset-2 hover:text-white">
           Sign in

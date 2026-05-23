@@ -74,7 +74,7 @@ export function Nav() {
               <Link
                 href={item.href}
                 className={`flex flex-col items-center gap-0.5 py-3 text-[10px] font-medium uppercase tracking-wider transition-colors ${
-                  active ? 'text-[#F5EDD0]' : 'text-[#5C4A3A]'
+                  active ? 'text-[#F5EDD0]' : 'text-[#8B7B6B]'
                 }`}
               >
                 {item.icon(active)}

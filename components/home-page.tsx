@@ -454,7 +454,7 @@ export function HomePage() {
         />
 
         {/* Left card — horizontal */}
-        <div className="hero-card-left absolute left-8 top-[44%] z-30 flex w-48 items-center gap-3 rounded-2xl bg-[#2A1515] p-3 sm:left-12">
+        <div className="hero-card-left absolute left-8 top-[44%] z-30 hidden w-48 items-center gap-3 rounded-2xl bg-[#2A1515] p-3 md:flex sm:left-12">
           <div className="relative shrink-0">
             <div className="relative h-14 w-14 overflow-hidden rounded-xl">
               <Image
@@ -476,7 +476,7 @@ export function HomePage() {
         </div>
 
         {/* Right card — portrait */}
-        <div className="hero-card-right absolute right-8 top-[28%] z-30 w-36 overflow-hidden rounded-2xl bg-[#2A1515] sm:right-12">
+        <div className="hero-card-right absolute right-8 top-[28%] z-30 hidden w-36 overflow-hidden rounded-2xl bg-[#2A1515] md:block sm:right-12">
           <div className="relative h-44 w-full">
             <Image
               src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80"

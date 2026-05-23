@@ -1,14 +1,40 @@
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: voadi-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: voadi
+      POSTGRES_USER: voadi
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - voadi_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U voadi -d voadi"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - cph_app_net
+
   web:
     build:
       context: ..
       dockerfile: docker/Dockerfile
     container_name: voadi-web
     restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
       NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+      DATABASE_URL: postgres://voadi:${DB_PASSWORD}@voadi-db:5432/voadi
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
     networks:
       - cph_app_net
+
+volumes:
+  voadi_db_data:
 
 networks:
   cph_app_net:

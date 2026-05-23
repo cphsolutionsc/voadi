@@ -1,77 +1,23 @@
 'use client'
 
 import { useState } from 'react'
-import type { CATEGORIES } from './page'
+import {
+  Scale, Home, Plane, ShieldCheck, Briefcase, Heart,
+  Phone, ExternalLink, ChevronDown,
+} from 'lucide-react'
+import type { CATEGORIES } from './data'
 
 type Category = typeof CATEGORIES[number]
 type Resource = Category['resources'][number]
 type Guide = Category['guides'][number]
 
-const ICONS: Record<string, (colour: string) => React.ReactNode> = {
-  scale: (c) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={c} aria-hidden="true">
-      <path d="M12 3v18M3 9l9-6 9 6M5 21h14" />
-      <path d="M3 9l4 8H3M21 9l-4 8h4" />
-    </svg>
-  ),
-  home: (c) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={c} aria-hidden="true">
-      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  ),
-  passport: (c) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={c} aria-hidden="true">
-      <rect x="3" y="2" width="18" height="20" rx="2" />
-      <circle cx="12" cy="10" r="3" />
-      <path d="M9 17h6M9 14h6" />
-    </svg>
-  ),
-  shield: (c) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={c} aria-hidden="true">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    </svg>
-  ),
-  briefcase: (c) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={c} aria-hidden="true">
-      <rect x="2" y="7" width="20" height="14" rx="2" />
-      <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2M12 12v4M10 14h4" />
-    </svg>
-  ),
-  heart: (c) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={c} aria-hidden="true">
-      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-    </svg>
-  ),
-}
-
-function PhoneIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.21a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 6.97a16 16 0 006.29 6.29l1.13-1.34a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-    </svg>
-  )
-}
-
-function ExternalIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-    </svg>
-  )
-}
-
-function ChevronIcon({ open }: { open: boolean }) {
-  return (
-    <svg
-      width="16" height="16" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-      className={`shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-      aria-hidden="true"
-    >
-      <polyline points="6 9 12 15 18 9" />
-    </svg>
-  )
+const CATEGORY_ICONS: Record<string, React.ElementType> = {
+  scale:     Scale,
+  home:      Home,
+  passport:  Plane,
+  shield:    ShieldCheck,
+  briefcase: Briefcase,
+  heart:     Heart,
 }
 
 function ResourceCard({ resource }: { resource: Resource }) {
@@ -86,7 +32,7 @@ function ResourceCard({ resource }: { resource: Resource }) {
           className="shrink-0 rounded-full bg-[#2A1515] p-1.5 text-[#8B7B6B] transition-colors hover:text-[#D97706]"
           aria-label={`Visit ${resource.name}`}
         >
-          <ExternalIcon />
+          <ExternalLink size={12} />
         </a>
       </div>
       <p className="mb-3 text-xs leading-relaxed text-[#A89080]">{resource.desc}</p>
@@ -96,7 +42,7 @@ function ResourceCard({ resource }: { resource: Resource }) {
             href={`tel:${resource.phone.replace(/\s/g, '')}`}
             className="flex items-center gap-1 rounded-full border border-[#2A1515] bg-[#140909] px-2 py-1 text-[10px] font-medium text-[#8B7B6B] transition-colors hover:text-[#F5EDD0]"
           >
-            <PhoneIcon />
+            <Phone size={10} />
             {resource.phone}
           </a>
         )}
@@ -120,7 +66,10 @@ function GuideCard({ guide }: { guide: Guide }) {
         aria-expanded={open}
       >
         <span className="text-sm font-semibold text-[#F5EDD0]">{guide.title}</span>
-        <ChevronIcon open={open} />
+        <ChevronDown
+          size={16}
+          className={`shrink-0 text-[#8B7B6B] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        />
       </button>
       {open && (
         <ol className="border-t border-[#2A1515] px-4 py-3 space-y-2">
@@ -183,6 +132,7 @@ function CategoryPanel({ category }: { category: Category }) {
 export function ResourcesClient({ categories }: { categories: typeof CATEGORIES }) {
   const [activeId, setActiveId] = useState<string>(categories[0].id)
   const active = categories.find(c => c.id === activeId) ?? categories[0]
+  const ActiveIcon = CATEGORY_ICONS[active.icon]
 
   return (
     <div className="py-2">
@@ -195,7 +145,7 @@ export function ResourcesClient({ categories }: { categories: typeof CATEGORIES 
       <div className="mb-5 -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 scrollbar-none">
         {categories.map(cat => {
           const isActive = cat.id === activeId
-          const icon = ICONS[cat.icon]
+          const CatIcon = CATEGORY_ICONS[cat.icon]
           return (
             <button
               key={cat.id}
@@ -206,7 +156,7 @@ export function ResourcesClient({ categories }: { categories: typeof CATEGORIES 
                   : 'border border-[#2A1515] text-[#8B7B6B]'
               }`}
             >
-              {icon && icon(isActive ? cat.colour : 'text-[#8B7B6B]')}
+              {CatIcon && <CatIcon size={14} aria-hidden="true" />}
               {cat.label}
             </button>
           )
@@ -217,7 +167,7 @@ export function ResourcesClient({ categories }: { categories: typeof CATEGORIES 
       <div className={`mb-4 rounded-xl ${active.bg} border border-[#2A1515] p-4`}>
         <div className="flex items-start gap-3">
           <div className={`mt-0.5 ${active.colour}`}>
-            {ICONS[active.icon]?.(active.colour)}
+            {ActiveIcon && <ActiveIcon size={20} aria-hidden="true" />}
           </div>
           <div>
             <h2 className={`font-bold ${active.colour}`}>{active.label}</h2>

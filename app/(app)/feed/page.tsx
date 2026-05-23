@@ -5,6 +5,7 @@ import { db } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import { events, petitions, helpPosts } from '@/lib/db/schema'
 import { desc, gte } from 'drizzle-orm'
+import { CalendarDays, FileText, Users, PenLine, MapPin } from 'lucide-react'
 
 export const metadata = { title: 'Feed — VOADI' }
 
@@ -67,18 +68,14 @@ export default async function FeedPage() {
       <div className="mb-6 grid grid-cols-2 gap-3">
         <Link href="/events" className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]">
           <div className="mb-2 text-[#D97706]">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
+            <CalendarDays size={20} aria-hidden="true" />
           </div>
           <p className="text-sm font-semibold text-white">Upcoming events</p>
           <p className="text-xs text-[#8B7B6B]">{recentEvents.length} near you</p>
         </Link>
         <Link href="/petitions" className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]">
           <div className="mb-2 text-[#D97706]">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
-            </svg>
+            <FileText size={20} aria-hidden="true" />
           </div>
           <p className="text-sm font-semibold text-white">Open petitions</p>
           <p className="text-xs text-[#8B7B6B]">{recentPetitions.length} active</p>
@@ -107,9 +104,7 @@ function FeedCard({ item }: { item: ReturnType<typeof buildFeedItem> }) {
     return (
       <Link href={`/events/${item.id}`} className="flex gap-4 rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#4A2828]">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#2A1515] text-[#D97706]">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-            <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
-          </svg>
+          <CalendarDays size={16} aria-hidden="true" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold text-white">{item.title}</p>
@@ -123,9 +118,7 @@ function FeedCard({ item }: { item: ReturnType<typeof buildFeedItem> }) {
     return (
       <Link href={`/petitions/${item.id}`} className="flex gap-4 rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#4A2828]">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#2A1515] text-[#16a34a]">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-            <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
-          </svg>
+          <PenLine size={16} aria-hidden="true" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold text-white">{item.title}</p>
@@ -139,9 +132,7 @@ function FeedCard({ item }: { item: ReturnType<typeof buildFeedItem> }) {
   return (
     <Link href={`/help`} className="flex gap-4 rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#4A2828]">
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#2A1515] text-[#A89080]">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
-        </svg>
+        <Users size={16} aria-hidden="true" />
       </div>
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-semibold text-white">{item.title}</p>

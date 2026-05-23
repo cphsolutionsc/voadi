@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { VoadiLogo } from './voadi-logo'
@@ -252,6 +252,155 @@ const MARQUEE_ITEMS = [
   'Missing Persons', 'Help Hub', 'Civic Action', 'One Voice', 'One Ireland',
 ]
 
+// ── Donations sub-component ───────────────────────────────────────────────
+
+const PRESET_AMOUNTS = [5, 10, 25, 50] as const
+
+function DonateSection() {
+  const [amount, setAmount] = useState<number>(25)
+  const [custom, setCustom] = useState('')
+  const [recurring, setRecurring] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const finalAmount = custom ? parseFloat(custom) : amount
+
+  async function handleDonate() {
+    if (!finalAmount || finalAmount < 1) {
+      setError('Please enter a valid amount (min €1).')
+      return
+    }
+    setError(null)
+    setLoading(true)
+    try {
+      const res = await fetch('/api/donations/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: finalAmount, recurring }),
+      })
+      const data = await res.json() as { url?: string; error?: string }
+      if (!res.ok || !data.url) throw new Error(data.error ?? 'Could not start checkout.')
+      window.location.href = data.url
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong.')
+      setLoading(false)
+    }
+  }
+
+  return (
+    <section id="donate" className="reveal-up px-8 pb-20 md:px-12">
+      <div className="overflow-hidden rounded-3xl border border-[#2A1515] bg-[#1E0E0E]">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Left — copy */}
+          <div className="border-b border-[#2A1515] p-8 md:border-b-0 md:border-r md:p-12">
+            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#D97706]">
+              Fund the movement
+            </p>
+            <h2 className="font-display text-[clamp(36px,4.5vw,58px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+              Back real<br />change in Ireland
+            </h2>
+            <p className="mt-5 text-sm leading-relaxed text-[#A89080]">
+              Every contribution directly funds civic action, legal aid, community events,
+              and representation for Africans across Ireland. 100% goes to the cause.
+            </p>
+            <div className="mt-8 space-y-3">
+              {[
+                ['€5', 'Covers printing campaign materials for one county'],
+                ['€25', 'Helps fund a community event or protest'],
+                ['€50', 'Supports legal advice for one member in need'],
+              ].map(([label, desc]) => (
+                <div key={label} className="flex items-start gap-3">
+                  <span className="mt-0.5 shrink-0 font-semibold text-[#D97706]">{label}</span>
+                  <span className="text-sm text-[#8B7B6B]">{desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — form */}
+          <div className="flex flex-col justify-center p-8 md:p-12">
+            {/* One-off / Monthly toggle */}
+            <div className="mb-6 flex rounded-xl border border-[#2A1515] p-1">
+              {(['One-off', 'Monthly'] as const).map(mode => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setRecurring(mode === 'Monthly')}
+                  className={`flex-1 rounded-lg py-2.5 text-sm font-semibold transition-colors ${
+                    recurring === (mode === 'Monthly')
+                      ? 'bg-[#2A1515] text-[#F5EDD0]'
+                      : 'text-[#8B7B6B] hover:text-[#F5EDD0]'
+                  }`}
+                >
+                  {mode}
+                </button>
+              ))}
+            </div>
+
+            {/* Preset amounts */}
+            <div className="mb-4 grid grid-cols-4 gap-2">
+              {PRESET_AMOUNTS.map(p => (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => { setAmount(p); setCustom('') }}
+                  className={`rounded-xl border py-3 text-sm font-bold transition-colors ${
+                    !custom && amount === p
+                      ? 'border-[#D97706] bg-[#D97706]/10 text-[#D97706]'
+                      : 'border-[#2A1515] text-[#A89080] hover:border-[#D97706] hover:text-[#D97706]'
+                  }`}
+                >
+                  €{p}
+                </button>
+              ))}
+            </div>
+
+            {/* Custom amount */}
+            <div className="relative mb-6">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-[#8B7B6B]">€</span>
+              <input
+                type="number"
+                min="1"
+                placeholder="Custom amount"
+                value={custom}
+                onChange={e => { setCustom(e.target.value); setAmount(0) }}
+                className="w-full rounded-xl border border-[#2A1515] bg-[#140909] py-3 pl-8 pr-4 text-sm text-[#F5EDD0] placeholder-[#4A3020] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]"
+              />
+            </div>
+
+            {error && (
+              <p role="alert" className="mb-4 rounded-lg border border-red-900/50 bg-red-950/30 px-4 py-3 text-sm text-red-400">
+                {error}
+              </p>
+            )}
+
+            <button
+              type="button"
+              disabled={loading}
+              onClick={handleDonate}
+              className="inline-flex w-full items-center justify-between gap-3 rounded-full bg-[#D97706] py-4 pl-8 pr-3 text-sm font-bold text-[#1C0D0D] transition-opacity hover:opacity-90 disabled:opacity-50"
+            >
+              <span>
+                {loading
+                  ? 'Redirecting…'
+                  : `Donate €${finalAmount > 0 ? finalAmount : '—'}${recurring ? '/mo' : ''}`
+                }
+              </span>
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+                <ArrowUpRightIcon size={14} />
+              </span>
+            </button>
+
+            <p className="mt-4 text-center text-[10px] uppercase tracking-widest text-[#4A3020]">
+              Secure payment via Stripe · Cancel anytime
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ── Component ─────────────────────────────────────────────────────────────
 
 export function HomePage() {
@@ -353,10 +502,15 @@ export function HomePage() {
         scrollTrigger: { trigger: '.stats-section', start: 'top 82%' },
       })
 
-      // Features stagger — slight rotation on entrance
+      // Features — scale-up reveal, no rotation (rotation was janky)
       gsap.from('.feature-card', {
-        y: 60, opacity: 0, rotation: 3, stagger: 0.12, duration: 1.0, ease: 'power3.out',
-        scrollTrigger: { trigger: '.features-section', start: 'top 78%' },
+        y: 50, opacity: 0, scale: 0.94, stagger: 0.14, duration: 1.1, ease: 'expo.out',
+        scrollTrigger: { trigger: '.features-section', start: 'top 76%' },
+      })
+      // Section heading clip-path reveal
+      gsap.from('.features-heading', {
+        clipPath: 'inset(0 0 100% 0)', y: 20, duration: 1.2, ease: 'power4.out',
+        scrollTrigger: { trigger: '.features-section', start: 'top 82%' },
       })
 
       // Steps connector line + items
@@ -366,7 +520,7 @@ export function HomePage() {
         scrollTrigger: { trigger: '.steps-section', start: 'top 78%' },
       })
       gsap.from('.step-item', {
-        y: 40, opacity: 0, rotation: -4, stagger: 0.18, duration: 0.9, ease: 'power3.out',
+        y: 40, opacity: 0, scale: 0.95, stagger: 0.18, duration: 1.0, ease: 'expo.out',
         scrollTrigger: { trigger: '.steps-section', start: 'top 78%' },
       })
 
@@ -388,12 +542,10 @@ export function HomePage() {
         scrollTrigger: { trigger: '.petition-section', start: 'top 87%' },
       })
 
-      // Testimonials — alternate tilt on entrance
-      gsap.utils.toArray<Element>('.testimonial-card').forEach((el, i) => {
-        gsap.from(el, {
-          y: 55, opacity: 0, rotation: i % 2 === 0 ? -3 : 3, duration: 0.95, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 85%' },
-        })
+      // Testimonials — scale reveal, staggered
+      gsap.from('.testimonial-card', {
+        y: 50, opacity: 0, scale: 0.95, stagger: 0.14, duration: 1.0, ease: 'expo.out',
+        scrollTrigger: { trigger: '.testimonials-section', start: 'top 80%' },
       })
 
       // Generic section reveals
@@ -414,7 +566,7 @@ export function HomePage() {
       {/* ── Nav ── */}
       <nav className="site-nav fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-8 py-5">
         <Link href="/" aria-label="VOADI home">
-          <VoadiLogo size="sm" />
+          <VoadiLogo size="md" />
         </Link>
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map(link => (
@@ -598,7 +750,7 @@ export function HomePage() {
         <div className="reveal-up mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-[#D97706]">What we do</p>
-            <h2 className="font-display text-[clamp(38px,6vw,80px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+            <h2 className="features-heading font-display text-[clamp(38px,6vw,80px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
               Built for<br />your community
             </h2>
           </div>
@@ -888,6 +1040,9 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* ── Donations ── */}
+      <DonateSection />
+
       {/* ── Final CTA ── */}
       <section id="about" className="reveal-up mx-8 mb-20 overflow-hidden rounded-3xl md:mx-12">
         <div className="relative grid grid-cols-1 overflow-hidden rounded-3xl bg-[#0d1f14] md:grid-cols-2">
@@ -940,7 +1095,7 @@ export function HomePage() {
       <footer className="border-t border-[#2A1515] px-8 py-10 md:px-12">
         <div className="mb-8 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <VoadiLogo size="sm" />
+            <VoadiLogo size="md" />
             <p className="mt-1.5 text-xs text-[#8B7B6B]">
               Voices of Africans Diaspora Ireland
             </p>

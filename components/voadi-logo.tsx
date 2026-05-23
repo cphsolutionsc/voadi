@@ -20,15 +20,15 @@ function HarpV({ px }: { px: number }) {
       style={{ display: 'inline-block', flexShrink: 0 }}
     >
       {/* Forepillar — left diagonal stroke */}
-      <path d="M1.5 1.5 L8.5 23.5" stroke="white" strokeWidth="2.8" strokeLinecap="round" />
+      <path d="M1.5 1.5 L8.5 23.5" stroke="white" strokeWidth="3.5" strokeLinecap="round" />
       {/* Neck / soundbox — right diagonal, slight outward bow */}
-      <path d="M15.5 1.5 C17.5 7 16 16 8.5 23.5" stroke="white" strokeWidth="2.8" strokeLinecap="round" />
+      <path d="M15.5 1.5 C17.5 7 16 16 8.5 23.5" stroke="white" strokeWidth="3.5" strokeLinecap="round" />
       {/* Crown arc — amber, connects top of both strokes */}
-      <path d="M1.5 1.5 C3.5 -1 13.5 -1 15.5 1.5" stroke="#D97706" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+      <path d="M1.5 1.5 C3.5 -1.5 13.5 -1.5 15.5 1.5" stroke="#D97706" strokeWidth="2.2" strokeLinecap="round" fill="none" />
       {/* Strings — amber, span from forepillar to neck, 3 rows */}
-      <line x1="3.5"  y1="7.5"  x2="14.5" y2="7"   stroke="#D97706" strokeWidth="1"   strokeLinecap="round" opacity="0.9" />
-      <line x1="5.5"  y1="13"   x2="13"   y2="13"   stroke="#D97706" strokeWidth="0.9" strokeLinecap="round" opacity="0.9" />
-      <line x1="7.5"  y1="18.5" x2="11"   y2="18.5" stroke="#D97706" strokeWidth="0.8" strokeLinecap="round" opacity="0.9" />
+      <line x1="3.5"  y1="7.5"  x2="14.5" y2="7"   stroke="#D97706" strokeWidth="1.5"  strokeLinecap="round" opacity="0.95" />
+      <line x1="5.5"  y1="13"   x2="13"   y2="13"   stroke="#D97706" strokeWidth="1.4"  strokeLinecap="round" opacity="0.95" />
+      <line x1="7.5"  y1="18.5" x2="11"   y2="18.5" stroke="#D97706" strokeWidth="1.3"  strokeLinecap="round" opacity="0.95" />
     </svg>
   )
 }

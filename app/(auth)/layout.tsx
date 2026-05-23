@@ -6,7 +6,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#1C0D0D] px-4 py-12">
       <div className="mb-8 text-center">
         <Link href="/" className="inline-flex flex-col items-center gap-1.5">
-          <VoadiLogo size="md" />
+          <VoadiLogo size="lg" />
           <span className="text-xs text-[#8B7B6B]">Voices of Africans Diaspora Ireland</span>
         </Link>
       </div>

@@ -8,7 +8,7 @@ export function Header({ title }: { title?: string }) {
         <Link href="/feed" aria-label="VOADI home">
           {title
             ? <span className="text-base font-bold tracking-tight text-white">{title}</span>
-            : <VoadiLogo size="sm" />
+            : <VoadiLogo size="md" />
           }
         </Link>
         <div className="flex items-center gap-3">

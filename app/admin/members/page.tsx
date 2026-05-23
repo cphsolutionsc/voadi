@@ -3,7 +3,8 @@ import { requireAdmin } from '../admin-guard'
 import { db } from '@/lib/db'
 import { users } from '@/lib/db/schema'
 import { desc } from 'drizzle-orm'
-import { setMemberRole } from './actions'
+import { setMemberRole, verifyMemberEmail } from './actions'
+import { ShieldCheck, ShieldOff } from 'lucide-react'
 
 export const metadata = { title: 'Members — Admin' }
 
@@ -24,10 +25,25 @@ export default async function AdminMembersPage() {
             className="flex items-center gap-3 border-b border-[#2A1515] bg-[#1E0E0E] px-4 py-3 last:border-0"
           >
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-[#F5EDD0]">{m.name}</p>
+              <div className="flex items-center gap-1.5">
+                <p className="text-sm font-semibold text-[#F5EDD0]">{m.name}</p>
+                {m.emailVerified
+                  ? <ShieldCheck size={11} className="shrink-0 text-[#16A34A]" aria-label="Verified" />
+                  : <ShieldOff size={11} className="shrink-0 text-[#D97706]" aria-label="Unverified" />
+                }
+              </div>
               <p className="text-xs text-[#5C4040]">{m.email} · {m.county}</p>
             </div>
-            <div className="flex gap-1">
+
+            <div className="flex items-center gap-1">
+              {!m.emailVerified && (
+                <form action={verifyMemberEmail.bind(null, m.id)}>
+                  <button type="submit"
+                    className="rounded-full border border-[#D97706]/40 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#D97706] hover:bg-[#D97706]/10">
+                    verify
+                  </button>
+                </form>
+              )}
               {(['member', 'moderator', 'admin'] as const).map(r => (
                 <form key={r} action={setMemberRole.bind(null, m.id, r)}>
                   <button

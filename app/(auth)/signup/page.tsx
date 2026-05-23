@@ -21,6 +21,7 @@ export default function SignupPage() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [verifyEmail, setVerifyEmail] = useState<string | null>(null)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -28,14 +29,16 @@ export default function SignupPage() {
     setLoading(true)
 
     const form = new FormData(e.currentTarget)
+    const email = form.get('email') as string
     const result = await authClient.signUp.email({
-      email: form.get('email') as string,
+      email,
       password: form.get('password') as string,
       name: form.get('name') as string,
       // @ts-expect-error additional fields
       county: form.get('county') as string,
       nationality: form.get('nationality') as string || undefined,
       countryOfBirth: form.get('countryOfBirth') as string || undefined,
+      callbackURL: '/feed',
     })
 
     if (result.error) {
@@ -44,7 +47,28 @@ export default function SignupPage() {
       return
     }
 
-    router.push('/feed')
+    setVerifyEmail(email)
+    setLoading(false)
+  }
+
+  if (verifyEmail) {
+    return (
+      <div className="space-y-4">
+        <div className="mb-6">
+          <h2 className="text-xl font-bold text-[#F5EDD0]">Check your inbox</h2>
+          <p className="mt-1 text-sm text-[#8B7B6B]">We sent a verification link to <strong className="text-[#F5EDD0]">{verifyEmail}</strong></p>
+        </div>
+        <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] px-4 py-5 text-sm leading-relaxed text-[#8B7B6B]">
+          Click the link in the email to activate your account. Check your spam folder if you do not see it within a few minutes.
+        </div>
+        <p className="pt-1 text-center text-sm text-[#8B7B6B]">
+          Already verified?{' '}
+          <Link href="/login" className="font-medium text-[#F5EDD0] underline underline-offset-2 hover:text-white">
+            Sign in
+          </Link>
+        </p>
+      </div>
+    )
   }
 
   return (

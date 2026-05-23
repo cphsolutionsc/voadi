@@ -10,3 +10,9 @@ export async function setMemberRole(userId: string, role: 'member' | 'moderator'
   await db.update(users).set({ role }).where(eq(users.id, userId))
   revalidatePath('/admin/members')
 }
+
+export async function verifyMemberEmail(userId: string) {
+  await requireAdmin()
+  await db.update(users).set({ emailVerified: true }).where(eq(users.id, userId))
+  revalidatePath('/admin/members')
+}

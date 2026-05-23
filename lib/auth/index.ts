@@ -5,6 +5,7 @@ import { db } from '@/lib/db'
 import * as schema from '@/lib/db/schema'
 import { sendEmail } from '@/lib/email'
 import { WelcomeEmail } from '@/lib/email/templates/welcome'
+import { VerificationEmail } from '@/lib/email/templates/verify'
 
 export const auth = betterAuth({
   baseURL: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
@@ -25,6 +26,18 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
+    requireEmailVerification: true,
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+    sendVerificationEmail: async ({ user, url }) => {
+      await sendEmail({
+        to: user.email,
+        subject: 'Verify your VOADI email address',
+        react: React.createElement(VerificationEmail, { name: user.name, url }),
+      }).catch(console.error)
+    },
   },
   session: {
     expiresIn: 60 * 60 * 24 * 30,

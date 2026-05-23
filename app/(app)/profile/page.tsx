@@ -54,6 +54,17 @@ export default async function ProfilePage() {
         <Row label="Member since" value={joined} />
       </div>
 
+      {/* Admin panel link — only visible to admins and moderators */}
+      {(role === 'admin' || role === 'moderator') && (
+        <Link
+          href="/admin"
+          className="mb-4 flex items-center justify-between rounded-xl border border-[#2A1515] bg-[#1E0E0E] px-4 py-3 hover:bg-[#2A1515]/50"
+        >
+          <span className="text-xs font-semibold text-[#F5EDD0]">Admin panel</span>
+          <span className="text-xs text-[#D97706]">›</span>
+        </Link>
+      )}
+
       {/* Support VOADI */}
       <Link
         href="/donate"

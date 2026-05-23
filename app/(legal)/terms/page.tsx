@@ -33,7 +33,7 @@ export default function TermsPage() {
             VOADI is not a registered charity. We do not operate for profit. All voluntary contributions received by VOADI are used exclusively to fund platform operations, community programmes, and legal advocacy. We do not solicit or accept donations as a registered charitable organisation within the meaning of the Charities Act 2009. Any voluntary contributions are received as community funding and are not eligible for charitable tax relief.
           </P>
           <P>
-            Our single point of contact for regulatory and law enforcement authorities as required under Article 11 of the EU Digital Services Act (Regulation 2022/2065) is: <strong className="text-[#F5EDD0]">legal@voadi.ie</strong>.
+            Our single point of contact for regulatory and law enforcement authorities as required under Article 11 of the EU Digital Services Act (Regulation 2022/2065) is: <strong className="text-[#F5EDD0]">legal@voadi.org</strong>.
           </P>
         </Section>
 
@@ -119,11 +119,11 @@ export default function TermsPage() {
           </P>
           <H3>How to report content</H3>
           <P>
-            To report content that you believe violates these terms or constitutes illegal content, contact us at <strong className="text-[#F5EDD0]">moderation@voadi.ie</strong>. Reports are reviewed within 10 working days for non-urgent matters and within 24 hours for content reporting imminent harm.
+            To report content that you believe violates these terms or constitutes illegal content, contact us at <strong className="text-[#F5EDD0]">moderation@voadi.org</strong>. Reports are reviewed within 10 working days for non-urgent matters and within 24 hours for content reporting imminent harm.
           </P>
           <H3>Internal complaints mechanism (Article 20 DSA)</H3>
           <P>
-            If your content has been removed or your account has been restricted or suspended, you have the right to lodge an internal complaint. Contact us at <strong className="text-[#F5EDD0]">appeals@voadi.ie</strong> within 30 days of the decision. We will review your complaint and provide a reasoned response within 15 working days.
+            If your content has been removed or your account has been restricted or suspended, you have the right to lodge an internal complaint. Contact us at <strong className="text-[#F5EDD0]">appeals@voadi.org</strong> within 30 days of the decision. We will review your complaint and provide a reasoned response within 15 working days.
           </P>
           <H3>Out-of-court dispute settlement</H3>
           <P>
@@ -169,7 +169,7 @@ export default function TermsPage() {
             VOADI collects and processes personal data including name, email address, county of residence, nationality, and country of birth. Nationality and country of birth are treated as special category data under Article 9 of the GDPR in the context of this platform, as they may reveal or allow inference of racial or ethnic origin. This data is collected only with your explicit consent (Article 9(2)(a) GDPR) and is used solely to improve the platform's resources and services for the community.
           </P>
           <P>
-            Your data rights — including the right to access, rectify, erase, and port your data — are described in full in our Privacy Policy. To exercise any data right, contact our data controller at <strong className="text-[#F5EDD0]">privacy@voadi.ie</strong>. You also have the right to lodge a complaint with the Data Protection Commission (DPC) at <a href="https://www.dataprotection.ie" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]" target="_blank" rel="noopener noreferrer">dataprotection.ie</a>.
+            Your data rights — including the right to access, rectify, erase, and port your data — are described in full in our Privacy Policy. To exercise any data right, contact our data controller at <strong className="text-[#F5EDD0]">privacy@voadi.org</strong>. You also have the right to lodge a complaint with the Data Protection Commission (DPC) at <a href="https://www.dataprotection.ie" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]" target="_blank" rel="noopener noreferrer">dataprotection.ie</a>.
           </P>
         </Section>
 
@@ -205,7 +205,7 @@ export default function TermsPage() {
         <Section>
           <H2 n="12">Termination</H2>
           <P>
-            You may close your account at any time by contacting us at <strong className="text-[#F5EDD0]">support@voadi.ie</strong>. Upon closure, your account data will be handled in accordance with our Privacy Policy retention schedule.
+            You may close your account at any time by contacting us at <strong className="text-[#F5EDD0]">support@voadi.org</strong>. Upon closure, your account data will be handled in accordance with our Privacy Policy retention schedule.
           </P>
           <P>
             We may suspend or terminate your access to the platform if you breach these terms, if we are required to do so by law or a competent authority, or if we cease to operate the platform. Where we terminate your access for reasons other than your breach, we will provide reasonable notice except where immediate termination is necessary to protect the safety or rights of other users or the platform.
@@ -239,11 +239,11 @@ export default function TermsPage() {
           <H2 n="15">Contact</H2>
           <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] divide-y divide-[#2A1515]">
             {[
-              ['General enquiries', 'hello@voadi.ie'],
-              ['Data protection / privacy', 'privacy@voadi.ie'],
-              ['Content reports', 'moderation@voadi.ie'],
-              ['Account appeals', 'appeals@voadi.ie'],
-              ['Legal / DSA contact point', 'legal@voadi.ie'],
+              ['General enquiries', 'hello@voadi.org'],
+              ['Data protection / privacy', 'privacy@voadi.org'],
+              ['Content reports', 'moderation@voadi.org'],
+              ['Account appeals', 'appeals@voadi.org'],
+              ['Legal / DSA contact point', 'legal@voadi.org'],
             ].map(([label, email]) => (
               <div key={email} className="flex items-center justify-between px-4 py-3">
                 <span className="text-xs text-[#5C4040]">{label}</span>

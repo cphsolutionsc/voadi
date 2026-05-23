@@ -143,7 +143,7 @@ export default function TransparencyPage() {
             The "hidden gem" designation on certain resources indicates services that our research has identified as significantly underused by the community. It is an editorial judgement, not a commercial arrangement.
           </P>
           <P>
-            If you believe a resource listing is inaccurate, outdated, or that an organisation's conduct is inconsistent with the welfare of our community, please contact us at <strong className="text-[#F5EDD0]">resources@voadi.ie</strong>.
+            If you believe a resource listing is inaccurate, outdated, or that an organisation's conduct is inconsistent with the welfare of our community, please contact us at <strong className="text-[#F5EDD0]">resources@voadi.org</strong>.
           </P>
         </Section>
 
@@ -215,10 +215,10 @@ export default function TransparencyPage() {
           </P>
           <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] divide-y divide-[#2A1515]">
             {[
-              ['Transparency concerns', 'transparency@voadi.ie'],
-              ['Resources directory', 'resources@voadi.ie'],
-              ['Data & privacy', 'privacy@voadi.ie'],
-              ['General', 'hello@voadi.ie'],
+              ['Transparency concerns', 'transparency@voadi.org'],
+              ['Resources directory', 'resources@voadi.org'],
+              ['Data & privacy', 'privacy@voadi.org'],
+              ['General', 'hello@voadi.org'],
             ].map(([label, email]) => (
               <div key={email} className="flex items-center justify-between px-4 py-3">
                 <span className="text-xs text-[#5C4040]">{label}</span>

@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         <Section>
           <H2 n="1">Data Controller</H2>
           <P>
-            The data controller for all personal data collected through the VOADI platform is the <strong className="text-[#F5EDD0]">Coalition of Africans Diaspora Ireland</strong>, operating as VOADI. Contact: <strong className="text-[#F5EDD0]">privacy@voadi.ie</strong>.
+            The data controller for all personal data collected through the VOADI platform is the <strong className="text-[#F5EDD0]">Coalition of Africans Diaspora Ireland</strong>, operating as VOADI. Contact: <strong className="text-[#F5EDD0]">privacy@voadi.org</strong>.
           </P>
           <P>
             You have the right to lodge a complaint with the Irish Data Protection Commission (DPC) at any time: <a href="https://www.dataprotection.ie" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]" target="_blank" rel="noopener noreferrer">dataprotection.ie</a> · +353 57 868 4800.
@@ -119,7 +119,7 @@ export default function PrivacyPage() {
             <LI><strong className="text-[#F5EDD0]">Right to withdraw consent</strong> — for any processing based on consent, including nationality and country of birth, at any time without affecting processing already carried out.</LI>
           </UL>
           <P>
-            To exercise any of these rights, contact <strong className="text-[#F5EDD0]">privacy@voadi.ie</strong>. We will respond within one calendar month (Article 12 GDPR). Where a request is complex, we may extend this by a further two months, notifying you of the extension within the first month.
+            To exercise any of these rights, contact <strong className="text-[#F5EDD0]">privacy@voadi.org</strong>. We will respond within one calendar month (Article 12 GDPR). Where a request is complex, we may extend this by a further two months, notifying you of the extension within the first month.
           </P>
           <P>
             If you are not satisfied with our response, you have the right to lodge a complaint with the Data Protection Commission: <a href="https://www.dataprotection.ie" className="text-[#D97706] underline underline-offset-2 hover:text-[#F5EDD0]" target="_blank" rel="noopener noreferrer">dataprotection.ie</a>.
@@ -141,7 +141,7 @@ export default function PrivacyPage() {
         <Section>
           <H2 n="8">Children</H2>
           <P>
-            The age of digital consent in Ireland is 16 years (Data Protection Act 2018). VOADI does not knowingly collect personal data from persons under 16 without verified parental or guardian consent. If you believe we have inadvertently collected data from a person under 16 without consent, please contact <strong className="text-[#F5EDD0]">privacy@voadi.ie</strong> immediately.
+            The age of digital consent in Ireland is 16 years (Data Protection Act 2018). VOADI does not knowingly collect personal data from persons under 16 without verified parental or guardian consent. If you believe we have inadvertently collected data from a person under 16 without consent, please contact <strong className="text-[#F5EDD0]">privacy@voadi.org</strong> immediately.
           </P>
         </Section>
 

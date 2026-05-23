@@ -28,7 +28,7 @@ services:
         condition: service_healthy
     environment:
       NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
-      DATABASE_URL: postgres://voadi:${DB_PASSWORD}@voadi-db:5432/voadi
+      DATABASE_URL: ${DATABASE_URL}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
     networks:
       - cph_app_net

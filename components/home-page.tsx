@@ -581,7 +581,7 @@ export function HomePage() {
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
-              <Link href={link.href} className="text-sm text-[#A89080] transition-colors hover:text-[#F5EDD0]">
+              <Link href={link.href} className="text-sm text-[#D4C8B4] transition-colors hover:text-white">
                 {link.label}
               </Link>
             </li>
@@ -652,6 +652,13 @@ export function HomePage() {
             <StarIcon size={star.size} />
           </span>
         ))}
+
+        {/* Top scrim — ensures nav text readable over hero photo */}
+        <div
+          className="pointer-events-none absolute left-0 right-0 top-0 z-[6] h-28"
+          style={{ background: 'linear-gradient(to bottom, rgba(28,13,13,0.7) 0%, transparent 100%)' }}
+          aria-hidden="true"
+        />
 
         {/* Green accent panel with glow */}
         <div
@@ -1103,34 +1110,34 @@ export function HomePage() {
 
       {/* ── Final CTA ── */}
       <section id="about" className="reveal-up mx-8 mb-20 overflow-hidden rounded-3xl md:mx-12">
-        <div className="relative grid grid-cols-1 overflow-hidden rounded-3xl bg-[#0d1f14] md:grid-cols-2">
-          {/* Green accent line at top */}
-          <div className="absolute left-0 right-0 top-0 h-0.5 bg-[#16a34a]" />
+        <div className="relative grid grid-cols-1 overflow-hidden rounded-3xl bg-[#140909] md:grid-cols-2">
+          {/* Amber accent line at top */}
+          <div className="absolute left-0 right-0 top-0 h-0.5 bg-[#D97706]" />
 
           <div className="relative z-10 p-8 md:p-12">
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#4ade80]">
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#D97706]">
               Join the movement
             </p>
-            <h2 className="font-display text-[clamp(40px,5.5vw,76px)] uppercase leading-[0.88] tracking-tight text-white">
+            <h2 className="font-display text-[clamp(40px,5.5vw,76px)] uppercase leading-[0.88] tracking-tight text-[#F5EDD0]">
               One community.<br />One voice.<br />One Ireland.
             </h2>
-            <p className="mt-5 text-sm leading-relaxed text-[#86efac]">
+            <p className="mt-5 text-sm leading-relaxed text-[#A89080]">
               VOADI is free, open to all Africans living in Ireland, and built with your
               community&apos;s interests at heart. Sign up in under a minute.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/signup"
-                className="inline-flex items-center gap-3 rounded-full bg-[#16a34a] py-3.5 pl-7 pr-2 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-7 pr-2 text-sm font-bold text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
               >
                 <span>Create Free Account</span>
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#16a34a]">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
                   <FistIcon />
                 </span>
               </Link>
               <Link
                 href="/login"
-                className="inline-flex items-center rounded-full border border-[#166534] px-6 py-3.5 text-sm font-semibold text-[#86efac] transition-colors hover:border-[#16a34a] hover:text-white"
+                className="inline-flex items-center rounded-full border border-[#3D2020] px-6 py-3.5 text-sm font-semibold text-[#F5EDD0] transition-colors hover:border-[#D97706] hover:text-white"
               >
                 Sign In
               </Link>
@@ -1142,9 +1149,9 @@ export function HomePage() {
               alt="Community member"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover opacity-40"
+              className="object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0d1f14] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#140909] to-transparent" />
           </div>
         </div>
       </section>

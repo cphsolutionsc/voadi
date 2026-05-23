@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import {
   Scale, Home, Plane, ShieldCheck, Briefcase, Heart,
-  Phone, ExternalLink, ChevronDown,
+  Phone, ExternalLink, ChevronDown, Banknote, GraduationCap,
+  Users, Trophy, Gavel,
 } from 'lucide-react'
 import type { CATEGORIES } from './data'
 
@@ -12,19 +13,32 @@ type Resource = Category['resources'][number]
 type Guide = Category['guides'][number]
 
 const CATEGORY_ICONS: Record<string, React.ElementType> = {
-  scale:     Scale,
-  home:      Home,
-  passport:  Plane,
-  shield:    ShieldCheck,
-  briefcase: Briefcase,
-  heart:     Heart,
+  scale:      Scale,
+  home:       Home,
+  passport:   Plane,
+  shield:     ShieldCheck,
+  briefcase:  Briefcase,
+  heart:      Heart,
+  banknote:   Banknote,
+  graduation: GraduationCap,
+  users:      Users,
+  trophy:     Trophy,
+  gavel:      Gavel,
 }
 
 function ResourceCard({ resource }: { resource: Resource }) {
+  const r = resource as Resource & { underused?: boolean }
   return (
-    <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4">
+    <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]/50">
       <div className="mb-2 flex items-start justify-between gap-3">
-        <h3 className="text-sm font-semibold text-[#F5EDD0]">{resource.name}</h3>
+        <div className="flex items-start gap-2">
+          <h3 className="text-sm font-semibold text-[#F5EDD0]">{resource.name}</h3>
+          {r.underused && (
+            <span className="mt-0.5 shrink-0 rounded-full bg-[#D97706]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#D97706]">
+              hidden gem
+            </span>
+          )}
+        </div>
         <a
           href={resource.url}
           target="_blank"
@@ -39,7 +53,7 @@ function ResourceCard({ resource }: { resource: Resource }) {
       <div className="flex flex-wrap items-center gap-2">
         {resource.phone && (
           <a
-            href={`tel:${resource.phone.replace(/\s/g, '')}`}
+            href={`tel:${resource.phone.replace(/[\s()]/g, '')}`}
             className="flex items-center gap-1 rounded-full border border-[#2A1515] bg-[#140909] px-2 py-1 text-[10px] font-medium text-[#8B7B6B] transition-colors hover:text-[#F5EDD0]"
           >
             <Phone size={10} />
@@ -72,7 +86,7 @@ function GuideCard({ guide }: { guide: Guide }) {
         />
       </button>
       {open && (
-        <ol className="border-t border-[#2A1515] px-4 py-3 space-y-2">
+        <ol className="space-y-2 border-t border-[#2A1515] px-4 py-3">
           {guide.steps.map((step, i) => (
             <li key={i} className="flex gap-3 text-xs leading-relaxed text-[#A89080]">
               <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#2A1515] text-[10px] font-bold text-[#D97706]">
@@ -138,11 +152,11 @@ export function ResourcesClient({ categories }: { categories: typeof CATEGORIES 
     <div className="py-2">
       <h1 className="mb-1 text-lg font-bold text-white">Resources</h1>
       <p className="mb-5 text-xs leading-relaxed text-[#8B7B6B]">
-        Free services, legal help, and step-by-step guides for navigating life in Ireland.
+        Free services, legal help, and step-by-step guides — including entitlements most people in our community have never heard of.
       </p>
 
       {/* Category selector */}
-      <div className="mb-5 -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 scrollbar-none">
+      <div className="-mx-4 mb-5 flex gap-2 overflow-x-auto px-4 pb-1 scrollbar-none">
         {categories.map(cat => {
           const isActive = cat.id === activeId
           const CatIcon = CATEGORY_ICONS[cat.icon]
@@ -156,7 +170,7 @@ export function ResourcesClient({ categories }: { categories: typeof CATEGORIES 
                   : 'border border-[#2A1515] text-[#8B7B6B]'
               }`}
             >
-              {CatIcon && <CatIcon size={14} aria-hidden="true" />}
+              {CatIcon && <CatIcon size={13} aria-hidden="true" />}
               {cat.label}
             </button>
           )
@@ -164,7 +178,7 @@ export function ResourcesClient({ categories }: { categories: typeof CATEGORIES 
       </div>
 
       {/* Active category header */}
-      <div className={`mb-4 rounded-xl ${active.bg} border border-[#2A1515] p-4`}>
+      <div className={`mb-4 rounded-xl border border-[#2A1515] ${active.bg} p-4`}>
         <div className="flex items-start gap-3">
           <div className={`mt-0.5 ${active.colour}`}>
             {ActiveIcon && <ActiveIcon size={20} aria-hidden="true" />}

@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import { auth } from '@/lib/auth'
 import { SignOutButton } from './sign-out-button'
 
@@ -50,6 +51,24 @@ export default async function ProfilePage() {
         <Row label="Nationality" value={(u.nationality as string) ?? '—'} />
         <Row label="Country of birth" value={(u.countryOfBirth as string) ?? '—'} />
         <Row label="Member since" value={joined} />
+      </div>
+
+      {/* Legal links */}
+      <div className="mb-6 overflow-hidden rounded-xl border border-[#2A1515]">
+        {[
+          { label: 'Terms & Conditions', href: '/terms' },
+          { label: 'Privacy Policy', href: '/privacy' },
+          { label: 'Transparency & Funding', href: '/transparency' },
+        ].map(({ label, href }) => (
+          <Link
+            key={href}
+            href={href}
+            className="flex items-center justify-between border-b border-[#2A1515] bg-[#1E0E0E] px-4 py-3 last:border-0 hover:bg-[#2A1515]/50"
+          >
+            <span className="text-xs text-[#8B7B6B]">{label}</span>
+            <span className="text-xs text-[#3D2020]">›</span>
+          </Link>
+        ))}
       </div>
 
       {/* Sign out */}

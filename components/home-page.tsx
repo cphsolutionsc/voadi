@@ -44,6 +44,15 @@ function MenuIcon() {
   )
 }
 
+function CloseIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  )
+}
+
 function FistIcon() {
   return (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -406,6 +415,7 @@ function DonateSection() {
 export function HomePage() {
   const mainRef = useRef<HTMLElement>(null)
   const counterRefs = useRef<(HTMLSpanElement | null)[]>([])
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -566,7 +576,7 @@ export function HomePage() {
       {/* ── Nav ── */}
       <nav className="site-nav fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-8 py-5">
         <Link href="/" aria-label="VOADI home">
-          <VoadiLogo size="md" />
+          <VoadiLogo size="lg" />
         </Link>
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map(link => (
@@ -577,10 +587,58 @@ export function HomePage() {
             </li>
           ))}
         </ul>
-        <button type="button" aria-label="Open menu" className="text-[#F5EDD0] transition-opacity hover:opacity-70">
-          <MenuIcon />
+        <button
+          type="button"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(o => !o)}
+          className="text-[#F5EDD0] transition-opacity hover:opacity-70"
+        >
+          {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
       </nav>
+
+      {/* Mobile menu drawer */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 z-40 flex flex-col bg-[#1C0D0D] pt-20"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+        >
+          {/* Backdrop close */}
+          <button
+            type="button"
+            className="absolute inset-0"
+            aria-label="Close menu"
+            onClick={() => setMenuOpen(false)}
+          />
+          <nav className="relative z-10 flex flex-col gap-1 px-8 py-4">
+            {NAV_LINKS.map(link => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="border-b border-[#2A1515] py-5 font-display text-[clamp(28px,8vw,48px)] uppercase leading-none tracking-tight text-[#F5EDD0] transition-colors hover:text-[#D97706]"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="mt-8">
+              <Link
+                href="/signup"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-7 pr-2 text-sm font-bold text-[#1C0D0D]"
+              >
+                <span>JOIN VOADI</span>
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+                  <ArrowUpRightIcon />
+                </span>
+              </Link>
+            </div>
+          </nav>
+        </div>
+      )}
 
       {/* ── Hero ── */}
       <section className="hero-section relative h-screen w-full pt-[72px]">
@@ -1095,7 +1153,7 @@ export function HomePage() {
       <footer className="border-t border-[#2A1515] px-8 py-10 md:px-12">
         <div className="mb-8 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <VoadiLogo size="md" />
+            <VoadiLogo size="lg" />
             <p className="mt-1.5 text-xs text-[#8B7B6B]">
               Voices of Africans Diaspora Ireland
             </p>

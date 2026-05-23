@@ -34,9 +34,9 @@ function HarpV({ px }: { px: number }) {
 }
 
 const SIZE_MAP = {
-  sm: { px: 17, textCls: 'text-base'  },
-  md: { px: 22, textCls: 'text-[22px]' },
-  lg: { px: 30, textCls: 'text-3xl'   },
+  sm: { px: 22, textCls: 'text-[22px]' },
+  md: { px: 30, textCls: 'text-3xl'    },
+  lg: { px: 42, textCls: 'text-[42px]' },
 }
 
 export function VoadiLogo({ size = 'md', className = '' }: VoadiLogoProps) {

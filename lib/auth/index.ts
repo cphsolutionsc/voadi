@@ -4,6 +4,7 @@ import { db } from '@/lib/db'
 import * as schema from '@/lib/db/schema'
 
 export const auth = betterAuth({
+  baseURL: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
   advanced: {
     database: {
       generateId: 'uuid',

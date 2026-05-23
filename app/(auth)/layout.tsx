@@ -13,7 +13,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="w-full max-w-[420px] rounded-2xl border border-[#2A1515] bg-[#1E0E0E] p-8">
         {children}
       </div>
-      <p className="mt-8 text-xs text-[#3D2020]">
+      <p className="mt-8 text-xs text-[#8B7B6B]">
         © 2026 VOADI · Coalition of Africans Diaspora Ireland
       </p>
     </div>

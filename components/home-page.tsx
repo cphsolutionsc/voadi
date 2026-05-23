@@ -118,12 +118,62 @@ function CheckIcon() {
   )
 }
 
+function ScaleIcon() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+      <path d="M12 3v18M3 9l9-6 9 6M5 21h14" />
+      <path d="M3 9l3 6H0l3-6zM21 9l3 6h-6l3-6z" />
+    </svg>
+  )
+}
+
+function BriefcaseIcon() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+      <rect x="2" y="7" width="20" height="14" rx="2" />
+      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+      <line x1="12" y1="12" x2="12" y2="12" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function MicIcon() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+      <rect x="9" y="2" width="6" height="12" rx="3" />
+      <path d="M19 10a7 7 0 0 1-14 0M12 19v3M8 22h8" />
+    </svg>
+  )
+}
+
+function HeartHandIcon() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+      <path d="M11 12H3a1 1 0 0 0 0 2h8" />
+      <path d="M12 15H3a1 1 0 0 0 0 2h9" />
+      <path d="M13 18H3a1 1 0 0 0 0 2h10" />
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    </svg>
+  )
+}
+
+function CodeIcon() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  )
+}
+
 // ── Data ─────────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
   { label: 'Features', href: '#features' },
   { label: 'Community', href: '#community' },
   { label: 'Events', href: '#events' },
+  { label: 'Volunteer', href: '#volunteer' },
+  { label: 'Blog', href: '/blog' },
   { label: 'About', href: '#about' },
   { label: 'Login', href: '/login' },
 ] as const
@@ -192,6 +242,45 @@ const STEPS = [
     num: '03',
     title: 'Take action',
     desc: 'RSVP to events, sign petitions, and contact your TD — all in one place.',
+  },
+] as const
+
+const VOLUNTEER_ROLES = [
+  {
+    title: 'Legal Professionals',
+    desc: 'Solicitors, barristers, and paralegals providing pro bono advice on immigration, housing, employment, and discrimination cases.',
+    Icon: ScaleIcon,
+    accent: '#D97706',
+  },
+  {
+    title: 'Business Owners',
+    desc: 'Entrepreneurs and business leaders sponsoring events, mentoring community members, and creating employment opportunities.',
+    Icon: BriefcaseIcon,
+    accent: '#16a34a',
+  },
+  {
+    title: 'Healthcare Workers',
+    desc: 'Doctors, nurses, and mental health professionals running clinics, health awareness campaigns, and wellbeing support.',
+    Icon: HeartHandIcon,
+    accent: '#D97706',
+  },
+  {
+    title: 'Tech & Media',
+    desc: 'Developers, designers, and journalists building tools, covering community stories, and amplifying our voice online.',
+    Icon: CodeIcon,
+    accent: '#16a34a',
+  },
+  {
+    title: 'Educators & Academics',
+    desc: 'Teachers, lecturers, and researchers delivering workshops, mentoring youth, and producing evidence for policy change.',
+    Icon: MicIcon,
+    accent: '#D97706',
+  },
+  {
+    title: 'Community Organisers',
+    desc: 'Local leaders coordinating events, translating services, and building bridges between African communities and Irish institutions.',
+    Icon: UsersIcon,
+    accent: '#16a34a',
   },
 ] as const
 
@@ -459,7 +548,7 @@ export function HomePage() {
         .from('.hero-badge', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
         .from('.hero-cta-btn', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.45')
 
-      // Floating cards — organic with rotation
+      // Floating cards
       gsap.to('.hero-card-left', {
         y: -14, rotation: 2, duration: 3.8, ease: 'sine.inOut', yoyo: true, repeat: -1,
       })
@@ -478,23 +567,35 @@ export function HomePage() {
         scale: 1.04, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.5,
       })
 
-      // Hero parallax on scroll
-      gsap.to('.hero-figure', {
-        y: -60,
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 0.6 },
-      })
-      gsap.to('.hero-panel', {
-        y: -30,
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 0.4 },
+      // Hero parallax on scroll — desktop only
+      const mm = gsap.matchMedia()
+      mm.add('(min-width: 768px)', () => {
+        gsap.to('.hero-figure', {
+          y: -60, ease: 'none',
+          scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 0.6, invalidateOnRefresh: true },
+        })
+        gsap.to('.hero-panel', {
+          y: -30, ease: 'none',
+          scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 0.4, invalidateOnRefresh: true },
+        })
       })
 
-      // Marquee reveal
-      gsap.from('.marquee-strip', {
-        opacity: 0, y: 24, duration: 0.8, ease: 'power2.out',
-        scrollTrigger: { trigger: '.marquee-strip', start: 'top 92%' },
-      })
+      // Shared scroll reveal helper
+      const scrollReveal = (
+        targets: string | Element[],
+        vars: gsap.TweenVars,
+        triggerEl: string | Element,
+        start = 'top 88%',
+      ) => {
+        gsap.from(targets, {
+          ...vars,
+          immediateRender: false,
+          scrollTrigger: { trigger: triggerEl, start, once: true },
+        })
+      }
+
+      // Marquee
+      scrollReveal('.marquee-strip', { opacity: 0, y: 24, duration: 0.8, ease: 'power2.out' }, '.marquee-strip', 'top 95%')
 
       // Stats counters
       STATS.forEach((stat, i) => {
@@ -507,72 +608,52 @@ export function HomePage() {
             const el = counterRefs.current[i]
             if (el) el.textContent = Math.round(obj.value).toLocaleString('en-GB') + stat.suffix
           },
-          scrollTrigger: { trigger: '.stats-section', start: 'top 82%', once: true },
+          scrollTrigger: { trigger: '.stats-section', start: 'top 88%', once: true },
         })
       })
 
-      // Stats bar animate in
-      gsap.from('.stat-item', {
-        y: 30, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out',
-        scrollTrigger: { trigger: '.stats-section', start: 'top 82%' },
-      })
+      scrollReveal('.stat-item', { y: 30, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out' }, '.stats-section', 'top 88%')
 
-      // Features — scale-up reveal, no rotation (rotation was janky)
-      gsap.from('.feature-card', {
-        y: 50, opacity: 0, scale: 0.94, stagger: 0.14, duration: 1.1, ease: 'expo.out',
-        scrollTrigger: { trigger: '.features-section', start: 'top 76%' },
-      })
-      // Section heading clip-path reveal
-      gsap.from('.features-heading', {
-        clipPath: 'inset(0 0 100% 0)', y: 20, duration: 1.2, ease: 'power4.out',
-        scrollTrigger: { trigger: '.features-section', start: 'top 82%' },
-      })
+      // Features
+      scrollReveal('.features-heading', { y: 30, opacity: 0, duration: 1.0, ease: 'power3.out' }, '.features-section', 'top 88%')
+      scrollReveal('.feature-card',     { y: 50, opacity: 0, scale: 0.94, stagger: 0.14, duration: 1.1, ease: 'expo.out' }, '.features-section', 'top 85%')
 
-      // Steps connector line + items
-      gsap.from('.steps-connector', {
-        scaleX: 0, transformOrigin: 'left center',
-        duration: 1.4, ease: 'power3.out',
-        scrollTrigger: { trigger: '.steps-section', start: 'top 78%' },
+      // Steps — connector desktop only, items always
+      mm.add('(min-width: 768px)', () => {
+        scrollReveal('.steps-connector', { scaleX: 0, transformOrigin: 'left center', duration: 1.4, ease: 'power3.out' }, '.steps-section', 'top 85%')
       })
-      gsap.from('.step-item', {
-        y: 40, opacity: 0, scale: 0.95, stagger: 0.18, duration: 1.0, ease: 'expo.out',
-        scrollTrigger: { trigger: '.steps-section', start: 'top 78%' },
-      })
+      scrollReveal('.step-item', { y: 40, opacity: 0, scale: 0.95, stagger: 0.18, duration: 1.0, ease: 'expo.out' }, '.steps-section', 'top 88%')
 
-      // Events stagger
-      gsap.from('.event-card', {
-        y: 50, opacity: 0, stagger: 0.13, duration: 0.85, ease: 'power3.out',
-        scrollTrigger: { trigger: '.events-section', start: 'top 80%' },
-      })
+      // Events
+      scrollReveal('.event-card', { y: 50, opacity: 0, stagger: 0.13, duration: 0.85, ease: 'power3.out' }, '.events-section', 'top 88%')
 
-      // Petition bar fill
-      gsap.from('.petition-bar-fill', {
-        scaleX: 0, transformOrigin: 'left center',
-        duration: 1.6, ease: 'power3.out',
-        scrollTrigger: { trigger: '.petition-section', start: 'top 80%' },
-      })
-      gsap.from('.petition-section', {
-        clipPath: 'inset(8% 4% 0% 4% round 24px)',
-        y: 24, opacity: 0, duration: 1.1, ease: 'power3.out',
-        scrollTrigger: { trigger: '.petition-section', start: 'top 87%' },
-      })
+      // Petition
+      scrollReveal('.petition-bar-fill', { scaleX: 0, transformOrigin: 'left center', duration: 1.6, ease: 'power3.out' }, '.petition-section', 'top 88%')
+      scrollReveal('.petition-section',  { y: 30, opacity: 0, duration: 1.1, ease: 'power3.out' }, '.petition-section', 'top 92%')
 
-      // Testimonials — scale reveal, staggered
-      gsap.from('.testimonial-card', {
-        y: 50, opacity: 0, scale: 0.95, stagger: 0.14, duration: 1.0, ease: 'expo.out',
-        scrollTrigger: { trigger: '.testimonials-section', start: 'top 80%' },
-      })
+      // Testimonials
+      scrollReveal('.testimonial-card', { y: 50, opacity: 0, scale: 0.95, stagger: 0.14, duration: 1.0, ease: 'expo.out' }, '.testimonials-section', 'top 88%')
 
-      // Generic section reveals
+      // Volunteers
+      scrollReveal('.volunteer-card', { y: 40, opacity: 0, scale: 0.96, stagger: 0.1, duration: 0.9, ease: 'expo.out' }, '.volunteers-section', 'top 88%')
+
+      // Generic section reveals — each element is its own trigger
       gsap.utils.toArray<Element>('.reveal-up').forEach(el => {
         gsap.from(el, {
-          y: 55, opacity: 0, duration: 0.95, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 83%' },
+          y: 50, opacity: 0, duration: 0.95, ease: 'power3.out',
+          immediateRender: false,
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
         })
       })
     }, mainRef)
 
-    return () => ctx.revert()
+    // Refresh after fonts/images settle
+    const raf = requestAnimationFrame(() => ScrollTrigger.refresh())
+
+    return () => {
+      ctx.revert()
+      cancelAnimationFrame(raf)
+    }
   }, [])
 
   return (
@@ -1146,6 +1227,55 @@ export function HomePage() {
       {/* ── Donations ── */}
       <DonateSection />
 
+      {/* ── Volunteers ── */}
+      <section id="volunteer" className="volunteers-section px-8 py-20 md:px-12">
+        <div className="volunteer-heading reveal-up mb-12">
+          <p className="mb-2 text-xs uppercase tracking-widest text-[#D97706]">Lend your skills</p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="font-display text-[clamp(36px,5vw,64px)] uppercase leading-[0.9] tracking-tight text-[#F5EDD0]">
+              Volunteer<br />with us
+            </h2>
+            <p className="max-w-xs text-sm leading-relaxed text-[#A89080] sm:text-right">
+              Real impact comes from people across every walk of life working
+              together. Wherever your expertise lies, there is a role for you.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {VOLUNTEER_ROLES.map(({ title, desc, Icon, accent }) => (
+            <div
+              key={title}
+              className="volunteer-card group rounded-2xl border border-[#2A1515] bg-[#1E0E0E] p-6 transition-colors hover:border-[#4A2828]"
+            >
+              <div
+                className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-[#2A1515]"
+                style={{ color: accent }}
+              >
+                <Icon />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-[#F5EDD0]">{title}</h3>
+              <p className="text-sm leading-relaxed text-[#A89080]">{desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <Link
+            href="/signup"
+            className="inline-flex items-center gap-3 rounded-full bg-[#D97706] py-3.5 pl-7 pr-2 text-sm font-bold text-[#1C0D0D] transition-transform hover:-translate-y-0.5"
+          >
+            <span>Register as a Volunteer</span>
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1C0D0D] text-[#D97706]">
+              <ArrowUpRightIcon />
+            </span>
+          </Link>
+          <p className="text-sm text-[#8B7B6B]">
+            Takes 2 minutes. No commitment required to sign up.
+          </p>
+        </div>
+      </section>
+
       {/* ── Final CTA ── */}
       <section id="about" className="reveal-up mx-8 mb-20 overflow-hidden rounded-3xl md:mx-12">
         <div className="relative grid grid-cols-1 overflow-hidden rounded-3xl bg-[#140909] md:grid-cols-2">
@@ -1221,10 +1351,10 @@ export function HomePage() {
           </nav>
         </div>
         <div className="flex flex-col items-start justify-between gap-3 border-t border-[#2A1515] pt-6 sm:flex-row sm:items-center">
-          <p className="text-xs text-[#3D2020]">
+          <p className="text-xs text-[#8B7B6B]">
             © 2026 VOADI · Coalition of Africans Diaspora Ireland
           </p>
-          <p className="text-xs text-[#3D2020]">voadi.org</p>
+          <p className="text-xs text-[#8B7B6B]">voadi.org</p>
         </div>
       </footer>
 

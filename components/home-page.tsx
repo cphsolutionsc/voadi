@@ -826,7 +826,7 @@ export function HomePage() {
             <h2 className="font-display text-[clamp(36px,4.5vw,60px)] uppercase leading-[0.9] tracking-tight">
               We look out<br />for each other
             </h2>
-            <p className="mt-5 text-sm leading-relaxed text-[#6B5B4E]">
+            <p className="mt-5 text-sm leading-relaxed text-[#4A3020]">
               Report missing persons directly to the VOADI community. Admin-reviewed submissions
               go to all members instantly via push alerts — because every second matters.
             </p>

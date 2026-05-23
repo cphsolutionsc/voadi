@@ -3,61 +3,52 @@ interface VoadiLogoProps {
   className?: string
 }
 
-function HarpIcon({ height }: { height: number }) {
-  const w = Math.round(height * 0.72)
+// The V in VOADI IS the harp:
+//  - left stroke  = forepillar  (straight diagonal)
+//  - right stroke = neck        (slight outward curve)
+//  - amber arc    = crown       (connects at the top)
+//  - amber lines  = strings     (span the interior, shortening as V narrows)
+function HarpV({ px }: { px: number }) {
+  const w = Math.round(px * 0.68)
   return (
     <svg
       width={w}
-      height={height}
-      viewBox="0 0 22 30"
+      height={px}
+      viewBox="0 0 17 25"
       fill="none"
       aria-hidden="true"
-      style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
+      style={{ display: 'inline-block', flexShrink: 0 }}
     >
-      {/* Forepillar — left column, slight outward curve */}
-      <path
-        d="M3.5 26 C3 18 4 10 7.5 3.5"
-        stroke="#D97706"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      {/* Neck — sweeping curve from top across and down */}
-      <path
-        d="M7.5 3.5 C11 0.5 17 2 18.5 7.5 C19.5 13 18 20 15.5 25.5"
-        stroke="#D97706"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      {/* Base — connects forepillar bottom to neck bottom */}
-      <path
-        d="M3.5 26 C3.5 28.5 6.5 29.5 10 29.5 C13.5 29.5 16.5 28.5 15.5 25.5"
-        stroke="#D97706"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      {/* Strings — 5 diagonals from neck to soundbox area */}
-      <line x1="6.5" y1="7"   x2="4.5"  y2="25"   stroke="#D97706" strokeWidth="0.85" strokeLinecap="round" opacity="0.7" />
-      <line x1="9.5" y1="4.5" x2="7"    y2="25.5"  stroke="#D97706" strokeWidth="0.85" strokeLinecap="round" opacity="0.7" />
-      <line x1="12.5" y1="3.5" x2="9.5" y2="25.5"  stroke="#D97706" strokeWidth="0.85" strokeLinecap="round" opacity="0.7" />
-      <line x1="15.5" y1="4.5" x2="12.5" y2="25.5" stroke="#D97706" strokeWidth="0.85" strokeLinecap="round" opacity="0.7" />
-      <line x1="17.5" y1="7.5" x2="14.5" y2="25"   stroke="#D97706" strokeWidth="0.85" strokeLinecap="round" opacity="0.7" />
+      {/* Forepillar — left diagonal stroke */}
+      <path d="M1.5 1.5 L8.5 23.5" stroke="white" strokeWidth="2.8" strokeLinecap="round" />
+      {/* Neck / soundbox — right diagonal, slight outward bow */}
+      <path d="M15.5 1.5 C17.5 7 16 16 8.5 23.5" stroke="white" strokeWidth="2.8" strokeLinecap="round" />
+      {/* Crown arc — amber, connects top of both strokes */}
+      <path d="M1.5 1.5 C3.5 -1 13.5 -1 15.5 1.5" stroke="#D97706" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+      {/* Strings — amber, span from forepillar to neck, 3 rows */}
+      <line x1="3.5"  y1="7.5"  x2="14.5" y2="7"   stroke="#D97706" strokeWidth="1"   strokeLinecap="round" opacity="0.9" />
+      <line x1="5.5"  y1="13"   x2="13"   y2="13"   stroke="#D97706" strokeWidth="0.9" strokeLinecap="round" opacity="0.9" />
+      <line x1="7.5"  y1="18.5" x2="11"   y2="18.5" stroke="#D97706" strokeWidth="0.8" strokeLinecap="round" opacity="0.9" />
     </svg>
   )
 }
 
 const SIZE_MAP = {
-  sm: { harp: 16, text: 'text-base' },
-  md: { harp: 20, text: 'text-xl'  },
-  lg: { harp: 28, text: 'text-3xl' },
+  sm: { px: 17, textCls: 'text-base'  },
+  md: { px: 22, textCls: 'text-[22px]' },
+  lg: { px: 30, textCls: 'text-3xl'   },
 }
 
 export function VoadiLogo({ size = 'md', className = '' }: VoadiLogoProps) {
-  const { harp, text } = SIZE_MAP[size]
+  const { px, textCls } = SIZE_MAP[size]
   return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      <HarpIcon height={harp} />
-      <span className={`${text} font-bold leading-none tracking-tight text-white`}>
-        VOADI
+    <span className={`inline-flex items-end gap-[1px] ${className}`}>
+      <HarpV px={px} />
+      <span
+        className={`${textCls} font-bold leading-none tracking-tight text-white`}
+        style={{ letterSpacing: '-0.02em' }}
+      >
+        OADI
       </span>
     </span>
   )

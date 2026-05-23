@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { VoadiLogo } from './voadi-logo'
 
 // ── Icons ─────────────────────────────────────────────────────────────────
 
@@ -294,12 +295,23 @@ export function HomePage() {
         .from('.hero-badge', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
         .from('.hero-cta-btn', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.45')
 
-      // Floating cards loop
+      // Floating cards — organic with rotation
       gsap.to('.hero-card-left', {
-        y: -12, duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1,
+        y: -14, rotation: 2, duration: 3.8, ease: 'sine.inOut', yoyo: true, repeat: -1,
       })
       gsap.to('.hero-card-right', {
-        y: -12, duration: 3.0, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.3,
+        y: -11, rotation: -2.5, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.1,
+      })
+
+      // Hero panel glow pulse
+      gsap.to('.hero-panel', {
+        boxShadow: '0 0 180px 90px rgba(22,163,74,0.30)',
+        duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.8,
+      })
+
+      // CTA button breathe
+      gsap.to('.hero-cta-btn', {
+        scale: 1.04, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.5,
       })
 
       // Hero parallax on scroll
@@ -341,9 +353,9 @@ export function HomePage() {
         scrollTrigger: { trigger: '.stats-section', start: 'top 82%' },
       })
 
-      // Features stagger
+      // Features stagger — slight rotation on entrance
       gsap.from('.feature-card', {
-        y: 70, opacity: 0, stagger: 0.12, duration: 0.95, ease: 'power3.out',
+        y: 60, opacity: 0, rotation: 3, stagger: 0.12, duration: 1.0, ease: 'power3.out',
         scrollTrigger: { trigger: '.features-section', start: 'top 78%' },
       })
 
@@ -354,7 +366,7 @@ export function HomePage() {
         scrollTrigger: { trigger: '.steps-section', start: 'top 78%' },
       })
       gsap.from('.step-item', {
-        y: 40, opacity: 0, stagger: 0.18, duration: 0.85, ease: 'power3.out',
+        y: 40, opacity: 0, rotation: -4, stagger: 0.18, duration: 0.9, ease: 'power3.out',
         scrollTrigger: { trigger: '.steps-section', start: 'top 78%' },
       })
 
@@ -371,14 +383,17 @@ export function HomePage() {
         scrollTrigger: { trigger: '.petition-section', start: 'top 80%' },
       })
       gsap.from('.petition-section', {
-        y: 50, opacity: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: '.petition-section', start: 'top 85%' },
+        clipPath: 'inset(8% 4% 0% 4% round 24px)',
+        y: 24, opacity: 0, duration: 1.1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.petition-section', start: 'top 87%' },
       })
 
-      // Testimonials stagger
-      gsap.from('.testimonial-card', {
-        y: 50, opacity: 0, stagger: 0.15, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: '.testimonials-section', start: 'top 80%' },
+      // Testimonials — alternate tilt on entrance
+      gsap.utils.toArray<Element>('.testimonial-card').forEach((el, i) => {
+        gsap.from(el, {
+          y: 55, opacity: 0, rotation: i % 2 === 0 ? -3 : 3, duration: 0.95, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+        })
       })
 
       // Generic section reveals
@@ -398,8 +413,8 @@ export function HomePage() {
 
       {/* ── Nav ── */}
       <nav className="site-nav fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-8 py-5">
-        <Link href="/" className="text-lg font-bold tracking-tight text-white" aria-label="VOADI home">
-          VOADI<span className="text-[#16a34a]">.</span>
+        <Link href="/" aria-label="VOADI home">
+          <VoadiLogo size="sm" />
         </Link>
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map(link => (
@@ -925,10 +940,8 @@ export function HomePage() {
       <footer className="border-t border-[#2A1515] px-8 py-10 md:px-12">
         <div className="mb-8 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <p className="text-lg font-bold tracking-tight text-white">
-              VOADI<span className="text-[#16a34a]">.</span>
-            </p>
-            <p className="mt-1 text-xs text-[#5C4A3A]">
+            <VoadiLogo size="sm" />
+            <p className="mt-1.5 text-xs text-[#5C4A3A]">
               Voices of Africans Diaspora Ireland
             </p>
           </div>

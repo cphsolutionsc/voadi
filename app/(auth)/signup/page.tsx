@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { authClient } from '@/lib/auth/client'
 import Link from 'next/link'
+import { CountrySelect } from '@/components/ui/country-select'
 
 const COUNTIES = [
   'Carlow', 'Cavan', 'Clare', 'Cork', 'Donegal', 'Dublin',
@@ -100,20 +101,16 @@ export default function SignupPage() {
         </select>
       </div>
 
-      <input
+      <CountrySelect
         name="nationality"
-        type="text"
-        placeholder="Nationality (e.g. Nigerian, Ghanaian)"
-        autoComplete="off"
-        className={INPUT}
+        placeholder="Nationality (optional)"
+        valueType="nationality"
       />
 
-      <input
+      <CountrySelect
         name="countryOfBirth"
-        type="text"
-        placeholder="Country of birth"
-        autoComplete="country-name"
-        className={INPUT}
+        placeholder="Country of birth (optional)"
+        valueType="country"
       />
 
       <button

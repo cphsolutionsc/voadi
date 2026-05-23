@@ -28,7 +28,7 @@ export default async function MissingPage() {
       </div>
 
       {persons.length === 0 ? (
-        <div className="rounded-2xl border border-[#2A1515] bg-[#1E0E0E] p-10 text-center">
+        <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-10 text-center">
           <p className="mb-1 text-sm font-semibold text-[#F5EDD0]">No active reports</p>
           <p className="text-xs text-[#8B7B6B]">Use the Report button if you need community help locating someone.</p>
         </div>

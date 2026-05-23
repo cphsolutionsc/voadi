@@ -11,6 +11,7 @@ export default async function ProfilePage() {
   if (!session) redirect('/login')
 
   const { user } = session
+  const u = user as Record<string, unknown>
   const joined = new Date(user.createdAt).toLocaleDateString('en-GB', {
     day: 'numeric', month: 'long', year: 'numeric',
   })
@@ -21,6 +22,9 @@ export default async function ProfilePage() {
     .slice(0, 2)
     .join('')
     .toUpperCase()
+
+  const role = ((u.role as string) ?? 'member')
+  const roleFmt = role.charAt(0).toUpperCase() + role.slice(1)
 
   return (
     <div className="py-2">
@@ -34,14 +38,18 @@ export default async function ProfilePage() {
         <div>
           <p className="font-bold text-white">{user.name}</p>
           <p className="text-sm text-[#8B7B6B]">{user.email}</p>
+          <span className="mt-1 inline-block rounded-full bg-[#2A1515] px-2 py-0.5 text-[10px] font-medium text-[#D97706]">
+            {roleFmt}
+          </span>
         </div>
       </div>
 
       {/* Details */}
-      <div className="mb-6 space-y-0 overflow-hidden rounded-xl border border-[#2A1515]">
-        <Row label="County" value={(user as Record<string, unknown>).county as string ?? '—'} />
+      <div className="mb-6 overflow-hidden rounded-xl border border-[#2A1515]">
+        <Row label="County" value={(u.county as string) ?? '—'} />
+        <Row label="Nationality" value={(u.nationality as string) ?? '—'} />
+        <Row label="Country of birth" value={(u.countryOfBirth as string) ?? '—'} />
         <Row label="Member since" value={joined} />
-        <Row label="Role" value={((user as Record<string, unknown>).role as string ?? 'member').charAt(0).toUpperCase() + ((user as Record<string, unknown>).role as string ?? 'member').slice(1)} />
       </div>
 
       {/* Sign out */}

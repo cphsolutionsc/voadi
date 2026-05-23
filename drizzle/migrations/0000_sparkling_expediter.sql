@@ -145,6 +145,8 @@ CREATE TABLE "users" (
 	"name" text NOT NULL,
 	"image" text,
 	"county" text DEFAULT 'Dublin' NOT NULL,
+	"nationality" text,
+	"country_of_birth" text,
 	"role" text DEFAULT 'member' NOT NULL,
 	"vouched_by" uuid,
 	"created_at" timestamp DEFAULT now() NOT NULL,

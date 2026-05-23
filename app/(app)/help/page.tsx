@@ -46,7 +46,7 @@ export default async function HelpPage() {
       </p>
 
       {posts.length === 0 ? (
-        <div className="rounded-2xl border border-[#2A1515] bg-[#1E0E0E] p-10 text-center">
+        <div className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-10 text-center">
           <p className="mb-1 text-sm font-semibold text-[#F5EDD0]">No open posts</p>
           <p className="text-xs text-[#8B7B6B]">Be the first to ask for or offer help.</p>
         </div>
@@ -58,7 +58,7 @@ export default async function HelpPage() {
             const colours = CATEGORY_COLOURS[cat] ?? CATEGORY_COLOURS.other
             const date = post.createdAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
             return (
-              <div key={post.id} className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4">
+              <div key={post.id} className="rounded-xl border border-[#2A1515] bg-[#1E0E0E] p-4 transition-colors hover:border-[#D97706]/50">
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <h2 className="font-semibold text-white">{post.title}</h2>
                   <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${colours}`}>{label}</span>

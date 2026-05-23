@@ -38,6 +38,14 @@ export const auth = betterAuth({
         required: true,
         defaultValue: 'Dublin',
       },
+      nationality: {
+        type: 'string',
+        required: false,
+      },
+      countryOfBirth: {
+        type: 'string',
+        required: false,
+      },
       role: {
         type: 'string',
         required: false,

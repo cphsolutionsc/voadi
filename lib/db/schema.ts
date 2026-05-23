@@ -24,6 +24,8 @@ export const users = pgTable('users', {
   name: text('name').notNull(),
   image: text('image'),
   county: text('county').notNull().default('Dublin'),
+  nationality: text('nationality'),
+  countryOfBirth: text('country_of_birth'),
   role: text('role').notNull().default('member'),
   vouchedBy: uuid('vouched_by'),
   createdAt: timestamp('created_at').defaultNow().notNull(),

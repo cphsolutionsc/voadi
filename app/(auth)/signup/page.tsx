@@ -14,7 +14,7 @@ const COUNTIES = [
 ]
 
 const INPUT =
-  'w-full rounded-lg border border-[#2A1515] bg-[#140909] px-4 py-3 text-sm text-[#F5EDD0] placeholder-[#5C4A3A] transition-colors focus:border-[#16a34a] focus:outline-none focus:ring-1 focus:ring-[#16a34a]'
+  'w-full rounded-lg border border-[#2A1515] bg-[#140909] px-4 py-3 text-sm text-[#F5EDD0] placeholder-[#5C4A3A] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -33,6 +33,8 @@ export default function SignupPage() {
       name: form.get('name') as string,
       // @ts-expect-error additional fields
       county: form.get('county') as string,
+      nationality: form.get('nationality') as string || undefined,
+      countryOfBirth: form.get('countryOfBirth') as string || undefined,
     })
 
     if (result.error) {
@@ -82,21 +84,37 @@ export default function SignupPage() {
         autoComplete="new-password"
         className={INPUT}
       />
+
       <div>
-        <label htmlFor="county" className="sr-only">County</label>
+        <label htmlFor="county" className="sr-only">County of residence</label>
         <select
           id="county"
           name="county"
           required
-          aria-label="county"
           className={`${INPUT} appearance-none`}
         >
-          <option value="" className="bg-[#1E0E0E]">Select your county</option>
+          <option value="" className="bg-[#1E0E0E]">County of residence</option>
           {COUNTIES.map(c => (
             <option key={c} value={c} className="bg-[#1E0E0E]">{c}</option>
           ))}
         </select>
       </div>
+
+      <input
+        name="nationality"
+        type="text"
+        placeholder="Nationality (e.g. Nigerian, Ghanaian)"
+        autoComplete="off"
+        className={INPUT}
+      />
+
+      <input
+        name="countryOfBirth"
+        type="text"
+        placeholder="Country of birth"
+        autoComplete="country-name"
+        className={INPUT}
+      />
 
       <button
         type="submit"

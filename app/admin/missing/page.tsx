@@ -3,8 +3,8 @@ import { requireAdmin } from '../admin-guard'
 import { db } from '@/lib/db'
 import { missingPersons, users } from '@/lib/db/schema'
 import { desc, eq } from 'drizzle-orm'
-import { approveMissingPerson, rejectMissingPerson } from '../content-actions'
-import { CheckCircle, XCircle } from 'lucide-react'
+import { approveMissingPerson, rejectMissingPerson, resolveMissingPerson } from '../content-actions'
+import { CheckCircle, XCircle, CircleDot } from 'lucide-react'
 
 export const metadata = { title: 'Missing Persons — Admin' }
 
@@ -41,26 +41,41 @@ export default async function AdminMissingPage() {
                 Last seen: {p.lastSeenLocation} · by {submitter?.name ?? 'unknown'}
               </p>
             </div>
-            {p.status === 'pending' && (
-              <div className="flex gap-1.5">
-                <form action={approveMissingPerson.bind(null, p.id, session.user.id)}>
+            <div className="flex gap-1.5">
+              {p.status === 'pending' && (
+                <>
+                  <form action={approveMissingPerson.bind(null, p.id, session.user.id)}>
+                    <button
+                      type="submit"
+                      title="Approve report"
+                      className="rounded-lg border border-green-900/50 p-1.5 text-green-700 transition-colours hover:text-green-400"
+                    >
+                      <CheckCircle size={14} aria-hidden="true" />
+                    </button>
+                  </form>
+                  <form action={rejectMissingPerson.bind(null, p.id)}>
+                    <button
+                      type="submit"
+                      title="Reject report"
+                      className="rounded-lg border border-red-900/50 p-1.5 text-red-700 transition-colours hover:text-red-400"
+                    >
+                      <XCircle size={14} aria-hidden="true" />
+                    </button>
+                  </form>
+                </>
+              )}
+              {p.status === 'published' && (
+                <form action={resolveMissingPerson.bind(null, p.id)}>
                   <button
                     type="submit"
-                    className="rounded-lg border border-green-900/50 p-1.5 text-green-700 transition-colours hover:text-green-400"
+                    title="Mark as resolved"
+                    className="rounded-lg border border-[#3D2020] p-1.5 text-[#5C4040] transition-colours hover:border-green-900/50 hover:text-green-500"
                   >
-                    <CheckCircle size={14} aria-hidden="true" />
+                    <CircleDot size={14} aria-hidden="true" />
                   </button>
                 </form>
-                <form action={rejectMissingPerson.bind(null, p.id)}>
-                  <button
-                    type="submit"
-                    className="rounded-lg border border-red-900/50 p-1.5 text-red-700 transition-colours hover:text-red-400"
-                  >
-                    <XCircle size={14} aria-hidden="true" />
-                  </button>
-                </form>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         ))}
       </div>

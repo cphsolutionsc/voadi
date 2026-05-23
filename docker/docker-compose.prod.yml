@@ -1,0 +1,15 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: voadi-web
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+    networks:
+      - cph_app_net
+
+networks:
+  cph_app_net:
+    external: true

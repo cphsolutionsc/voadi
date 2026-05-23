@@ -2,7 +2,7 @@
   "name": "VOADI — Voices of Africans Diaspora Ireland",
   "short_name": "VOADI",
   "description": "Mobilising Africans in Ireland — events, petitions, missing persons, community help.",
-  "start_url": "/",
+  "start_url": "/launch",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",

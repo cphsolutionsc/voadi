@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { auth } from '@/lib/auth'
 import { SignOutButton } from './sign-out-button'
+import { PushSubscribe } from '@/components/push/push-subscribe'
 
 export const metadata = { title: 'Profile — VOADI' }
 
@@ -61,6 +62,11 @@ export default async function ProfilePage() {
         <span className="text-xs font-semibold text-[#D97706]">Support VOADI</span>
         <span className="text-xs text-[#D97706]">›</span>
       </Link>
+
+      {/* Push notifications */}
+      <div className="mb-6">
+        <PushSubscribe vapidPublicKey={process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? ''} />
+      </div>
 
       {/* Legal links */}
       <div className="mb-6 overflow-hidden rounded-xl border border-[#2A1515]">

@@ -1,8 +1,6 @@
 import { Resend } from 'resend'
 import * as React from 'react'
 
-export const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function sendEmail({
   to,
   subject,
@@ -16,6 +14,7 @@ export async function sendEmail({
     console.warn('[email] RESEND_API_KEY not set — skipping send')
     return
   }
+  const resend = new Resend(process.env.RESEND_API_KEY)
   await resend.emails.send({
     from: 'VOADI <hello@voadi.org>',
     to,

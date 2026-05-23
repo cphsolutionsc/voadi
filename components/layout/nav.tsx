@@ -16,20 +16,43 @@ export function Nav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-[#2A1515] bg-[#140909]/95 pb-safe backdrop-blur-sm">
-      <ul className="mx-auto flex max-w-lg">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0E0606]/98 pb-safe backdrop-blur-md">
+      {/* Subtle top border glow */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#2A1515] to-transparent" />
+
+      <ul className="mx-auto flex max-w-lg px-2 py-1">
         {NAV_ITEMS.map(({ href, label, Icon }) => {
           const active = pathname.startsWith(href)
           return (
             <li key={href} className="flex-1">
               <Link
                 href={href}
-                className={`flex flex-col items-center gap-0.5 py-3 text-[10px] font-medium uppercase tracking-wider transition-colors ${
-                  active ? 'text-[#F5EDD0]' : 'text-[#8B7B6B]'
-                }`}
+                className="relative flex flex-col items-center gap-1 px-1 py-2 transition-colors"
               >
-                <Icon size={22} strokeWidth={active ? 2.5 : 2} aria-hidden="true" />
-                <span>{label}</span>
+                {/* Active pill background */}
+                <span
+                  className={`absolute inset-x-1.5 inset-y-1 rounded-xl transition-all duration-200 ${
+                    active ? 'bg-[#2A1515]' : 'bg-transparent'
+                  }`}
+                />
+
+                {/* Icon */}
+                <span className={`relative transition-colors duration-200 ${
+                  active ? 'text-[#D97706]' : 'text-[#5C4040]'
+                }`}>
+                  <Icon size={20} strokeWidth={active ? 2.5 : 1.8} aria-hidden="true" />
+                  {/* Active dot indicator */}
+                  {active && (
+                    <span className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#D97706]" />
+                  )}
+                </span>
+
+                {/* Label */}
+                <span className={`relative text-[9px] font-semibold uppercase tracking-widest transition-colors duration-200 ${
+                  active ? 'text-[#D97706]' : 'text-[#4A3030]'
+                }`}>
+                  {label}
+                </span>
               </Link>
             </li>
           )

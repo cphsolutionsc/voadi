@@ -7,8 +7,7 @@ import {
   VideoConference,
   RoomAudioRenderer,
 } from '@livekit/components-react'
-// @livekit/components-styles is not installed — import styles via your global CSS
-// if needed: @import '@livekit/components-styles'; or install the package separately
+import '@livekit/components-styles'
 
 interface RoomClientProps {
   eventId: string

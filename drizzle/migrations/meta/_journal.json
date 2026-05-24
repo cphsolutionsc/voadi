@@ -8,6 +8,13 @@
       "when": 1779501635652,
       "tag": "0000_sparkling_expediter",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1779648478236,
+      "tag": "0001_daffy_hydra",
+      "breakpoints": true
     }
   ]
 }

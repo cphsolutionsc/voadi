@@ -16,6 +16,8 @@ export const missingPersonStatusEnum = pgEnum('missing_person_status', ['pending
 export const helpPostStatusEnum = pgEnum('help_post_status', ['open', 'resolved'])
 export const helpCategoryEnum = pgEnum('help_category', ['housing', 'legal', 'medical', 'jobs', 'other'])
 export const pushTypeEnum = pgEnum('push_type', ['urgent', 'event', 'missing', 'petition', 'help'])
+export const eventTypeEnum = pgEnum('event_type', ['in_person', 'virtual'])
+export const townHallStatusEnum = pgEnum('town_hall_status', ['idle', 'live', 'ended'])
 
 export const users = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -84,8 +86,23 @@ export const events = pgTable('events', {
   location: text('location').notNull(),
   county: text('county').notNull(),
   startsAt: timestamp('starts_at').notNull(),
+  endsAt: timestamp('ends_at'),
+  eventType: eventTypeEnum('event_type').default('in_person').notNull(),
   createdBy: uuid('created_by').notNull().references(() => users.id),
   status: eventStatusEnum('status').default('published').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+export const townHalls = pgTable('town_halls', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  eventId: uuid('event_id').notNull().unique().references(() => events.id, { onDelete: 'cascade' }),
+  livekitRoomName: text('livekit_room_name').notNull().unique(),
+  townHallStatus: townHallStatusEnum('town_hall_status').default('idle').notNull(),
+  egressId: text('egress_id'),
+  recordingR2Key: text('recording_r2_key'),
+  transcript: text('transcript'),
+  summary: text('summary'),
+  summarySentAt: timestamp('summary_sent_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
 

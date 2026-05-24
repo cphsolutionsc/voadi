@@ -6,7 +6,7 @@ export async function requireAdmin() {
   const session = await auth.api.getSession({ headers: await headers() })
   if (!session) redirect('/login')
   const role = (session.user as Record<string, unknown>).role as string
-  if (role !== 'admin' && role !== 'moderator') redirect('/feed')
+  if (role !== 'admin' && role !== 'moderator' && role !== 'super_admin') redirect('/feed')
   return session
 }
 
@@ -14,6 +14,6 @@ export async function requireSuperAdmin() {
   const session = await auth.api.getSession({ headers: await headers() })
   if (!session) redirect('/login')
   const role = (session.user as Record<string, unknown>).role as string
-  if (role !== 'admin') redirect('/feed')
+  if (role !== 'super_admin') redirect('/feed')
   return session
 }

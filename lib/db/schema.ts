@@ -7,7 +7,9 @@ import {
   integer,
   boolean,
   unique,
+  uniqueIndex,
 } from 'drizzle-orm/pg-core'
+import { sql } from 'drizzle-orm'
 
 export const userRoleEnum = pgEnum('user_role', ['member', 'moderator', 'admin'])
 export const eventStatusEnum = pgEnum('event_status', ['draft', 'published', 'cancelled'])
@@ -32,7 +34,10 @@ export const users = pgTable('users', {
   vouchedBy: uuid('vouched_by'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
-})
+}, (t) => [
+  // Enforce at most one super_admin across the whole platform
+  uniqueIndex('users_super_admin_singleton').on(t.role).where(sql`role = 'super_admin'`),
+])
 
 export const sessions = pgTable('sessions', {
   id: uuid('id').primaryKey().defaultRandom(),

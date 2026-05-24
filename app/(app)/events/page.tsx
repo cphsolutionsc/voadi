@@ -1,9 +1,9 @@
 export const dynamic = 'force-dynamic'
 import Link from 'next/link'
 import { db } from '@/lib/db'
-import { events } from '@/lib/db/schema'
+import { events, townHalls } from '@/lib/db/schema'
 import { and, eq, gte } from 'drizzle-orm'
-import { MapPin } from 'lucide-react'
+import { MapPin, Video } from 'lucide-react'
 
 export const metadata = { title: 'Events — VOADI' }
 
@@ -20,11 +20,14 @@ export default async function EventsPage({
 }) {
   const { county } = await searchParams
 
-  const allEvents = await db.select().from(events)
+  const allEvents = await db
+    .select({ event: events, th: townHalls })
+    .from(events)
+    .leftJoin(townHalls, eq(townHalls.eventId, events.id))
     .where(
       county
         ? and(gte(events.startsAt, new Date()), eq(events.county, county))
-        : gte(events.startsAt, new Date())
+        : gte(events.startsAt, new Date()),
     )
     .orderBy(events.startsAt)
     .limit(50)
@@ -80,7 +83,7 @@ export default async function EventsPage({
         <>
           {/* Featured card */}
           <Link
-            href={`/events/${featured.id}`}
+            href={`/events/${featured.event.id}`}
             className="mb-3 block overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white transition-colors hover:border-[#D97706]/50"
           >
             {/* Dark header area */}
@@ -91,28 +94,41 @@ export default async function EventsPage({
               {/* Date badge top-right */}
               <div className="absolute right-3 top-3 rounded-xl bg-white/90 px-2.5 py-1.5 text-center">
                 <p className="text-[9px] font-bold uppercase tracking-wide text-[#D97706]">
-                  {featured.startsAt.toLocaleDateString('en-GB', { month: 'short' })}
+                  {featured.event.startsAt.toLocaleDateString('en-GB', { month: 'short' })}
                 </p>
                 <p className="text-xl font-black leading-none text-[#111827]">
-                  {featured.startsAt.toLocaleDateString('en-GB', { day: 'numeric' })}
+                  {featured.event.startsAt.toLocaleDateString('en-GB', { day: 'numeric' })}
                 </p>
               </div>
               <h2 className="pr-16 font-serif text-base font-bold leading-snug text-white">
-                {featured.title}
+                {featured.event.title}
               </h2>
             </div>
             {/* Footer row */}
             <div className="flex items-center gap-2 px-4 py-3 text-xs text-[#6B7280]">
-              <MapPin size={11} aria-hidden="true" />
-              <span className="truncate">{featured.location}</span>
-              <span className="ml-auto font-bold text-[#D97706]">RSVP →</span>
+              {featured.event.eventType === 'virtual' ? (
+                <Video size={11} aria-hidden="true" className="text-[#D97706]" />
+              ) : (
+                <MapPin size={11} aria-hidden="true" />
+              )}
+              <span className="truncate">
+                {featured.event.eventType === 'virtual' ? 'Virtual' : featured.event.location}
+              </span>
+              {featured.th?.townHallStatus === 'live' && (
+                <span className="ml-1 rounded-full bg-[#D97706] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#111827]">
+                  Live now
+                </span>
+              )}
+              <span className="ml-auto font-bold text-[#D97706]">
+                {featured.event.eventType === 'virtual' ? 'Join →' : 'RSVP →'}
+              </span>
             </div>
           </Link>
 
           {/* Rest as date-block list */}
           {rest.length > 0 && (
             <div className="space-y-2">
-              {rest.map(ev => (
+              {rest.map(({ event: ev, th }) => (
                 <Link
                   key={ev.id}
                   href={`/events/${ev.id}`}
@@ -130,8 +146,19 @@ export default async function EventsPage({
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold leading-snug text-[#111827]">{ev.title}</p>
                     <p className="mt-0.5 flex items-center gap-1 text-xs text-[#6B7280]">
-                      <MapPin size={10} aria-hidden="true" />
-                      {ev.location} · {ev.startsAt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+                      {ev.eventType === 'virtual' ? (
+                        <Video size={10} aria-hidden="true" className="text-[#D97706]" />
+                      ) : (
+                        <MapPin size={10} aria-hidden="true" />
+                      )}
+                      {ev.eventType === 'virtual' ? 'Virtual' : ev.location}
+                      {' · '}
+                      {ev.startsAt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+                      {th?.townHallStatus === 'live' && (
+                        <span className="ml-1 rounded-full bg-[#D97706] px-1.5 py-0.5 text-[9px] font-bold uppercase text-[#111827]">
+                          Live
+                        </span>
+                      )}
                     </p>
                   </div>
                   <span className="shrink-0 self-start rounded-full bg-[#E5E7EB] px-2 py-0.5 text-[10px] font-medium text-[#4B5563]">

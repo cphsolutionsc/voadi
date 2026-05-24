@@ -7,7 +7,7 @@ import { db } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import {
   events, eventRsvps, petitions, petitionSignatures,
-  missingPersons, helpPosts,
+  missingPersons, helpPosts, townHalls,
 } from '@/lib/db/schema'
 import { eq, and, sql } from 'drizzle-orm'
 
@@ -88,21 +88,34 @@ export async function createEvent(formData: FormData) {
   const session = await requireSession()
   const title       = formData.get('title') as string
   const description = formData.get('description') as string
-  const location    = formData.get('location') as string
+  const location    = (formData.get('location') as string | null) ?? 'Online'
   const county      = formData.get('county') as string
   const startsAt    = new Date(formData.get('startsAt') as string)
+  const endsAtRaw   = formData.get('endsAt') as string | null
+  const endsAt      = endsAtRaw ? new Date(endsAtRaw) : null
+  const eventType   = (formData.get('eventType') as 'in_person' | 'virtual') ?? 'in_person'
 
-  if (!title?.trim() || !description?.trim() || !location?.trim() || !county || isNaN(startsAt.getTime())) return
+  if (!title?.trim() || !description?.trim() || !county || isNaN(startsAt.getTime())) return
 
-  await db.insert(events).values({
+  const [inserted] = await db.insert(events).values({
     title: title.trim(),
     description: description.trim(),
-    location: location.trim(),
+    location: location.trim() || 'Online',
     county,
     startsAt,
+    endsAt,
+    eventType,
     createdBy: session.user.id,
     status: 'published',
-  })
+  }).returning({ id: events.id })
+
+  if (eventType === 'virtual' && inserted) {
+    await db.insert(townHalls).values({
+      eventId: inserted.id,
+      livekitRoomName: `town-hall-${inserted.id}`,
+    })
+  }
+
   redirect('/events')
 }
 

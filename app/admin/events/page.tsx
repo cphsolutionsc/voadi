@@ -28,7 +28,9 @@ export default async function AdminEventsPage() {
           <div key={e.id} className="flex items-start gap-3 border-b border-[#E5E7EB] bg-[#FFFFFF] px-4 py-3 last:border-0">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-semibold text-[#111827]">{e.title}</p>
+                <a href={`/admin/events/${e.id}`} className="font-semibold text-[#111827] transition-colors hover:text-[#D97706]">
+                  {e.title}
+                </a>
                 <span className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase ${
                   e.status === 'published'
                     ? 'bg-green-900/30 text-green-400'
@@ -36,6 +38,11 @@ export default async function AdminEventsPage() {
                       ? 'bg-[#E5E7EB] text-[#6B7280]'
                       : 'bg-[#D97706]/20 text-[#D97706]'
                 }`}>{e.status}</span>
+                {e.eventType === 'virtual' && (
+                  <span className="rounded-full bg-[#DBEAFE] px-2 py-0.5 text-[9px] font-bold uppercase text-[#1D4ED8]">
+                    Virtual
+                  </span>
+                )}
               </div>
               <p className="text-xs text-[#6B7280]">
                 {e.county} · {e.startsAt.toLocaleDateString('en-GB')} · by {creator?.name ?? 'unknown'}

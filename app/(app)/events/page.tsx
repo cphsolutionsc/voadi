@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { db } from '@/lib/db'
 import { events } from '@/lib/db/schema'
 import { and, eq, gte } from 'drizzle-orm'
-import { CalendarDays, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 
 export const metadata = { title: 'Events — VOADI' }
 
@@ -29,6 +29,8 @@ export default async function EventsPage({
     .orderBy(events.startsAt)
     .limit(50)
 
+  const [featured, ...rest] = allEvents
+
   return (
     <div className="py-2">
       <div className="mb-1 flex items-center justify-between">
@@ -38,7 +40,7 @@ export default async function EventsPage({
             {allEvents.length} upcoming
           </span>
           <Link href="/events/new"
-            className="shrink-0 rounded-full bg-[#D97706] px-3 py-1.5 text-xs font-bold text-[#111827]">
+            className="shrink-0 rounded-full bg-[#D97706] px-3 py-1.5 text-xs font-bold text-white">
             + New
           </Link>
         </div>
@@ -70,42 +72,76 @@ export default async function EventsPage({
       </div>
 
       {allEvents.length === 0 ? (
-        <div className="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-10 text-center">
+        <div className="rounded-xl border border-[#E5E7EB] bg-white p-10 text-center">
           <p className="mb-1 text-sm font-semibold text-[#111827]">No upcoming events</p>
           <p className="text-xs text-[#4B5563]">Check back soon — events are added regularly.</p>
         </div>
       ) : (
-        <div className="space-y-2">
-          {allEvents.map(ev => {
-            const date = ev.startsAt.toLocaleDateString('en-GB', {
-              weekday: 'short', day: 'numeric', month: 'short',
-            })
-            const time = ev.startsAt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
-            return (
-              <Link
-                key={ev.id}
-                href={`/events/${ev.id}`}
-                className="block rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4 transition-colors hover:border-[#D97706]/50"
-              >
-                <div className="mb-2 flex items-start justify-between gap-3">
-                  <h2 className="font-semibold text-[#111827]">{ev.title}</h2>
-                  <span className="shrink-0 rounded-full bg-[#E5E7EB] px-2 py-0.5 text-[10px] font-medium text-[#D97706]">{ev.county}</span>
-                </div>
-                <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-[#6B7280]">{ev.description}</p>
-                <div className="flex items-center gap-4 text-xs text-[#4B5563]">
-                  <span className="flex items-center gap-1">
-                    <CalendarDays size={11} aria-hidden="true" />
-                    {date} at {time}
+        <>
+          {/* Featured card */}
+          <Link
+            href={`/events/${featured.id}`}
+            className="mb-3 block overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white transition-colors hover:border-[#D97706]/50"
+          >
+            {/* Dark header area */}
+            <div className="relative flex h-28 items-end bg-gradient-to-br from-[#111827] to-[#1f2937] p-4">
+              <span className="absolute left-3 top-3 rounded-full bg-[#FEF3C7] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#92400E]">
+                Featured
+              </span>
+              {/* Date badge top-right */}
+              <div className="absolute right-3 top-3 rounded-xl bg-white/90 px-2.5 py-1.5 text-center">
+                <p className="text-[9px] font-bold uppercase tracking-wide text-[#D97706]">
+                  {featured.startsAt.toLocaleDateString('en-GB', { month: 'short' })}
+                </p>
+                <p className="text-xl font-black leading-none text-[#111827]">
+                  {featured.startsAt.toLocaleDateString('en-GB', { day: 'numeric' })}
+                </p>
+              </div>
+              <h2 className="pr-16 font-serif text-base font-bold leading-snug text-white">
+                {featured.title}
+              </h2>
+            </div>
+            {/* Footer row */}
+            <div className="flex items-center gap-2 px-4 py-3 text-xs text-[#6B7280]">
+              <MapPin size={11} aria-hidden="true" />
+              <span className="truncate">{featured.location}</span>
+              <span className="ml-auto font-bold text-[#D97706]">RSVP →</span>
+            </div>
+          </Link>
+
+          {/* Rest as date-block list */}
+          {rest.length > 0 && (
+            <div className="space-y-2">
+              {rest.map(ev => (
+                <Link
+                  key={ev.id}
+                  href={`/events/${ev.id}`}
+                  className="flex gap-3 rounded-xl border border-[#E5E7EB] bg-white p-3.5 transition-colors hover:border-[#D97706]/50"
+                >
+                  {/* Amber date block */}
+                  <div className="flex w-11 shrink-0 flex-col items-center justify-center rounded-xl bg-[#FEF3C7] py-2">
+                    <span className="text-[9px] font-bold uppercase tracking-wide text-[#92400E]">
+                      {ev.startsAt.toLocaleDateString('en-GB', { month: 'short' })}
+                    </span>
+                    <span className="text-xl font-black leading-none text-[#92400E]">
+                      {ev.startsAt.toLocaleDateString('en-GB', { day: 'numeric' })}
+                    </span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold leading-snug text-[#111827]">{ev.title}</p>
+                    <p className="mt-0.5 flex items-center gap-1 text-xs text-[#6B7280]">
+                      <MapPin size={10} aria-hidden="true" />
+                      {ev.location} · {ev.startsAt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+                    </p>
+                  </div>
+                  <span className="shrink-0 self-start rounded-full bg-[#E5E7EB] px-2 py-0.5 text-[10px] font-medium text-[#4B5563]">
+                    {ev.county}
                   </span>
-                  <span className="flex items-center gap-1 truncate">
-                    <MapPin size={11} aria-hidden="true" />
-                    {ev.location}
-                  </span>
-                </div>
-              </Link>
-            )
-          })}
-        </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )

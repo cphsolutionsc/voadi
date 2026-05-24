@@ -16,7 +16,7 @@ export default async function PetitionsPage() {
       <div className="mb-1 flex items-center justify-between">
         <h1 className="text-lg font-bold text-[#111827]">Petitions</h1>
         <div className="flex items-center gap-2">
-          <span className="rounded-full bg-[#1a2e1a] px-3 py-1 text-xs font-medium text-[#16a34a]">
+          <span className="rounded-full bg-[#D1FAE5] px-3 py-1 text-xs font-medium text-[#065F46]">
             {allPetitions.length} open
           </span>
           <Link href="/petitions/new"
@@ -36,26 +36,46 @@ export default async function PetitionsPage() {
         </div>
       ) : (
         <div className="space-y-2">
-          {allPetitions.map(p => {
-            const pct = Math.min(100, Math.round((p.signatureCount / 1000) * 100))
-            return (
-              <Link
-                key={p.id}
-                href={`/petitions/${p.id}`}
-                className="block rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4 transition-colors hover:border-[#D97706]/50"
-              >
-                <h2 className="mb-1 font-semibold text-[#111827]">{p.title}</h2>
-                <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-[#6B7280]">{p.body}</p>
-                <div className="mb-1.5 flex items-center justify-between text-xs">
-                  <span className="text-[#4B5563]">{p.target}</span>
-                  <span className="font-semibold text-[#16a34a]">{p.signatureCount.toLocaleString('en-GB')} signed</span>
-                </div>
-                <div className="h-1 overflow-hidden rounded-full bg-[#E5E7EB]">
-                  <div className="h-full rounded-full bg-[#16a34a] transition-all" style={{ width: `${pct}%` }} />
-                </div>
-              </Link>
-            )
-          })}
+          {allPetitions.map(p => (
+            <Link
+              key={p.id}
+              href={`/petitions/${p.id}`}
+              className="block rounded-xl border border-[#E5E7EB] bg-white p-4 transition-colors hover:border-[#D97706]/50"
+            >
+              {/* Status row */}
+              <div className="mb-2 flex items-center gap-2">
+                <span className="inline-flex items-center rounded-full bg-[#D1FAE5] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#065F46]">
+                  Open
+                </span>
+                <span className="ml-auto text-[10px] text-[#9CA3AF]">{p.target}</span>
+              </div>
+
+              {/* Title */}
+              <h2 className="mb-3 font-semibold leading-snug text-[#111827]">{p.title}</h2>
+
+              {/* Progress bar — amber, goal 2000 */}
+              {(() => {
+                const GOAL = 2000
+                const pct = Math.min(100, Math.round((p.signatureCount / GOAL) * 100))
+                return (
+                  <>
+                    <div className="mb-1.5 h-1.5 overflow-hidden rounded-full bg-[#F3F4F6]">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-[#D97706] to-[#F59E0B] transition-all"
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-[#D97706]">
+                        {p.signatureCount.toLocaleString('en-GB')} signatures
+                      </span>
+                      <span className="text-[10px] text-[#9CA3AF]">Goal: {GOAL.toLocaleString('en-GB')}</span>
+                    </div>
+                  </>
+                )
+              })()}
+            </Link>
+          ))}
         </div>
       )}
     </div>

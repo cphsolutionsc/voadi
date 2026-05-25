@@ -9,10 +9,9 @@ import { eq, isNotNull } from 'drizzle-orm'
 import { r2Client, R2_BUCKET } from '@/lib/r2'
 import { sendPush } from '@/lib/push'
 
-const resend = new Resend(process.env.RESEND_API_KEY!)
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! })
-
 export async function POST(req: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY!)
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! })
   const rawBody = await req.text()
   const authHeader = req.headers.get('Authorization') ?? ''
 

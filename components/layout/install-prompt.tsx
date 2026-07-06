@@ -24,7 +24,22 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
 }
 
-const DISMISSED_KEY = 'voadi-install-dismissed'
+const DISMISSED_KEY = 'voadi-install-dismissed-at'
+const COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000
+
+function isDismissedRecently(): boolean {
+  try {
+    const ts = localStorage.getItem(DISMISSED_KEY)
+    if (!ts) return false
+    return Date.now() - parseInt(ts, 10) < COOLDOWN_MS
+  } catch {
+    return false
+  }
+}
+
+function markDismissed() {
+  try { localStorage.setItem(DISMISSED_KEY, String(Date.now())) } catch { /* storage blocked */ }
+}
 
 function HarpV({ size = 28 }: { size?: number }) {
   const w = Math.round(size * 0.68)
@@ -48,7 +63,7 @@ export function InstallPrompt() {
 
   useEffect(() => {
     if (isStandalone()) return
-    if (sessionStorage.getItem(DISMISSED_KEY)) return
+    if (isDismissedRecently()) return
 
     const p = detectPlatform()
     setPlatform(p)
@@ -69,7 +84,7 @@ export function InstallPrompt() {
   }, [])
 
   function dismiss() {
-    sessionStorage.setItem(DISMISSED_KEY, '1')
+    markDismissed()
     setShow(false)
     setShowIosSteps(false)
   }

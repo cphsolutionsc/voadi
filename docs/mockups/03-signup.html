@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VOADI — 03 Sign Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_frame.css">
+<style>
+.auth-brand { text-align:center; margin-bottom:20px; }
+.auth-brand-name { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; color:#111827; letter-spacing:-0.5px; }
+.auth-brand-name em { color:#D97706; font-style:normal; }
+.auth-brand-sub { font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#9CA3AF; margin-top:4px; }
+.auth-heading { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#111827; margin-bottom:3px; }
+.auth-sub { font-size:12px; color:#4B5563; margin-bottom:16px; }
+.form-input { width:100%; padding:12px 14px; border:1px solid #D1D5DB; border-radius:10px; font-size:13px; color:#111827; background:#ffffff; font-family:'Inter',sans-serif; margin-bottom:9px; outline:none; display:block; }
+.form-input.select-look { color:#4B5563; }
+.flag-row { display:flex; align-items:center; gap:8px; padding:12px 14px; border:1px solid #D1D5DB; border-radius:10px; background:#ffffff; margin-bottom:9px; }
+.flag-circle { width:20px; height:14px; border-radius:3px; overflow:hidden; flex-shrink:0; }
+.flag-text { font-size:13px; color:#111827; flex:1; }
+.flag-chevron { color:#9CA3AF; font-size:10px; }
+.step-dot-row { display:flex; gap:4px; justify-content:center; margin-bottom:16px; }
+.step-dot { width:18px; height:4px; border-radius:2px; background:#E5E7EB; }
+.step-dot.active { background:#D97706; }
+.terms-note { font-size:10px; color:#9CA3AF; text-align:center; margin-top:10px; line-height:1.5; }
+.terms-note a { color:#D97706; }
+.link-row { text-align:center; font-size:12px; color:#4B5563; margin-top:12px; }
+.link-row a { color:#111827; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="canvas-label">VOADI — Create Account</div>
+<div class="phone">
+  <div class="dynamic-island"></div>
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4" y="2" width="3" height="10" rx="1"/><rect x="8" y="0" width="3" height="12" rx="1"/><rect x="12" y="1" width="3" height="11" rx="1" opacity=".3"/></svg>
+      <svg width="15" height="12" viewBox="0 0 15 12" fill="currentColor"><path d="M7.5 2.5C9.8 2.5 11.8 3.5 13.2 5L14.5 3.7C12.7 1.9 10.2 0.8 7.5 0.8 4.8 0.8 2.3 1.9 0.5 3.7L1.8 5C3.2 3.5 5.2 2.5 7.5 2.5Z" opacity=".4"/><path d="M7.5 5.5C9 5.5 10.4 6.1 11.4 7.1L12.7 5.8C11.3 4.5 9.5 3.7 7.5 3.7 5.5 3.7 3.7 4.5 2.3 5.8L3.6 7.1C4.6 6.1 6 5.5 7.5 5.5Z" opacity=".7"/><circle cx="7.5" cy="10" r="2"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="21" height="10" rx="3" stroke="currentColor" stroke-width="1" fill="none" opacity=".35"/><rect x="22" y="4" width="2" height="4" rx="1" opacity=".4"/><rect x="1.5" y="2.5" width="17" height="7" rx="2"/></svg>
+    </div>
+  </div>
+
+  <div class="screen" style="background:#F9FAFB;">
+    <div style="padding:20px 20px; padding-bottom:40px;">
+      <div class="auth-brand">
+        <div class="auth-brand-name">V<em>O</em>ADI</div>
+        <div class="auth-brand-sub">Voices of Africans Diaspora Ireland</div>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-heading">Create your account</div>
+        <div class="auth-sub">Free to join. Takes under a minute.</div>
+
+        <input class="form-input" type="text" placeholder="Full name" value="Babatunde Akinse">
+        <input class="form-input" type="email" placeholder="Email address" value="baba@example.com">
+        <input class="form-input" type="password" placeholder="Password (min 8 characters)" value="securepass123">
+
+        <!-- County -->
+        <div style="position:relative; margin-bottom:9px;">
+          <select class="form-input select-look" style="appearance:none; padding-right:36px;">
+            <option>Dublin</option>
+          </select>
+          <svg style="position:absolute; right:14px; top:50%; transform:translateY(-50%); pointer-events:none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+
+        <!-- Nationality with flag -->
+        <div class="flag-row">
+          <!-- Nigeria flag simplified -->
+          <div class="flag-circle" style="display:flex;">
+            <div style="flex:1; background:#008751;"></div>
+            <div style="flex:1; background:#ffffff;"></div>
+            <div style="flex:1; background:#008751;"></div>
+          </div>
+          <span class="flag-text">Nigerian</span>
+          <span class="flag-chevron">▾</span>
+        </div>
+
+        <!-- Country of birth with flag -->
+        <div class="flag-row">
+          <div class="flag-circle" style="display:flex; flex-direction:column;">
+            <div style="flex:1; background:#169B62;"></div>
+            <div style="flex:1; background:#ffffff;"></div>
+            <div style="flex:1; background:#FF883E;"></div>
+          </div>
+          <span class="flag-text">Nigeria</span>
+          <span class="flag-chevron">▾</span>
+        </div>
+
+        <button class="btn-primary">Create account</button>
+
+        <div class="terms-note">
+          By joining you agree to our <a>Terms</a> and <a>Privacy Policy</a>.
+        </div>
+        <div class="link-row">Already have an account? <a>Sign in</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-indicator" style="background:#F9FAFB;">
+    <div class="home-bar"></div>
+  </div>
+</div>
+</body>
+</html>

@@ -15,7 +15,9 @@ const COUNTIES = [
 ]
 
 const INPUT =
-  'w-full rounded-lg border border-[#D1D5DB] bg-white px-4 py-3 text-sm text-[#111827] placeholder-[#9CA3AF] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]'
+  'w-full rounded-lg border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder-[#9CA3AF] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]'
+
+const LABEL = 'mb-1.5 block text-xs font-medium text-[#6B7280]'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -56,14 +58,16 @@ export default function SignupPage() {
       <div className="space-y-4">
         <div className="mb-6">
           <h2 className="text-xl font-bold text-[#111827]">Check your inbox</h2>
-          <p className="mt-1 text-sm text-[#4B5563]">We sent a verification link to <strong className="text-[#111827]">{verifyEmail}</strong></p>
+          <p className="mt-1 text-sm text-[#4B5563]">
+            We sent a verification link to <strong className="text-[#111827]">{verifyEmail}</strong>
+          </p>
         </div>
-        <div className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] px-4 py-5 text-sm leading-relaxed text-[#4B5563]">
+        <div className="rounded-xl border border-[#D97706]/20 bg-[#FEF3C7]/40 px-4 py-5 text-sm leading-relaxed text-[#4B5563]">
           Click the link in the email to activate your account. Check your spam folder if you do not see it within a few minutes.
         </div>
         <p className="pt-1 text-center text-sm text-[#4B5563]">
           Already verified?{' '}
-          <Link href="/login" className="font-medium text-[#111827] underline underline-offset-2 hover:text-[#111827]">
+          <Link href="/login" className="font-semibold text-[#D97706] hover:underline">
             Sign in
           </Link>
         </p>
@@ -79,63 +83,81 @@ export default function SignupPage() {
       </div>
 
       {error && (
-        <p role="alert" className="rounded-lg border border-red-900/50 bg-red-950/30 px-4 py-3 text-sm text-red-400">
+        <p role="alert" className="rounded-lg border border-[#FECACA] bg-[#FEF2F2] px-4 py-3 text-sm text-[#B91C1C]">
           {error}
         </p>
       )}
 
-      <input
-        name="name"
-        type="text"
-        placeholder="Full name"
-        required
-        autoComplete="name"
-        className={INPUT}
-      />
-      <input
-        name="email"
-        type="email"
-        placeholder="Email address"
-        required
-        autoComplete="email"
-        className={INPUT}
-      />
-      <input
-        name="password"
-        type="password"
-        placeholder="Password (min 8 characters)"
-        minLength={8}
-        required
-        autoComplete="new-password"
-        className={INPUT}
-      />
+      <div>
+        <label htmlFor="signup-name" className={LABEL}>Full name</label>
+        <input
+          id="signup-name"
+          name="name"
+          type="text"
+          placeholder="Ada Obi"
+          required
+          autoComplete="name"
+          className={INPUT}
+        />
+      </div>
+      <div>
+        <label htmlFor="signup-email" className={LABEL}>Email address</label>
+        <input
+          id="signup-email"
+          name="email"
+          type="email"
+          placeholder="you@example.com"
+          required
+          autoComplete="email"
+          className={INPUT}
+        />
+      </div>
+      <div>
+        <label htmlFor="signup-password" className={LABEL}>Password</label>
+        <input
+          id="signup-password"
+          name="password"
+          type="password"
+          placeholder="Min 8 characters"
+          minLength={8}
+          required
+          autoComplete="new-password"
+          className={INPUT}
+        />
+      </div>
 
       <div>
-        <label htmlFor="county" className="sr-only">County of residence</label>
+        <label htmlFor="county" className={LABEL}>County of residence</label>
         <select
           id="county"
           name="county"
           required
           className={`${INPUT} appearance-none`}
         >
-          <option value="" className="bg-white">County of residence</option>
+          <option value="" className="bg-white">Select county</option>
           {COUNTIES.map(c => (
             <option key={c} value={c} className="bg-white">{c}</option>
           ))}
         </select>
       </div>
 
-      <CountrySelect
-        name="nationality"
-        placeholder="Nationality (optional)"
-        valueType="nationality"
-      />
+      <div>
+        <label className={LABEL}>Nationality <span className="text-[#9CA3AF] font-normal">(optional)</span></label>
+        <CountrySelect
+          name="nationality"
+          placeholder="Select nationality"
+          valueType="nationality"
+        />
+      </div>
 
-      <CountrySelect
-        name="countryOfBirth"
-        placeholder="Country of birth (optional)"
-        valueType="country"
-      />
+      <div>
+        <label className={LABEL}>Country of birth <span className="text-[#9CA3AF] font-normal">(optional)</span></label>
+        <CountrySelect
+          name="countryOfBirth"
+          placeholder="Select country"
+          valueType="country"
+        />
+      </div>
 
       <button
         type="submit"
@@ -147,7 +169,7 @@ export default function SignupPage() {
 
       <p className="pt-1 text-center text-sm text-[#4B5563]">
         Already have an account?{' '}
-        <Link href="/login" className="font-medium text-[#111827] underline underline-offset-2 hover:text-[#111827]">
+        <Link href="/login" className="font-semibold text-[#D97706] hover:underline">
           Sign in
         </Link>
       </p>

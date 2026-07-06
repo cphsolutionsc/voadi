@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VOADI — 10 Search</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_frame.css">
+<style>
+.search-bar-wrap { padding:12px 16px; background:#ffffff; border-bottom:1px solid #E5E7EB; flex-shrink:0; }
+.search-bar { display:flex; align-items:center; gap:10px; background:#F3F4F6; border-radius:12px; padding:11px 14px; }
+.search-bar input { flex:1; border:none; background:transparent; font-size:15px; font-family:'Inter',sans-serif; color:#111827; outline:none; }
+.search-bar input::placeholder { color:#9CA3AF; }
+
+.result-group-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9CA3AF; margin:14px 0 8px; }
+
+.result-item { background:#ffffff; border:1px solid #E5E7EB; border-radius:12px; padding:13px 14px; margin-bottom:8px; display:flex; align-items:flex-start; gap:10px; }
+.result-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.result-title { font-size:13px; font-weight:600; color:#111827; margin-bottom:3px; line-height:1.4; }
+.result-title mark { background:#FEF3C7; color:#92400E; padding:0 2px; border-radius:3px; font-style:normal; }
+.result-meta { font-size:11px; color:#6B7280; }
+
+.empty-hint { text-align:center; padding:40px 20px; }
+.empty-hint-title { font-family:'Playfair Display',serif; font-size:16px; color:#111827; margin-bottom:6px; }
+.empty-hint-sub { font-size:13px; color:#6B7280; }
+.hint-chips { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:16px; }
+.hint-chip { padding:6px 12px; background:#ffffff; border:1px solid #E5E7EB; border-radius:20px; font-size:12px; color:#4B5563; font-weight:500; }
+</style>
+</head>
+<body>
+<div class="canvas-label">VOADI — Search</div>
+<div class="phone">
+  <div class="dynamic-island"></div>
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4" y="2" width="3" height="10" rx="1"/><rect x="8" y="0" width="3" height="12" rx="1"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="21" height="10" rx="3" stroke="currentColor" stroke-width="1" fill="none" opacity=".35"/><rect x="22" y="4" width="2" height="4" rx="1" opacity=".4"/><rect x="1.5" y="2.5" width="17" height="7" rx="2"/></svg>
+    </div>
+  </div>
+
+  <div class="header">
+    <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#111827;">Search</div>
+  </div>
+
+  <!-- Search bar -->
+  <div class="search-bar-wrap">
+    <div class="search-bar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search events, petitions, help…" value="direct provision">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+
+  <div class="screen" style="padding-top:0;">
+    <div class="content" style="padding-top:4px;">
+
+      <div class="result-group-label">Petitions · 2 results</div>
+
+      <div class="result-item">
+        <div class="result-icon" style="background:#DBEAFE;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+        </div>
+        <div>
+          <div class="result-title">End <mark>Direct Provision</mark> — Accelerate Pathway to Residency</div>
+          <div class="result-meta">1,482 signatures · Open</div>
+        </div>
+      </div>
+
+      <div class="result-item">
+        <div class="result-icon" style="background:#DBEAFE;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+        </div>
+        <div>
+          <div class="result-title">Reform <mark>Direct Provision</mark> Housing Standards</div>
+          <div class="result-meta">312 signatures · Open</div>
+        </div>
+      </div>
+
+      <div class="result-group-label">Help posts · 1 result</div>
+
+      <div class="result-item">
+        <div class="result-icon" style="background:#D1FAE5;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <div>
+          <div class="result-title">Rights when leaving <mark>direct provision</mark> — housing?</div>
+          <div class="result-meta">Housing · 3h ago</div>
+        </div>
+      </div>
+
+      <div class="result-group-label">Events · 0 results</div>
+      <div style="background:#ffffff; border:1px solid #E5E7EB; border-radius:12px; padding:13px 14px; margin-bottom:8px; font-size:12px; color:#9CA3AF; text-align:center;">
+        No events found for "direct provision"
+      </div>
+
+    </div>
+  </div>
+
+  <div class="home-indicator"><div class="home-bar"></div></div>
+</div>
+</body>
+</html>

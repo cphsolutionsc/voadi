@@ -15,6 +15,7 @@
 html, body {
   background: #FFFFFF;
   overscroll-behavior: none;
+  color-scheme: light;
 }
 
 @keyframes marquee {

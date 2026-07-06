@@ -467,7 +467,7 @@ function DonateSection() {
             </div>
 
             {error && (
-              <p role="alert" className="mb-4 rounded-lg border border-red-900/50 bg-red-950/30 px-4 py-3 text-sm text-red-400">
+              <p role="alert" className="mb-4 rounded-lg border border-[#FECACA] bg-[#FEF2F2] px-4 py-3 text-sm text-[#B91C1C]">
                 {error}
               </p>
             )}
@@ -946,11 +946,15 @@ export function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {FEATURES.map(f => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map((f, i) => (
             <div
               key={f.num}
-              className="feature-card group relative overflow-hidden rounded-2xl border border-[#E5E7EB] bg-gradient-to-br from-[#FFFFFF] to-[#F9FAFB] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#9CA3AF]"
+              className={`feature-card group relative overflow-hidden rounded-2xl border border-[#E5E7EB] bg-gradient-to-br from-[#FFFFFF] to-[#F9FAFB] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#9CA3AF] ${
+                i === 0 ? 'sm:col-span-2 lg:col-span-2' :
+                i === 3 ? 'sm:col-span-2 lg:col-span-2 lg:col-start-2' :
+                ''
+              }`}
             >
               {/* Accent top line on hover */}
               <div

@@ -6,7 +6,9 @@ import { authClient } from '@/lib/auth/client'
 import Link from 'next/link'
 
 const INPUT =
-  'w-full rounded-lg border border-[#D1D5DB] bg-white px-4 py-3 text-sm text-[#111827] placeholder-[#9CA3AF] transition-colors focus:border-[#16a34a] focus:outline-none focus:ring-1 focus:ring-[#16a34a]'
+  'w-full rounded-lg border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder-[#9CA3AF] transition-colors focus:border-[#D97706] focus:outline-none focus:ring-1 focus:ring-[#D97706]'
+
+const LABEL = 'mb-1.5 block text-xs font-medium text-[#6B7280]'
 
 function LoginForm() {
   const router = useRouter()
@@ -43,27 +45,35 @@ function LoginForm() {
       </div>
 
       {error && (
-        <p role="alert" className="rounded-lg border border-red-900/50 bg-red-950/30 px-4 py-3 text-sm text-red-400">
+        <p role="alert" className="rounded-lg border border-[#FECACA] bg-[#FEF2F2] px-4 py-3 text-sm text-[#B91C1C]">
           {error}
         </p>
       )}
 
-      <input
-        name="email"
-        type="email"
-        placeholder="Email address"
-        required
-        autoComplete="email"
-        className={INPUT}
-      />
-      <input
-        name="password"
-        type="password"
-        placeholder="Password"
-        required
-        autoComplete="current-password"
-        className={INPUT}
-      />
+      <div>
+        <label htmlFor="login-email" className={LABEL}>Email address</label>
+        <input
+          id="login-email"
+          name="email"
+          type="email"
+          placeholder="you@example.com"
+          required
+          autoComplete="email"
+          className={INPUT}
+        />
+      </div>
+      <div>
+        <label htmlFor="login-password" className={LABEL}>Password</label>
+        <input
+          id="login-password"
+          name="password"
+          type="password"
+          placeholder="••••••••"
+          required
+          autoComplete="current-password"
+          className={INPUT}
+        />
+      </div>
 
       <button
         type="submit"
@@ -75,7 +85,7 @@ function LoginForm() {
 
       <p className="pt-1 text-center text-sm text-[#4B5563]">
         New to VOADI?{' '}
-        <Link href="/signup" className="font-medium text-[#111827] underline underline-offset-2 hover:text-[#111827]">
+        <Link href="/signup" className="font-semibold text-[#D97706] hover:underline">
           Create account
         </Link>
       </p>

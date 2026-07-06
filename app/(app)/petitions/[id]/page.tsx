@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic'
 import { notFound } from 'next/navigation'
 import { headers } from 'next/headers'
+import Link from 'next/link'
 import { db } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import { petitions, petitionSignatures } from '@/lib/db/schema'
@@ -25,9 +26,11 @@ export default async function PetitionDetailPage({ params }: { params: Promise<{
 
   return (
     <div className="py-2">
-      <div className="mb-2">
-        <span className={`rounded-full px-3 py-1 text-xs font-medium ${
-          petition.status === 'open' ? 'bg-[#1a2e1a] text-[#16a34a]' : 'bg-[#E5E7EB] text-[#4B5563]'
+      <div className="mb-3">
+        <span className={`inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${
+          petition.status === 'open'
+            ? 'bg-[#D1FAE5] text-[#065F46]'
+            : 'bg-[#E5E7EB] text-[#4B5563]'
         }`}>
           {petition.status === 'open' ? 'Open' : 'Closed'}
         </span>
@@ -36,15 +39,24 @@ export default async function PetitionDetailPage({ params }: { params: Promise<{
       <h1 className="mb-2 text-xl font-bold leading-snug text-[#111827]">{petition.title}</h1>
       <p className="mb-6 text-xs text-[#4B5563]">Addressed to: {petition.target} · Created {created}</p>
 
+      {/* Signatures progress */}
       <div className="mb-6 rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4">
-        <div className="mb-2 flex items-center justify-between text-sm">
-          <span className="font-bold text-[#111827]">{petition.signatureCount.toLocaleString('en-GB')}</span>
-          <span className="text-[#4B5563]">goal: 1,000</span>
+        <div className="mb-3 flex items-end justify-between">
+          <div>
+            <span className="text-2xl font-bold text-[#D97706]">
+              {petition.signatureCount.toLocaleString('en-GB')}
+            </span>
+            <span className="ml-1.5 text-xs text-[#4B5563]">signatures</span>
+          </div>
+          <span className="text-xs text-[#9CA3AF]">Goal: 1,000</span>
         </div>
-        <div className="mb-1 h-2 overflow-hidden rounded-full bg-[#E5E7EB]">
-          <div className="h-full rounded-full bg-[#16a34a]" style={{ width: `${pct}%` }} />
+        <div className="mb-1.5 h-2 overflow-hidden rounded-full bg-[#F3F4F6]">
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-[#D97706] to-[#F59E0B]"
+            style={{ width: `${pct}%` }}
+          />
         </div>
-        <p className="text-xs text-[#4B5563]">{pct}% of goal reached</p>
+        <p className="text-right text-xs font-semibold text-[#D97706]">{pct}%</p>
       </div>
 
       <p className="mb-8 whitespace-pre-wrap text-sm leading-relaxed text-[#6B7280]">{petition.body}</p>
@@ -53,12 +65,17 @@ export default async function PetitionDetailPage({ params }: { params: Promise<{
         <SignButton petitionId={id} hasSigned={hasSigned} />
       )}
       {!session && (
-        <p className="text-sm text-[#4B5563]">
-          <a href="/login" className="text-[#D97706] underline underline-offset-2">Sign in</a> to add your signature.
-        </p>
+        <Link
+          href="/login"
+          className="flex w-full items-center justify-center rounded-xl bg-[#D97706] py-3.5 text-sm font-bold text-[#111827] transition-opacity hover:opacity-90"
+        >
+          Sign in to add your signature
+        </Link>
       )}
       {session && petition.status === 'closed' && (
-        <p className="text-sm text-[#4B5563]">This petition is now closed.</p>
+        <p className="rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] px-4 py-3 text-sm text-[#4B5563]">
+          This petition is now closed.
+        </p>
       )}
     </div>
   )

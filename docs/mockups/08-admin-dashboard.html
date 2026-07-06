@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VOADI — 08 Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_frame.css">
+<style>
+.admin-topbar { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #E5E7EB; background:#ffffff; flex-shrink:0; }
+.admin-logo { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#111827; }
+.admin-logo em { color:#D97706; font-style:normal; }
+.admin-badge { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#D97706; background:#FEF3C7; padding:3px 8px; border-radius:20px; }
+.admin-tabs { display:flex; overflow-x:auto; gap:0; border-bottom:1px solid #E5E7EB; background:#ffffff; flex-shrink:0; scrollbar-width:none; }
+.admin-tabs::-webkit-scrollbar { display:none; }
+.admin-tab { padding:10px 14px; font-size:11px; font-weight:600; color:#4B5563; white-space:nowrap; border-bottom:2px solid transparent; }
+.admin-tab.active { color:#D97706; border-bottom-color:#D97706; }
+
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; }
+.stat-card { background:#ffffff; border:1px solid #E5E7EB; border-radius:12px; padding:14px; }
+.stat-number { font-size:26px; font-weight:900; color:#111827; line-height:1; margin-bottom:3px; }
+.stat-label { font-size:11px; color:#6B7280; font-weight:500; }
+.stat-delta { font-size:10px; color:#065F46; font-weight:600; margin-top:3px; }
+
+.inbox-card { background:#FEF3C7; border:1px solid rgba(217,119,6,0.2); border-radius:12px; padding:14px; margin-bottom:14px; }
+.inbox-title { font-size:12px; font-weight:700; color:#92400E; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.inbox-item { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(217,119,6,0.15); }
+.inbox-item:last-child { border-bottom:none; padding-bottom:0; }
+.inbox-item-label { font-size:12px; color:#4B5563; }
+.inbox-item-count { font-size:12px; font-weight:700; color:#D97706; background:#ffffff; border-radius:20px; padding:2px 8px; }
+
+.activity-row { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid #E5E7EB; }
+.activity-row:last-child { border-bottom:none; }
+.activity-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.activity-text { font-size:12px; color:#111827; flex:1; }
+.activity-time { font-size:10px; color:#9CA3AF; }
+</style>
+</head>
+<body>
+<div class="canvas-label">VOADI — Admin Dashboard</div>
+<div class="phone">
+  <div class="dynamic-island"></div>
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4" y="2" width="3" height="10" rx="1"/><rect x="8" y="0" width="3" height="12" rx="1"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="21" height="10" rx="3" stroke="currentColor" stroke-width="1" fill="none" opacity=".35"/><rect x="22" y="4" width="2" height="4" rx="1" opacity=".4"/><rect x="1.5" y="2.5" width="17" height="7" rx="2"/></svg>
+    </div>
+  </div>
+
+  <!-- Admin top bar -->
+  <div class="admin-topbar">
+    <div class="admin-logo">V<em>O</em>ADI</div>
+    <div class="admin-badge">Admin Panel</div>
+  </div>
+
+  <!-- Admin tabs -->
+  <div class="admin-tabs">
+    <div class="admin-tab active">Dashboard</div>
+    <div class="admin-tab">Members</div>
+    <div class="admin-tab">Events</div>
+    <div class="admin-tab">Petitions</div>
+    <div class="admin-tab">Missing</div>
+    <div class="admin-tab">Push</div>
+  </div>
+
+  <div class="screen" style="padding-top:0;">
+    <div class="content" style="padding-top:14px;">
+
+      <!-- Attention inbox -->
+      <div class="inbox-card">
+        <div class="inbox-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Needs attention
+        </div>
+        <div class="inbox-item">
+          <span class="inbox-item-label">Unverified members</span>
+          <span class="inbox-item-count">4</span>
+        </div>
+        <div class="inbox-item">
+          <span class="inbox-item-label">Pending missing reports</span>
+          <span class="inbox-item-count">2</span>
+        </div>
+        <div class="inbox-item">
+          <span class="inbox-item-label">Open help posts</span>
+          <span class="inbox-item-count">7</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number">142</div>
+          <div class="stat-label">Total members</div>
+          <div class="stat-delta">+12 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Upcoming events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Active petitions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color:#D97706;">2,885</div>
+          <div class="stat-label">Total signatures</div>
+        </div>
+      </div>
+
+      <!-- Recent activity -->
+      <div style="margin-bottom:6px;">
+        <div style="font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#111827; margin-bottom:10px;">Recent activity</div>
+        <div style="background:#ffffff; border:1px solid #E5E7EB; border-radius:12px; padding:12px 14px;">
+          <div class="activity-row">
+            <div class="activity-dot" style="background:#D97706;"></div>
+            <div class="activity-text">New member: <strong>Amara Diallo</strong> joined</div>
+            <span class="activity-time">2m ago</span>
+          </div>
+          <div class="activity-row">
+            <div class="activity-dot" style="background:#1D4ED8;"></div>
+            <div class="activity-text">New petition posted: <strong>End DP…</strong></div>
+            <span class="activity-time">1h ago</span>
+          </div>
+          <div class="activity-row">
+            <div class="activity-dot" style="background:#065F46;"></div>
+            <div class="activity-text">Event created: <strong>Heritage Day</strong></div>
+            <span class="activity-time">3h ago</span>
+          </div>
+          <div class="activity-row">
+            <div class="activity-dot" style="background:#D97706;"></div>
+            <div class="activity-text">New member: <strong>Fatima Okonkwo</strong> joined</div>
+            <span class="activity-time">5h ago</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="home-indicator"><div class="home-bar"></div></div>
+</div>
+</body>
+</html>

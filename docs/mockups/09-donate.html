@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VOADI — 09 Donate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_frame.css">
+<style>
+.donate-hero { background:linear-gradient(160deg,#111827 0%,#1f2937 100%); padding:24px 16px 28px; position:relative; overflow:hidden; }
+.donate-hero::after { content:''; position:absolute; right:-30px; top:-30px; width:160px; height:160px; background:radial-gradient(circle, rgba(217,119,6,0.18) 0%, transparent 70%); }
+.donate-hero-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#ffffff; line-height:1.3; margin-bottom:6px; }
+.donate-hero-title em { color:#D97706; font-style:normal; }
+.donate-hero-sub { font-size:13px; color:rgba(255,255,255,0.55); line-height:1.5; }
+
+.toggle-row { display:flex; background:#F3F4F6; border-radius:10px; padding:3px; margin-bottom:20px; }
+.toggle-btn { flex:1; padding:9px; text-align:center; font-size:13px; font-weight:600; border-radius:8px; cursor:pointer; transition:all 0.2s; }
+.toggle-btn.active { background:#ffffff; color:#111827; box-shadow:0 1px 4px rgba(0,0,0,0.1); }
+.toggle-btn:not(.active) { color:#4B5563; }
+
+.amount-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+.amount-pill { padding:13px; border:2px solid #E5E7EB; border-radius:12px; text-align:center; cursor:pointer; }
+.amount-pill.active { border-color:#D97706; background:#FEF3C7; }
+.amount-pill-val { font-size:18px; font-weight:700; color:#111827; }
+.amount-pill-label { font-size:10px; color:#6B7280; font-weight:500; }
+.amount-pill.active .amount-pill-val { color:#92400E; }
+
+.custom-input-wrap { border:1px solid #E5E7EB; border-radius:12px; padding:13px 14px; display:flex; align-items:center; gap:6px; margin-bottom:20px; background:#ffffff; }
+.custom-input-prefix { font-size:16px; font-weight:700; color:#9CA3AF; }
+.custom-input { flex:1; border:none; outline:none; font-size:16px; font-weight:600; color:#111827; font-family:'Inter',sans-serif; background:transparent; }
+
+.stripe-note { display:flex; align-items:center; gap:6px; font-size:11px; color:#9CA3AF; justify-content:center; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="canvas-label">VOADI — Donate</div>
+<div class="phone">
+  <div class="dynamic-island"></div>
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4" y="2" width="3" height="10" rx="1"/><rect x="8" y="0" width="3" height="12" rx="1"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="21" height="10" rx="3" stroke="currentColor" stroke-width="1" fill="none" opacity=".35"/><rect x="22" y="4" width="2" height="4" rx="1" opacity=".4"/><rect x="1.5" y="2.5" width="17" height="7" rx="2"/></svg>
+    </div>
+  </div>
+
+  <div class="screen" style="padding-top:0; background:#F9FAFB;">
+    <!-- Hero -->
+    <div class="donate-hero">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span style="font-size:12px; color:rgba(255,255,255,0.5);">Back</span>
+      </div>
+      <div class="donate-hero-title">Support <em>VOADI</em></div>
+      <div class="donate-hero-sub">Keep our community platform free and independent. Every contribution helps.</div>
+    </div>
+
+    <div style="padding:20px 16px; padding-bottom:100px;">
+
+      <!-- One-off / Monthly toggle -->
+      <div class="toggle-row">
+        <div class="toggle-btn active">One-off</div>
+        <div class="toggle-btn">Monthly</div>
+      </div>
+
+      <!-- Amount grid -->
+      <div style="font-size:12px; font-weight:600; color:#4B5563; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.08em;">Choose amount</div>
+      <div class="amount-grid">
+        <div class="amount-pill">
+          <div class="amount-pill-val">€5</div>
+          <div class="amount-pill-label">Supporter</div>
+        </div>
+        <div class="amount-pill active">
+          <div class="amount-pill-val">€10</div>
+          <div class="amount-pill-label">Contributor</div>
+        </div>
+        <div class="amount-pill">
+          <div class="amount-pill-val">€25</div>
+          <div class="amount-pill-label">Patron</div>
+        </div>
+        <div class="amount-pill">
+          <div class="amount-pill-val">€50</div>
+          <div class="amount-pill-label">Champion</div>
+        </div>
+      </div>
+
+      <!-- Custom -->
+      <div class="custom-input-wrap">
+        <span class="custom-input-prefix">€</span>
+        <input class="custom-input" placeholder="Custom amount" type="number">
+      </div>
+
+      <button class="btn-primary" style="background:#D97706;">
+        Donate €10 →
+      </button>
+
+      <div class="stripe-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Secure payment via Stripe · All amounts in EUR
+      </div>
+
+      <!-- Transparency note -->
+      <div style="background:#ffffff; border:1px solid #E5E7EB; border-radius:12px; padding:14px; margin-top:20px;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#D97706; margin-bottom:6px;">How we use funds</div>
+        <div style="font-size:12px; color:#4B5563; line-height:1.6;">
+          Server hosting · Platform maintenance · Community events support. Full breakdown at <span style="color:#D97706; font-weight:600;">voadi.org/transparency</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="home-indicator" style="background:#F9FAFB;"><div class="home-bar"></div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,317 @@
+/* Shared phone frame styles — included via <link> in each mockup */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0f0f14;
+  background-image: radial-gradient(ellipse at 30% 40%, rgba(217,119,6,0.06) 0%, transparent 60%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 48px;
+}
+
+.canvas-label {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  font-family: 'Inter', sans-serif;
+}
+
+.phone {
+  width: 393px;
+  height: 852px;
+  background: #ffffff;
+  border-radius: 55px;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.12),
+    0 0 0 10px #1c1c1e,
+    0 0 0 11px rgba(255,255,255,0.08),
+    0 40px 100px rgba(0,0,0,0.7);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Dynamic Island */
+.dynamic-island {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 126px;
+  height: 37px;
+  background: #1c1c1e;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+/* Status bar */
+.status-bar {
+  height: 59px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 28px 10px;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 50;
+}
+
+.status-time {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.3px;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-icons svg {
+  color: #111827;
+}
+
+/* Screen scroll area */
+.screen {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  background: #F9FAFB;
+}
+.screen::-webkit-scrollbar { display: none; }
+
+/* Bottom safe area */
+.home-indicator {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #ffffff;
+}
+.home-bar {
+  width: 134px;
+  height: 5px;
+  background: #111827;
+  border-radius: 3px;
+  opacity: 0.18;
+}
+
+/* ── Common UI atoms ── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(249,250,251,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #E5E7EB;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.voadi-logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+.voadi-logo span {
+  color: #D97706;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #E5E7EB;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4B5563;
+}
+
+.content {
+  padding: 16px;
+  padding-bottom: 100px;
+}
+
+/* Cards */
+.card {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.card-body {
+  padding: 14px;
+}
+
+/* Tags / badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+.badge-amber {
+  background: #FEF3C7;
+  color: #92400E;
+}
+.badge-green {
+  background: #D1FAE5;
+  color: #065F46;
+}
+.badge-blue {
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+.badge-gray {
+  background: #F3F4F6;
+  color: #374151;
+}
+
+/* Bottom nav pill */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 34px;
+  padding-left: 24px;
+  padding-right: 24px;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.nav-pill {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid #E5E7EB;
+  border-radius: 40px;
+  padding: 8px 8px;
+  gap: 4px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  pointer-events: auto;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.nav-item.active {
+  background: #D97706;
+  box-shadow: 0 0 16px rgba(217,119,6,0.45);
+}
+
+.nav-item.active svg { color: #ffffff; }
+.nav-item:not(.active) svg { color: #9CA3AF; }
+
+.nav-label {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.nav-item.active .nav-label { color: #D97706; }
+.nav-item:not(.active) .nav-label { color: #9CA3AF; }
+
+/* Auth-specific */
+.auth-page {
+  min-height: 100%;
+  background: #F9FAFB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+}
+
+.auth-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 20px;
+  padding: 28px 24px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #111827;
+  background: #ffffff;
+  margin-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-input::placeholder { color: #9CA3AF; }
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: #D97706;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+/* Typography helpers */
+.serif { font-family: 'Playfair Display', Georgia, serif; }
+.text-primary { color: #111827; }
+.text-secondary { color: #4B5563; }
+.text-muted { color: #9CA3AF; }
+.text-amber { color: #D97706; }
+
+/* SVG icons inline */
+.icon { display: inline-flex; }

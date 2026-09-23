@@ -21,6 +21,8 @@ docker compose -f docker/docker-compose.dev.yml up -d    # local Postgres on :54
 
 ## Deploy
 
+**Pushing to `main` deploys automatically**: `.github/workflows/deploy.yml` runs `npm run typecheck`, then SSHes to kvm8 (`DEPLOY_SSH_KEY` secret), hard-resets `/opt/voadi` to `origin/main`, rebuilds the prod compose stack, checks the server HEAD against `origin/main` and that `https://voadi.org` answers. Manual fallback from a machine with the `cph-vps` alias:
+
 ```bash
 npx tsx deploy.ts
 ```

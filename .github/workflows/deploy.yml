@@ -1,0 +1,110 @@
+name: Deploy
+
+# Production deploy for VOADI (voadi.org) on KVM8, /opt/voadi. Same steps as
+# deploy.ts, run from GitHub instead of a laptop: on every push to main the
+# typecheck job runs first (no test suite exists yet), then the deploy job
+# SSHes in, hard-resets the checkout to origin/main and rebuilds the prod
+# compose stack (voadi-web + voadi-db). Untracked .env survives the reset.
+#
+# Secrets: DEPLOY_SSH_KEY (required), DEPLOY_KNOWN_HOSTS (recommended).
+# Variables: DEPLOY_HOST (default 72.62.132.248), DEPLOY_USER (default root).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck
+
+  deploy:
+    needs: typecheck
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      DEPLOY_HOST: ${{ vars.DEPLOY_HOST || '72.62.132.248' }}
+      DEPLOY_USER: ${{ vars.DEPLOY_USER || 'root' }}
+      APP_DIR: /opt/voadi
+
+    steps:
+      - name: Refuse to deploy anything but main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "::error::The server resets to origin/main; run this workflow from main."
+          exit 1
+
+      - name: Prepare SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          if [ -z "$DEPLOY_SSH_KEY" ]; then
+            echo "::error::DEPLOY_SSH_KEY secret is not set."
+            exit 1
+          fi
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          if [ -n "$DEPLOY_KNOWN_HOSTS" ]; then
+            printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          else
+            echo "::warning::DEPLOY_KNOWN_HOSTS not set; trusting the host key seen on first connect."
+            ssh-keyscan -H "$DEPLOY_HOST" > ~/.ssh/known_hosts 2>/dev/null
+          fi
+          chmod 644 ~/.ssh/known_hosts
+          cat > ~/.ssh/config <<CFG
+          Host vps
+            HostName $DEPLOY_HOST
+            User $DEPLOY_USER
+            IdentityFile ~/.ssh/id_deploy
+            IdentitiesOnly yes
+            StrictHostKeyChecking yes
+            ConnectTimeout 15
+          CFG
+
+      - name: Deploy (fetch, reset to origin/main, rebuild containers)
+        run: |
+          ssh vps "set -euo pipefail
+            cd $APP_DIR
+            git fetch --prune origin
+            git reset --hard origin/main
+            docker compose -f docker/docker-compose.prod.yml --env-file .env up -d --build
+            docker ps --filter name=voadi-web --format '{{.Names}} — {{.Status}}'"
+
+      - name: Confirm deployed commit matches origin/main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          deployed="$(ssh vps "git -C $APP_DIR rev-parse HEAD")"
+          expected="$(gh api "repos/${GITHUB_REPOSITORY}/branches/main" --jq .commit.sha)"
+          echo "deployed: $deployed"
+          echo "origin/main: $expected"
+          [ "$deployed" = "$expected" ] || { echo "::error::Server HEAD does not match origin/main."; exit 1; }
+
+      - name: Health check
+        run: |
+          for i in 1 2 3 4 5 6; do
+            code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 https://voadi.org/ || echo 000)"
+            echo "voadi.org -> $code (attempt $i)"
+            case "$code" in 2*|3*) exit 0;; esac
+            sleep 10
+          done
+          echo "::error::voadi.org did not answer 2xx/3xx after the deploy."
+          exit 1
+
+      - name: Remove SSH key
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
